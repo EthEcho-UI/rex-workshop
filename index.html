@@ -1,0 +1,2516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
+<meta name="theme-color" content="#E6E8EC">
+<meta name="description" content="Boards, progress blocks and project files for the Captain Rex cosplay build.">
+<meta name="mobile-web-app-capable" content="yes">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="icons/favicon-32.png">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<title>Rex Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..700&family=IBM+Plex+Mono:wght@400;500;600&family=Instrument+Sans:wght@400..700&display=swap">
+<style>
+:root{
+  --ground:#E6E8EC; --col:#F1F2F5; --card:#FFFFFF; --sheet:#FFFFFF; --field:#F5F6F8;
+  --ink:#16181D; --ink-2:#3B404B; --muted:#687080; --muted-2:#A2A8B4;
+  --line:#DCDFE5; --line-strong:#BFC4CE; --hover:rgba(22,26,40,.06);
+  --accent:#2563D9; --accent-ink:#FFFFFF; --accent-soft:rgba(37,99,217,.10);
+  --danger:#C23B2E; --warn:#A86E12; --good:#2E8A55;
+  --toast-accent:#9CC8FF; --scrim:rgba(14,16,22,.36);
+  --shadow-card:0 1px 2px rgba(22,26,40,.07),0 0 0 1px rgba(22,26,40,.055);
+  --shadow-hover:0 3px 8px -2px rgba(22,26,40,.12),0 0 0 1px rgba(22,26,40,.08);
+  --shadow-lift:0 22px 44px -14px rgba(22,26,40,.38),0 0 0 1px rgba(22,26,40,.07);
+  --l-moss:#4C8638; --l-mustard:#BE930C; --l-rust:#C9532B; --l-ultra:#3B5BDB; --l-orchid:#9A4CB6; --l-teal:#1C8B82; --l-rose:#C2416B; --l-sky:#2B87C2; --l-slate:#5D6B82; --l-lime:#6E9A1F;
+  --r-card:10px; --r-col:14px;
+  --col-w:min(300px, calc(100vw - 76px));
+  --font-ui:"Instrument Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-display:"Bricolage Grotesque","Instrument Sans",system-ui,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  color-scheme:light;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --ground:#0E1014; --col:#16191F; --card:#1F232B; --sheet:#1A1D24; --field:#22262E;
+    --ink:#E8EAEF; --ink-2:#C3C8D2; --muted:#8C93A2; --muted-2:#59606E;
+    --line:#2A2F39; --line-strong:#3D4350; --hover:rgba(255,255,255,.07);
+    --accent:#5E9BFF; --accent-ink:#0E1014; --accent-soft:rgba(94,155,255,.14);
+    --danger:#FF7B6C; --warn:#E2B04A; --good:#5CC48A;
+    --toast-accent:#2563D9; --scrim:rgba(0,0,0,.55);
+    --shadow-card:0 0 0 1px rgba(255,255,255,.05),0 1px 2px rgba(0,0,0,.45);
+    --shadow-hover:0 0 0 1px rgba(255,255,255,.09),0 4px 10px -2px rgba(0,0,0,.5);
+    --shadow-lift:0 24px 48px -12px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.09);
+    --l-moss:#7DB867; --l-mustard:#E0BA3E; --l-rust:#EE7C52; --l-ultra:#7C95FF; --l-orchid:#C783E0; --l-teal:#4CC2B6; --l-rose:#F07AA0; --l-sky:#6CC0F0; --l-slate:#9AA7BD; --l-lime:#A9D45A;
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0E1014; --col:#16191F; --card:#1F232B; --sheet:#1A1D24; --field:#22262E;
+  --ink:#E8EAEF; --ink-2:#C3C8D2; --muted:#8C93A2; --muted-2:#59606E;
+  --line:#2A2F39; --line-strong:#3D4350; --hover:rgba(255,255,255,.07);
+  --accent:#5E9BFF; --accent-ink:#0E1014; --accent-soft:rgba(94,155,255,.14);
+  --danger:#FF7B6C; --warn:#E2B04A; --good:#5CC48A;
+  --toast-accent:#2563D9; --scrim:rgba(0,0,0,.55);
+  --shadow-card:0 0 0 1px rgba(255,255,255,.05),0 1px 2px rgba(0,0,0,.45);
+  --shadow-hover:0 0 0 1px rgba(255,255,255,.09),0 4px 10px -2px rgba(0,0,0,.5);
+  --shadow-lift:0 24px 48px -12px rgba(0,0,0,.75),0 0 0 1px rgba(255,255,255,.09);
+  --l-moss:#7DB867; --l-mustard:#E0BA3E; --l-rust:#EE7C52; --l-ultra:#7C95FF; --l-orchid:#C783E0; --l-teal:#4CC2B6; --l-rose:#F07AA0; --l-sky:#6CC0F0; --l-slate:#9AA7BD; --l-lime:#A9D45A;
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;background:var(--ground);color:var(--ink);font:400 15px/1.4 var(--font-ui);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;overscroll-behavior:none;overflow:hidden;touch-action:manipulation}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+a{color:var(--accent)}
+.ic{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex:none}
+
+#app{position:fixed;inset:0;display:flex;flex-direction:column;background:var(--ground)}
+
+/* ---------- header & navigation ---------- */
+.top{flex:none;display:flex;align-items:center;gap:8px;padding:calc(env(safe-area-inset-top,0px) + 8px) max(10px,env(safe-area-inset-right,0px)) 6px max(14px,env(safe-area-inset-left,0px))}
+.brand{flex:1;min-width:0;display:flex;align-items:center;gap:10px}
+.brand-mark{flex:none;width:34px;height:34px;border-radius:9px;box-shadow:var(--shadow-card)}
+.brand>div{min-width:0}
+.brand b{display:block;font:700 18px/1.1 var(--font-display);letter-spacing:-.015em;white-space:nowrap}
+.brand small{display:block;margin-top:2px;font:500 11.5px/1.2 var(--font-mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sync-pill{flex:none;display:inline-flex;align-items:center;gap:7px;height:34px;padding:0 12px 0 11px;border:0;border-radius:999px;background:var(--hover);color:var(--ink-2);font:600 12.5px/1 var(--font-ui);cursor:pointer;white-space:nowrap}
+.sync-pill i{width:8px;height:8px;border-radius:50%;background:var(--muted-2)}
+.sync-pill.ok i{background:var(--good)}
+.sync-pill.busy i{background:var(--accent);animation:pulse 1s ease-in-out infinite}
+.sync-pill.warn i{background:var(--warn)}
+.sync-pill.err{color:var(--danger)} .sync-pill.err i{background:var(--danger)}
+.sync-pill.off{background:var(--accent);color:var(--accent-ink)} .sync-pill.off i{background:var(--accent-ink)}
+@keyframes pulse{50%{opacity:.3}}
+main{flex:1;min-height:0;position:relative}
+.view{position:absolute;inset:0;display:flex;flex-direction:column}
+.scroll{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.bnav{flex:none;display:flex;gap:4px;padding:5px max(10px,env(safe-area-inset-right,0px)) calc(5px + env(safe-area-inset-bottom,0px)) max(10px,env(safe-area-inset-left,0px));background:var(--sheet);box-shadow:0 -1px 0 var(--line)}
+.bnav button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;height:54px;border:0;border-radius:12px;background:none;color:var(--muted);font:600 12px/1 var(--font-ui);cursor:pointer}
+.bnav button .ic{width:22px;height:22px}
+.bnav button.on{color:var(--accent)}
+.bnav button.on .ic{stroke-width:2.1}
+.seg{display:flex;padding:3px;border-radius:12px;background:var(--hover)}
+.seg button{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:7px;height:38px;padding:0 14px;border:0;border-radius:9px;background:none;color:var(--muted);font:600 14.5px/1 var(--font-ui);cursor:pointer;white-space:nowrap}
+.seg button .ic{width:17px;height:17px}
+.seg button.on{background:var(--card);color:var(--ink);box-shadow:var(--shadow-card)}
+.top .views{display:none}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){
+  .top{padding:12px 18px 8px 20px;gap:14px}
+  .top .views{display:flex;flex:none}
+  .bnav{display:none}
+}
+
+/* ---------- board tabs ---------- */
+.tabs{flex:none;display:flex;align-items:center;gap:2px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none;padding:0 8px 0 10px;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 10px,#000 calc(100% - 20px),transparent);mask-image:linear-gradient(90deg,transparent 0,#000 10px,#000 calc(100% - 20px),transparent)}
+.tabs::-webkit-scrollbar{display:none}
+.tab{flex:none;position:relative;display:inline-flex;align-items:center;gap:7px;height:44px;padding:0 10px;border:0;border-radius:10px;background:none;color:var(--muted);font:500 16.5px/1 var(--font-display);letter-spacing:-.012em;cursor:pointer;white-space:nowrap;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.tab:hover{color:var(--ink)}
+.tab.is-active{color:var(--ink);font-weight:700}
+.tab.is-active::after{content:"";position:absolute;left:10px;right:10px;bottom:5px;height:2.5px;border-radius:2px;background:var(--ink)}
+.tab-dot{width:8px;height:8px;border-radius:50%;background:var(--c);flex:none}
+.tab-count{font:500 11px/1 var(--font-mono);color:var(--muted);align-self:flex-start;margin-top:10px;font-variant-numeric:tabular-nums}
+.tab.is-pressing{background:var(--hover)}
+.tab-add{flex:none;width:38px;height:38px;display:grid;place-items:center;border:0;border-radius:10px;background:none;color:var(--muted);cursor:pointer}
+.tab-add:hover{background:var(--hover);color:var(--ink)}
+
+/* ---------- board ---------- */
+.board{flex:1;min-height:0;display:flex;align-items:flex-start;gap:12px;overflow-x:auto;overflow-y:hidden;position:relative;padding:8px 16px 14px;scroll-snap-type:x proximity;scroll-padding-inline:16px;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.board-end{flex:0 0 4px;height:1px}
+html.dragging .board,html.dragging .tabs{scroll-snap-type:none}
+html.dragging,html.dragging *{cursor:grabbing!important}
+.list{flex:0 0 var(--col-w);width:var(--col-w);max-height:100%;display:flex;flex-direction:column;background:var(--col);border-radius:var(--r-col);scroll-snap-align:start;position:relative}
+.list-head{flex:none;display:flex;align-items:center;min-height:54px;padding:6px 4px 2px 6px;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.list-title{flex:1;min-width:0;text-align:left;border:0;background:none;padding:7px 8px;border-radius:8px;color:var(--ink);font:650 17px/1.2 var(--font-display);letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;cursor:pointer}
+.list-title:hover{background:var(--hover)}
+.list-title-input{flex:1;min-width:0;border:0;outline:none;border-radius:8px;padding:7px 8px;background:var(--card);box-shadow:0 0 0 2px var(--accent);font:650 17px/1.2 var(--font-display);letter-spacing:-.015em;color:var(--ink)}
+.list-count{flex:none;font:500 12px/1 var(--font-mono);color:var(--muted);padding:0 6px;font-variant-numeric:tabular-nums}
+.list-done-ic{color:var(--good);display:grid;margin-left:-2px}
+.list-done-ic .ic{width:16px;height:16px}
+.list-head.is-pressing{background:var(--hover);border-radius:12px}
+.cards{flex:0 1 auto;min-height:8px;overflow-y:auto;overflow-x:hidden;overscroll-behavior-y:contain;display:flex;flex-direction:column;gap:6px;padding:2px 8px 6px;position:relative;scrollbar-width:thin;scrollbar-color:var(--line-strong) transparent}
+.card{flex:none;position:relative;display:flex;flex-direction:column;gap:7px;padding:10px 12px 11px 8px;background:var(--card);border-radius:var(--r-card);box-shadow:var(--shadow-card);cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:transform .16s ease,box-shadow .16s ease}
+.card:focus-visible{outline:none;box-shadow:var(--shadow-card),0 0 0 2px var(--accent)}
+@media (hover:hover){.card:hover{box-shadow:var(--shadow-hover)}}
+.card.is-pressing,.step.is-pressing{transform:scale(.975)}
+.card-labels{display:flex;flex-wrap:wrap;align-items:center;gap:4px;padding-left:34px}
+.lab{display:block;padding:3px 7px;border-radius:5px;background:color-mix(in srgb,var(--c) 17%,transparent);color:color-mix(in srgb,var(--c) 72%,var(--ink));font:600 11.5px/1.2 var(--font-ui)}
+.card-main{display:flex;align-items:flex-start;gap:8px}
+.card-title{flex:1;min-width:0;font-size:15px;line-height:1.35;padding-top:1px;overflow-wrap:anywhere}
+.card.is-done .card-title{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted-2)}
+.card-meta{display:flex;flex-wrap:wrap;align-items:center;gap:6px 12px;padding-left:34px}
+.chip{display:inline-flex;align-items:center;gap:4px;font:500 11.5px/1 var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums;white-space:nowrap}
+.chip .ic{width:14px;height:14px}
+.chip.late{color:var(--danger)} .chip.soon{color:var(--warn)} .chip.ok{color:var(--good)}
+.chip.pin{color:var(--warn)}
+.chip.blk{color:color-mix(in srgb,var(--c) 75%,var(--ink));max-width:150px;overflow:hidden;text-overflow:ellipsis}
+.check{flex:none;position:relative;width:26px;height:26px;margin:-3px 0;padding:0;display:grid;place-items:center;border:0;background:none;border-radius:50%;color:transparent;cursor:pointer}
+.check::before{content:"";position:absolute;inset:3px;border-radius:50%;border:1.6px solid var(--muted-2);transition:background .15s,border-color .15s}
+.check::after{content:"";position:absolute;inset:-8px}
+.check .ic{position:relative;width:13px;height:13px;stroke-width:2.8}
+.check:hover::before{border-color:var(--accent)}
+.check.on{color:var(--accent-ink)}
+.check.on::before{background:var(--accent);border-color:var(--accent)}
+.check.big{width:34px;height:34px;margin:0}
+.check.big .ic{width:16px;height:16px}
+.list.is-collapsed{flex-basis:52px;width:52px}
+.list.is-collapsed .cards{display:none}
+.collapsed-body{display:flex;flex-direction:column;align-items:center;gap:12px;width:100%;padding:16px 0 18px;border:0;border-radius:var(--r-col);background:none;color:var(--ink);cursor:pointer;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.collapsed-body:hover{background:var(--hover)}
+.collapsed-body .ic{color:var(--muted)}
+.v-title{writing-mode:vertical-rl;font:650 17px/1 var(--font-display);letter-spacing:-.01em;white-space:nowrap;max-height:56vh;overflow:hidden;text-overflow:ellipsis}
+.list.is-collapsed.is-drop{background:var(--accent-soft);box-shadow:inset 0 0 0 2px var(--accent)}
+.list-foot{flex:none;display:flex;align-items:center;justify-content:space-between;gap:6px;padding:2px 6px 8px}
+.add-card{display:inline-flex;align-items:center;gap:6px;height:40px;padding:0 12px 0 8px;border:0;border-radius:9px;background:none;color:var(--muted);font:500 14.5px/1 var(--font-ui);cursor:pointer}
+.add-card:hover{background:var(--hover);color:var(--ink)}
+.composer{flex:none;display:flex;flex-direction:column;gap:8px;padding:4px 8px 8px}
+.composer textarea,.add-list input{width:100%;resize:none;border:0;outline:none;border-radius:var(--r-card);background:var(--card);box-shadow:var(--shadow-card),0 0 0 2px var(--accent);padding:10px 12px;color:var(--ink);font:16px/1.35 var(--font-ui)}
+.composer textarea{min-height:66px}
+.composer-row{display:flex;align-items:center;gap:6px}
+.composer-row .sheet-hint{margin:0 0 0 auto;font-size:12px}
+.add-list{flex:0 0 var(--col-w);width:var(--col-w);display:flex;align-items:center;gap:6px;height:54px;padding:0 14px;border:1.5px dashed var(--line-strong);border-radius:var(--r-col);background:none;color:var(--muted);font:600 15px/1 var(--font-ui);cursor:pointer;scroll-snap-align:start}
+.add-list:hover{color:var(--ink);border-color:var(--muted-2)}
+.add-list.is-open{height:auto;flex-direction:column;align-items:stretch;gap:8px;padding:8px;border:0;background:var(--col);cursor:default}
+
+/* drag states */
+.is-placeholder{background:transparent!important;box-shadow:none!important;outline:1.5px dashed var(--line-strong);outline-offset:-1.5px;transform:none!important}
+.is-placeholder>*{visibility:hidden}
+.ghost{position:fixed!important;left:0;top:0;margin:0!important;z-index:60;pointer-events:none;opacity:.97;will-change:transform;overflow:hidden;box-shadow:var(--shadow-lift)!important;transition:none}
+.tab.ghost{background:var(--card);border-radius:10px}
+.ghost.settling{transition:transform .16s cubic-bezier(.2,.8,.2,1)}
+
+/* ---------- buttons & fields ---------- */
+.icon-btn{flex:none;width:40px;height:40px;display:grid;place-items:center;padding:0;border:0;border-radius:10px;background:none;color:var(--muted);cursor:pointer}
+.icon-btn:hover{background:var(--hover);color:var(--ink)}
+.icon-btn[disabled]{opacity:.35;cursor:default;background:none}
+.icon-btn.sm{width:34px;height:34px}
+.icon-btn.sm .ic{width:17px;height:17px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:44px;padding:0 16px;border:0;border-radius:11px;background:var(--hover);color:var(--ink);font:600 15px/1 var(--font-ui);cursor:pointer;white-space:nowrap;text-decoration:none}
+.btn:hover{filter:brightness(.97)}
+.btn[disabled]{opacity:.45;cursor:default;filter:none}
+.btn.sm{height:36px;padding:0 12px;font-size:14px}
+.btn.primary{background:var(--accent);color:var(--accent-ink)}
+.btn.danger{background:none;color:var(--danger);padding:0 8px}
+.btn.danger:hover{background:color-mix(in srgb,var(--danger) 10%,transparent)}
+.btn.danger-fill{background:var(--danger);color:#fff}
+.btn .ic{width:18px;height:18px}
+.btn.sm .ic{width:16px;height:16px}
+.field{width:100%;border:1.5px solid var(--line);border-radius:10px;background:var(--field);color:var(--ink);padding:10px 12px;font:16px/1.4 var(--font-ui);outline:none;min-height:46px}
+.field:focus{border-color:var(--accent)}
+.field.area{resize:vertical;min-height:96px;display:block}
+.field.sm{padding:7px 10px;min-height:0}
+.mono{font:500 12px/1.2 var(--font-mono);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.switch{flex:none;position:relative;width:24px;height:24px;border-radius:50%;border:1.6px solid var(--muted-2);transition:background .15s,border-color .15s}
+.switch::after{content:"";position:absolute;left:7px;top:3.5px;width:5px;height:10px;border:solid var(--accent-ink);border-width:0 2.4px 2.4px 0;transform:rotate(45deg);opacity:0;transition:opacity .15s}
+.toggle{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:50px;position:relative;cursor:pointer}
+.toggle>span:first-child{display:flex;flex-direction:column;gap:2px;font-weight:500}
+.toggle small{font-size:12.5px;font-weight:400;color:var(--muted)}
+.toggle input{position:absolute;opacity:0;pointer-events:none}
+.toggle input:checked+.switch{background:var(--accent);border-color:var(--accent)}
+.toggle input:checked+.switch::after{opacity:1}
+.toggle input:focus-visible+.switch{outline:2px solid var(--accent);outline-offset:2px}
+.form-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+.full{grid-column:1/-1}
+.fld label,.fld .lbl{display:block;margin-bottom:6px;font:600 11px/1.2 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.select-wrap{position:relative;display:inline-block;min-width:0;max-width:100%}
+.select-wrap.block{display:block}
+.select-wrap::after{content:"";position:absolute;right:13px;top:50%;width:7px;height:7px;border-right:1.6px solid var(--muted);border-bottom:1.6px solid var(--muted);transform:translateY(-70%) rotate(45deg);pointer-events:none}
+.select{appearance:none;-webkit-appearance:none;max-width:100%;border:0;border-radius:9px;background:var(--hover);color:var(--ink);padding:9px 34px 9px 12px;font:500 16px/1.2 var(--font-ui);cursor:pointer;text-overflow:ellipsis}
+.select-wrap.block .select{width:100%;min-height:46px}
+.spinner{display:inline-block;width:18px;height:18px;border-radius:50%;border:2px solid var(--line-strong);border-top-color:var(--accent);animation:spin .8s linear infinite;vertical-align:-4px;margin-right:10px}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ---------- sheets, menus, toast ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:var(--scrim);opacity:0;transition:opacity .25s}
+.scrim.in{opacity:1}
+.scrim.clear{background:transparent}
+.sheet{position:fixed;left:0;right:0;bottom:0;z-index:41;display:flex;flex-direction:column;max-height:calc(100% - 28px - env(safe-area-inset-top,0px));background:var(--sheet);color:var(--ink);border-radius:20px 20px 0 0;box-shadow:0 -12px 40px -12px rgba(0,0,0,.35);transform:translateY(104%);transition:transform .3s cubic-bezier(.2,.85,.25,1)}
+.sheet.in{transform:none}
+.sheet.tall{height:calc(100% - 28px - env(safe-area-inset-top,0px))}
+.sheet-grip{flex:none;height:28px;display:grid;place-items:center;touch-action:none;cursor:grab}
+.sheet-grip::before{content:"";width:40px;height:5px;border-radius:3px;background:var(--line-strong)}
+.sheet-inner{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;padding:0 18px calc(20px + env(safe-area-inset-bottom,0px))}
+.sheet-title{margin:2px 0 14px;font:650 20px/1.25 var(--font-display);letter-spacing:-.015em;text-wrap:balance}
+.sheet-text{margin:0 0 6px;color:var(--ink-2);line-height:1.5;max-width:62ch}
+.sheet-hint{margin:10px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
+.sheet-hint.err{color:var(--danger)}
+.sheet-actions{display:flex;flex-wrap:wrap;justify-content:flex-end;align-items:center;gap:10px;margin-top:18px}
+.steps-ol{margin:8px 0 16px;padding-left:22px;line-height:1.55;color:var(--ink-2)}
+.steps-ol li{margin:4px 0}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){
+  .sheet{left:50%;right:auto;bottom:auto;top:7vh;width:min(600px,calc(100vw - 48px));max-height:86vh;border-radius:18px;opacity:0;transform:translate(-50%,14px);transition:transform .22s cubic-bezier(.2,.85,.25,1),opacity .18s}
+  .sheet.in{opacity:1;transform:translate(-50%,0)}
+  .sheet.compact{width:min(460px,calc(100vw - 48px));top:12vh}
+  .sheet.tall{height:86vh}
+  .sheet.wide{width:min(880px,calc(100vw - 48px))}
+  .sheet.viewer{width:min(1100px,calc(100vw - 48px));top:5vh;height:90vh;max-height:90vh}
+  .sheet-grip{height:16px;cursor:default}
+  .sheet-grip::before{display:none}
+  .sheet-inner{padding:4px 24px 24px}
+}
+.menu{position:fixed;z-index:51;background:var(--sheet);color:var(--ink)}
+.menu.as-sheet{left:8px;right:8px;bottom:calc(8px + env(safe-area-inset-bottom,0px));max-height:80%;overflow-y:auto;padding:6px;border-radius:18px;box-shadow:var(--shadow-lift);transform:translateY(calc(100% + 24px));transition:transform .26s cubic-bezier(.2,.85,.25,1)}
+.menu.as-sheet.in{transform:none}
+.menu.pop{min-width:250px;max-width:320px;max-height:80vh;overflow-y:auto;padding:5px;border-radius:12px;box-shadow:var(--shadow-lift);opacity:0;transform:translateY(-4px);transition:opacity .14s,transform .14s}
+.menu.pop.in{opacity:1;transform:none}
+.menu-item{display:flex;align-items:center;gap:12px;width:100%;min-height:50px;padding:0 12px;border:0;border-radius:10px;background:none;color:var(--ink);font:500 16px/1.25 var(--font-ui);text-align:left;cursor:pointer}
+.menu.pop .menu-item{min-height:40px;font-size:14.5px}
+.menu-item:hover,.menu-item:focus-visible{background:var(--hover);outline:none}
+.menu-item[disabled]{opacity:.42;cursor:default}
+.menu-item .ic{color:var(--muted)}
+.menu-item.danger{color:var(--danger)}
+.menu-item.danger .ic{color:currentColor}
+.mi-label{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
+.mi-label small{font-size:12.5px;font-weight:400;color:var(--muted)}
+.mi-check{display:grid;color:transparent}
+.mi-check.on{color:var(--accent)}
+.menu-item .mi-check .ic{color:inherit}
+.menu-title{padding:10px 12px 6px;font:600 11.5px/1.2 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.menu-sep{height:1px;margin:5px 10px;background:var(--line)}
+.menu-swatches{display:flex;flex-wrap:wrap;gap:12px;padding:8px 12px 12px}
+.swatch{width:30px;height:30px;padding:0;border:0;border-radius:50%;background:var(--c);cursor:pointer}
+.swatch.on{box-shadow:0 0 0 2px var(--sheet),0 0 0 4px var(--c)}
+.toast{position:fixed;left:50%;bottom:calc(76px + env(safe-area-inset-bottom,0px));z-index:70;display:flex;align-items:center;gap:12px;max-width:calc(100vw - 32px);padding:8px 8px 8px 16px;border-radius:12px;background:var(--ink);color:var(--ground);font:500 14.5px/1.3 var(--font-ui);box-shadow:var(--shadow-lift);opacity:0;transform:translate(-50%,16px);transition:opacity .2s,transform .2s;pointer-events:none}
+.toast.in{opacity:1;transform:translate(-50%,0);pointer-events:auto}
+.toast span{padding:6px 0}
+.toast .spinner{border-color:color-mix(in srgb,var(--ground) 30%,transparent);border-top-color:var(--ground);margin:0}
+.toast-btn{flex:none;border:0;background:none;padding:8px 10px;border-radius:8px;color:var(--toast-accent);font:700 14.5px/1 var(--font-ui);cursor:pointer}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){.toast{bottom:24px}}
+
+/* ---------- detail sheets (card, step) ---------- */
+.cs-head{display:flex;align-items:flex-start;gap:8px;padding:0 0 6px}
+.cs-title{flex:1;min-width:0;resize:none;overflow:hidden;border:0;outline:none;background:none;padding:4px 2px;border-radius:8px;color:var(--ink);font:650 21px/1.25 var(--font-display);letter-spacing:-.015em}
+.cs-title:focus{background:var(--hover)}
+.cs-where{display:flex;align-items:center;gap:8px;padding:0 0 14px 42px;min-width:0}
+.cs-sec{padding:14px 0 16px;border-top:1px solid var(--line)}
+.cs-sec-head{display:flex;align-items:center;justify-content:space-between;gap:10px;min-height:28px;margin-bottom:8px}
+.cs-sec h3{margin:0;font:600 11.5px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.cs-foot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding-top:12px;border-top:1px solid var(--line)}
+.label-pick{display:flex;flex-wrap:wrap;gap:8px}
+.lp{display:inline-flex;align-items:center;gap:7px;height:36px;padding:0 13px 0 11px;border:1.5px solid var(--line);border-radius:999px;background:none;color:var(--ink-2);font:500 14px/1 var(--font-ui);cursor:pointer}
+.lp i{width:14px;height:14px;border-radius:50%;background:var(--c)}
+.lp.on{border-color:var(--c);background:color-mix(in srgb,var(--c) 15%,transparent);color:var(--ink)}
+.lp.add{border-style:dashed;color:var(--muted)}
+.lp.add .ic{width:16px;height:16px}
+.progress{height:4px;margin:0 0 6px;border-radius:2px;background:var(--hover);overflow:hidden}
+.progress i{display:block;height:100%;border-radius:2px;background:var(--good);transition:width .25s}
+.cl{list-style:none;margin:0 0 8px;padding:0}
+.cl li{display:flex;align-items:center;gap:4px;min-height:44px}
+.cl-check{flex:none;position:relative;width:36px;height:36px;margin-left:-6px;padding:0;display:grid;place-items:center;border:0;background:none;color:transparent;cursor:pointer}
+.cl-check::before{content:"";position:absolute;width:20px;height:20px;border-radius:6px;border:1.6px solid var(--muted-2)}
+.cl-check .ic{position:relative;width:13px;height:13px;stroke-width:2.8}
+.cl-check.on{color:#fff}
+.cl-check.on::before{background:var(--good);border-color:var(--good)}
+.cl-text{flex:1;min-width:0;border:0;outline:none;background:none;padding:8px 6px;border-radius:7px;color:var(--ink);font:16px/1.3 var(--font-ui)}
+.cl-text:focus{background:var(--hover)}
+.cl li.on .cl-text{color:var(--muted);text-decoration:line-through}
+.att-list{display:flex;flex-direction:column;gap:6px;margin-bottom:10px}
+.att{display:flex;align-items:center;gap:4px;padding:4px;border-radius:12px;background:var(--field)}
+.att-open{flex:1;min-width:0;display:flex;align-items:center;gap:10px;padding:2px 4px;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer;border-radius:9px}
+.att.missing .fname b{color:var(--muted);text-decoration:line-through}
+.att-actions{display:flex;flex-wrap:wrap;gap:8px}
+.link-box{display:flex;align-items:center;gap:10px;padding:8px 8px 8px 12px;border-radius:12px;background:var(--field)}
+.link-box .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.link-box b{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.link-box small{font:500 12px/1.2 var(--font-mono);color:var(--muted)}
+.row-btns{display:flex;flex-wrap:wrap;gap:8px}
+.st-seg{margin:0 0 14px}
+.st-seg button.on[data-v="doing"]{color:var(--accent)}
+.st-seg button.on[data-v="done"]{color:var(--good)}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){
+  .cs-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(0,1fr);gap:0 28px}
+}
+
+/* ---------- blocks ---------- */
+.blocks-wrap{max-width:1180px;margin:0 auto;padding:4px 14px 32px}
+.banner{display:flex;align-items:center;gap:12px;margin:2px 0 14px;padding:12px 12px 12px 16px;border-radius:14px;background:var(--accent-soft);color:var(--ink-2);line-height:1.4}
+.banner p{flex:1;margin:0;font-size:14px}
+.overview{padding:16px 18px 16px;margin-bottom:16px;border-radius:16px;background:var(--col)}
+.ov-top{display:flex;align-items:flex-end;justify-content:space-between;flex-wrap:wrap;gap:8px 16px;margin-bottom:14px}
+.ov-pct{font:700 46px/.9 var(--font-display);letter-spacing:-.035em;font-variant-numeric:tabular-nums}
+.ov-pct span{font-size:24px;letter-spacing:0;color:var(--muted);margin-left:2px}
+.ov-sub{margin-top:8px;color:var(--muted);font-size:13.5px}
+.ov-side{display:flex;gap:18px;text-align:right}
+.ov-side b{display:block;font:650 20px/1 var(--font-display);font-variant-numeric:tabular-nums}
+.ov-side small{display:block;margin-top:5px;font:600 10.5px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.ov-bar{display:flex;gap:3px;height:12px}
+.ov-bar>span{position:relative;min-width:8px;border-radius:4px;background:color-mix(in srgb,var(--c) 20%,transparent);overflow:hidden}
+.ov-bar>span>i{position:absolute;left:0;top:0;bottom:0;background:var(--c)}
+.sec-label{display:flex;align-items:center;gap:8px;margin:20px 2px 10px;font:600 11.5px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.sec-label .ic{width:15px;height:15px}
+.now-list{display:grid;grid-template-columns:1fr;gap:6px}
+@media (min-width:760px){.now-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.blocks{position:relative;display:grid;grid-template-columns:minmax(0,1fr);gap:12px;align-items:start;margin-top:4px}
+@media (min-width:760px){.blocks{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (min-width:1500px){.blocks-wrap{max-width:1560px}.blocks{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.block{position:relative;background:var(--col);border-radius:var(--r-col);padding-bottom:6px}
+.block-head{display:flex;align-items:center;gap:2px;padding:8px 4px 4px 4px;cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+.block-head.is-pressing{background:var(--hover);border-radius:12px}
+.block-tog{flex:none;width:34px;height:34px;display:grid;place-items:center;padding:0;border:0;border-radius:9px;background:none;color:var(--muted);cursor:pointer}
+.block-tog:hover{background:var(--hover);color:var(--ink)}
+.block-tog .ic{width:17px;height:17px;transition:transform .18s}
+.block.is-collapsed .block-tog .ic{transform:rotate(-90deg)}
+.block-name{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px;padding:5px 6px;border:0;border-radius:9px;background:none;color:var(--ink);text-align:left;cursor:pointer}
+.block-name:hover{background:var(--hover)}
+.block-name b{display:flex;align-items:center;gap:8px;font:650 17px/1.2 var(--font-display);letter-spacing:-.015em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.block-name b i{flex:none;width:9px;height:9px;border-radius:3px;background:var(--c)}
+.block-name small{font:500 12px/1 var(--font-mono);color:var(--muted);font-variant-numeric:tabular-nums}
+.done-badge{flex:none;width:24px;height:24px;display:grid;place-items:center;border-radius:50%;background:var(--good);color:#fff}
+.done-badge .ic{width:14px;height:14px;stroke-width:2.8}
+.block-bar{height:5px;margin:2px 14px 8px;border-radius:3px;background:color-mix(in srgb,var(--c) 18%,transparent);overflow:hidden}
+.block-bar i{display:block;height:100%;border-radius:3px;background:var(--c);transition:width .3s}
+.block-desc{margin:-2px 14px 10px;color:var(--muted);font-size:13.5px;line-height:1.45;white-space:pre-wrap}
+.steps{display:flex;flex-direction:column;gap:5px;min-height:6px;padding:0 8px 2px}
+.block.is-collapsed .steps,.block.is-collapsed .block-foot,.block.is-collapsed .block-desc,.block.is-collapsed .composer{display:none}
+.block.is-collapsed.is-drop{box-shadow:inset 0 0 0 2px var(--accent)}
+.block-foot{padding:2px 6px 2px}
+.step{position:relative;display:flex;align-items:center;gap:8px;min-height:48px;padding:6px 10px 6px 5px;background:var(--card);border-radius:10px;box-shadow:var(--shadow-card);cursor:grab;user-select:none;-webkit-user-select:none;-webkit-touch-callout:none;transition:transform .16s ease,box-shadow .16s ease}
+@media (hover:hover){.step:hover{box-shadow:var(--shadow-hover)}}
+.step:focus-visible{outline:none;box-shadow:var(--shadow-card),0 0 0 2px var(--accent)}
+.st{flex:none;position:relative;width:34px;height:34px;padding:0;display:grid;place-items:center;border:0;background:none;border-radius:50%;color:transparent;cursor:pointer}
+.st::before{content:"";position:absolute;inset:7px;border-radius:50%;border:1.7px solid var(--muted-2);transition:background .15s,border-color .15s,box-shadow .15s}
+.st::after{content:"";position:absolute;inset:-4px}
+.st .ic{position:relative;width:12px;height:12px;stroke-width:3}
+.st:hover::before{border-color:var(--accent)}
+.st-doing .st::before{border-color:var(--accent);background:var(--accent);box-shadow:inset 0 0 0 3.5px var(--card)}
+.st-done .st{color:#fff}
+.st-done .st::before{border-color:var(--good);background:var(--good)}
+.st-doing{box-shadow:var(--shadow-card),inset 3px 0 0 var(--accent)}
+.step-body{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.step-title{font-size:15px;line-height:1.35;overflow-wrap:anywhere}
+.st-done .step-title{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--muted-2)}
+.step-block{display:flex;align-items:center;gap:6px;font:500 12px/1.2 var(--font-mono);color:var(--muted)}
+.step-block i{width:7px;height:7px;border-radius:2px;background:var(--c)}
+.step-meta{flex:none;display:flex;align-items:center;gap:10px}
+.doing-tag{font:600 10.5px/1 var(--font-mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+.add-block{display:flex;align-items:center;justify-content:center;gap:8px;min-height:64px;border:1.5px dashed var(--line-strong);border-radius:var(--r-col);background:none;color:var(--muted);font:600 15px/1 var(--font-ui);cursor:pointer}
+.add-block:hover{color:var(--ink);border-color:var(--muted-2)}
+
+/* ---------- files ---------- */
+.files-wrap{max-width:1000px;margin:0 auto;padding:0 14px 32px}
+.files-bar{position:sticky;top:0;z-index:3;display:flex;align-items:center;gap:4px;padding:6px 0 10px;background:var(--ground)}
+.crumbs{flex:1;min-width:0;display:flex;align-items:center;gap:0;overflow-x:auto;scrollbar-width:none}
+.crumbs::-webkit-scrollbar{display:none}
+.crumb{flex:none;display:inline-flex;align-items:center;gap:6px;height:36px;border:0;background:none;padding:0 8px;border-radius:8px;color:var(--muted);font:600 15px/1 var(--font-ui);cursor:pointer;white-space:nowrap}
+.crumb:hover{background:var(--hover);color:var(--ink)}
+.crumb:last-of-type{color:var(--ink)}
+.crumb .ic{width:17px;height:17px}
+.crumb-sep{flex:none;color:var(--muted-2)}
+.crumb-sep .ic{width:14px;height:14px}
+.fsearch{position:relative;margin:0 0 10px}
+.fsearch .ic{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted);width:18px;height:18px}
+.fsearch .field{padding-left:40px}
+.flist{list-style:none;margin:0;padding:4px;border-radius:14px;background:var(--col)}
+.frow{display:flex;align-items:center;gap:4px;border-radius:10px}
+.frow+.frow{box-shadow:0 -1px 0 var(--line)}
+.frow:hover{background:var(--hover)}
+.frow.sel{background:var(--accent-soft)}
+.f-open{flex:1;min-width:0;display:flex;align-items:center;gap:12px;min-height:56px;padding:6px 6px 6px 8px;border:0;background:none;color:var(--ink);text-align:left;cursor:pointer;border-radius:10px}
+.ficon{flex:none;width:38px;height:38px;display:grid;place-items:center;border-radius:9px;background:var(--card);box-shadow:var(--shadow-card);color:var(--muted);overflow:hidden}
+.ficon.sm{width:34px;height:34px}
+.ficon img{width:100%;height:100%;object-fit:cover}
+.ficon.dir{background:var(--accent-soft);box-shadow:none;color:var(--accent)}
+.ficon.k-image{color:var(--l-teal)} .ficon.k-stl,.ficon.k-cad{color:var(--l-orchid)} .ficon.k-md{color:var(--l-ultra)} .ficon.k-text{color:var(--l-mustard)} .ficon.k-pdf{color:var(--l-rust)}
+.fname{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.fname b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fname small{font:500 12px/1.2 var(--font-mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fsel{flex:none;margin-left:4px}
+.flist.drop-over{box-shadow:inset 0 0 0 2px var(--accent);background:var(--accent-soft)}
+.files-empty{padding:28px 12px;text-align:center;color:var(--muted);line-height:1.5}
+.sel-bar{position:sticky;bottom:10px;z-index:4;display:flex;align-items:center;gap:6px;margin-top:12px;padding:6px 6px 6px 14px;border-radius:14px;background:var(--sheet);box-shadow:var(--shadow-lift)}
+.sel-bar b{flex:1;font-weight:600}
+.readme{margin-top:16px;padding:20px 22px;border-radius:14px;background:var(--card);box-shadow:var(--shadow-card)}
+.readme-head{display:flex;align-items:center;gap:8px;margin:-6px 0 10px;font:600 11.5px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.readme-head .ic{width:15px;height:15px}
+.readme-head span{text-transform:none;letter-spacing:0;font-size:12.5px}
+.center-panel{max-width:420px;margin:10vh auto 0;padding:0 24px;text-align:center}
+.center-panel .cp-icon{width:64px;height:64px;margin:0 auto 18px;display:grid;place-items:center;border-radius:18px;background:var(--accent-soft);color:var(--accent)}
+.center-panel .cp-icon .ic{width:30px;height:30px}
+.center-panel h2{margin:0 0 8px;font:650 22px/1.2 var(--font-display);letter-spacing:-.015em}
+.center-panel p{margin:0 0 20px;color:var(--muted);line-height:1.5}
+.hist-row{display:flex;align-items:center;gap:12px;min-height:58px;padding:8px 4px;border-bottom:1px solid var(--line);color:var(--ink);text-decoration:none}
+.hist-row:hover{background:var(--hover)}
+.hist-row .t{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.hist-row b{font-weight:500;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.hist-row small{font:500 12px/1.2 var(--font-mono);color:var(--muted)}
+.pick-list{display:flex;flex-direction:column;margin-top:10px}
+.pick-row{display:flex;align-items:center;gap:12px;min-height:52px;padding:6px 6px;border:0;border-bottom:1px solid var(--line);background:none;color:var(--ink);text-align:left;cursor:pointer;width:100%}
+.pick-row:hover{background:var(--hover)}
+.pick-head{margin:16px 0 4px;display:flex;align-items:center;gap:8px;font:600 11.5px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.pick-head i{width:8px;height:8px;border-radius:2px;background:var(--c)}
+
+/* ---------- viewer ---------- */
+.vw-head{position:sticky;top:0;z-index:2;display:flex;align-items:center;gap:6px;padding:0 0 12px;background:var(--sheet)}
+.vw-title{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px;margin-left:4px}
+.vw-title b{font:650 17px/1.2 var(--font-display);letter-spacing:-.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vw-title small{font:500 12px/1.2 var(--font-mono);color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.vw-body{min-height:200px}
+.vw-img{display:block;max-width:100%;max-height:72vh;margin:0 auto;border-radius:10px;background:repeating-conic-gradient(var(--hover) 0 25%,transparent 0 50%) 0 0/20px 20px}
+pre.code{margin:0;padding:14px 16px;border-radius:12px;background:var(--field);font:12.5px/1.6 var(--font-mono);overflow:auto;white-space:pre;tab-size:2;color:var(--ink-2)}
+.editor{display:block;width:100%;min-height:58vh;resize:vertical;border:1.5px solid var(--line);border-radius:12px;background:var(--field);color:var(--ink);padding:14px 16px;font:16px/1.55 var(--font-mono);outline:none;tab-size:2;white-space:pre;overflow-wrap:normal;overflow:auto}
+.editor:focus{border-color:var(--accent)}
+@media (min-width:900px) and (hover:hover) and (pointer:fine){.editor{font-size:13px}}
+.vw-msg{margin-top:10px}
+.vw-pdf{display:block;width:100%;height:68vh;border:0;border-radius:12px;background:#fff}
+.vw-media{display:block;width:100%;max-height:70vh;border-radius:12px}
+.stl-box{position:relative;height:min(64vh,620px);border-radius:14px;overflow:hidden;touch-action:none;background:radial-gradient(120% 90% at 50% 20%,var(--col),var(--ground))}
+.stl-box canvas{display:block;width:100%;height:100%}
+.stl-info{position:absolute;left:12px;bottom:12px;display:flex;flex-wrap:wrap;gap:6px;pointer-events:none}
+.stl-info span{padding:6px 9px;border-radius:8px;background:color-mix(in srgb,var(--sheet) 88%,transparent);font:500 12px/1 var(--font-mono);color:var(--ink-2);box-shadow:var(--shadow-card)}
+.stl-hint{position:absolute;right:12px;top:12px;font:500 11.5px/1 var(--font-mono);color:var(--muted);pointer-events:none}
+.empty{padding:36px 12px;text-align:center;color:var(--muted);line-height:1.55}
+.md-body{line-height:1.6;color:var(--ink);overflow-wrap:anywhere}
+.md-body>:first-child{margin-top:0}
+.md-body h1,.md-body h2,.md-body h3,.md-body h4{font-family:var(--font-display);letter-spacing:-.015em;line-height:1.25;margin:1.4em 0 .5em}
+.md-body h1{font-size:26px} .md-body h2{font-size:21px;padding-bottom:6px;border-bottom:1px solid var(--line)} .md-body h3{font-size:17px}
+.md-body p,.md-body ul,.md-body ol,.md-body table,.md-body blockquote,.md-body pre{margin:0 0 1em}
+.md-body ul,.md-body ol{padding-left:1.5em}
+.md-body li{margin:.2em 0}
+.md-body li:has(>input[type=checkbox]){list-style:none;margin-left:-1.3em}
+.md-body code{padding:2px 5px;border-radius:5px;background:var(--field);font:.88em var(--font-mono)}
+.md-body pre{padding:12px 14px;border-radius:10px;background:var(--field);overflow:auto}
+.md-body pre code{padding:0;background:none}
+.md-body img{max-width:100%;border-radius:8px}
+.md-body blockquote{padding:4px 14px;border-left:3px solid var(--accent);background:var(--accent-soft);border-radius:0 8px 8px 0;color:var(--ink-2)}
+.md-body table{border-collapse:collapse;display:block;overflow-x:auto;max-width:100%}
+.md-body th,.md-body td{padding:7px 11px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.md-body th{background:var(--field);font-weight:600}
+.md-body hr{border:0;border-top:1px solid var(--line);margin:1.6em 0}
+.set-sec{padding:14px 0 16px;border-top:1px solid var(--line)}
+.set-sec:first-of-type{border-top:0;padding-top:0}
+.set-sec h3{margin:0 0 10px;font:600 11.5px/1 var(--font-mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.tag-row{display:flex;align-items:center;gap:8px;min-height:46px;border-bottom:1px solid var(--line)}
+.tag-row .swatch{width:22px;height:22px;flex:none}
+.tag-row input{flex:1;min-width:0;border:0;background:none;outline:none;padding:8px 4px;border-radius:7px;font:16px/1.3 var(--font-ui);color:var(--ink)}
+.tag-row input:focus{background:var(--hover)}
+.log-imgs{display:flex;flex-wrap:wrap;gap:8px}
+.log-img{position:relative;width:76px;height:76px;border-radius:10px;overflow:hidden;background:var(--field);cursor:pointer}
+.log-img img{width:100%;height:100%;object-fit:cover}
+.log-img input{position:absolute;right:5px;top:5px;width:18px;height:18px;accent-color:var(--accent)}
+@media (prefers-reduced-motion: reduce){*,*::before,*::after{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="5.5" cy="12" r="1.3" fill="currentColor"/><circle cx="12" cy="12" r="1.3" fill="currentColor"/><circle cx="18.5" cy="12" r="1.3" fill="currentColor"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></symbol>
+  <symbol id="i-chev-r" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-chev-d" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12 3.5l8.5 4.5-8.5 4.5L3.5 8z"/><path d="M3.5 12.2l8.5 4.5 8.5-4.5"/><path d="M3.5 16.2l8.5 4.5 8.5-4.5"/></symbol>
+  <symbol id="i-board" viewBox="0 0 24 24"><rect x="3.5" y="4" width="5" height="14" rx="1.5"/><rect x="9.5" y="4" width="5" height="9" rx="1.5"/><rect x="15.5" y="4" width="5" height="16" rx="1.5"/></symbol>
+  <symbol id="i-folder" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h3.8l2 2h7.2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z"/><path d="M14 3.5V8h4.5"/></symbol>
+  <symbol id="i-doc" viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z"/><path d="M14 3.5V8h4.5M9 12.5h6M9 16h4"/></symbol>
+  <symbol id="i-image" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="15" rx="2"/><circle cx="9" cy="10" r="1.7"/><path d="M20.5 15.5l-5-5-9 9"/></symbol>
+  <symbol id="i-cube" viewBox="0 0 24 24"><path d="M12 3l8 4.5v9L12 21l-8-4.5v-9z"/><path d="M4 7.5l8 4.5 8-4.5M12 12v9"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="M9 8l-4 4 4 4M15 8l4 4-4 4"/></symbol>
+  <symbol id="i-music" viewBox="0 0 24 24"><path d="M9 18V5.5l11-2V16"/><circle cx="6.5" cy="18" r="2.5"/><circle cx="17.5" cy="16" r="2.5"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z"/></symbol>
+  <symbol id="i-upload" viewBox="0 0 24 24"><path d="M12 15.5V4M7 9l5-5 5 5M5 19.5h14"/></symbol>
+  <symbol id="i-download" viewBox="0 0 24 24"><path d="M12 4v11.5M7 10.5l5 5 5-5M5 19.5h14"/></symbol>
+  <symbol id="i-trash" viewBox="0 0 24 24"><path d="M4.5 7h15M10 11v6M14 11v6M6.5 7l1 13h9l1-13M9.5 7V4.5h5V7"/></symbol>
+  <symbol id="i-edit" viewBox="0 0 24 24"><path d="M4.5 19.5h4l10.5-10.5-4-4L4.5 15.5z"/><path d="M13.5 6.5l4 4"/></symbol>
+  <symbol id="i-move" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h3.8l2 2h7.2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M9 13.5h6M12.5 11l2.5 2.5-2.5 2.5"/></symbol>
+  <symbol id="i-link" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 4h6v6M20 4l-9 9"/><path d="M18 14v4.5a1.5 1.5 0 0 1-1.5 1.5h-11A1.5 1.5 0 0 1 4 18.5v-11A1.5 1.5 0 0 1 5.5 6H10"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.1 5.6.8-4 3.9 1 5.6-5.1-2.7-5 2.7 1-5.6-4.1-3.9 5.6-.8z"/></symbol>
+  <symbol id="i-flag" viewBox="0 0 24 24"><path d="M5.5 20.5v-16M5.5 4.5h11l-2 4 2 4h-11"/></symbol>
+  <symbol id="i-calendar" viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-checklist" viewBox="0 0 24 24"><path d="M10 6.5h10M10 12h10M10 17.5h10M4 6.5l1.3 1.3L7.6 5.5M4 12l1.3 1.3L7.6 11M4 17.5l1.3 1.3 2.3-2.3"/></symbol>
+  <symbol id="i-clip" viewBox="0 0 24 24"><path d="M20 11.5l-8 8a5 5 0 0 1-7-7l8.5-8.5a3.3 3.3 0 0 1 4.7 4.7l-8.3 8.3a1.7 1.7 0 0 1-2.4-2.4l7.3-7.3"/></symbol>
+  <symbol id="i-note" viewBox="0 0 24 24"><path d="M5 6.5h14M5 12h14M5 17.5h9"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24"><path d="M5 18.5V6a2.5 2.5 0 0 1 2.5-2.5H19v13H7.5A2.5 2.5 0 0 0 5 19a2.5 2.5 0 0 0 2.5 2.5H19"/><path d="M9 8h6"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M19.5 12a7.5 7.5 0 1 1-2.2-5.3"/><path d="M19.5 4.5v4h-4"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-folder-plus" viewBox="0 0 24 24"><path d="M3.5 7.5a2 2 0 0 1 2-2h3.8l2 2h7.2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2h-13a2 2 0 0 1-2-2z"/><path d="M12 10.5v6M9 13.5h6"/></symbol>
+  <symbol id="i-file-plus" viewBox="0 0 24 24"><path d="M14 3.5H7.5a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2h9a2 2 0 0 0 2-2V8z"/><path d="M14 3.5V8h4.5M12 11.5v6M9 14.5h6"/></symbol>
+  <symbol id="i-copy" viewBox="0 0 24 24"><rect x="8.5" y="8.5" width="12" height="12" rx="2"/><path d="M15.5 8.5V5a1.5 1.5 0 0 0-1.5-1.5H5A1.5 1.5 0 0 0 3.5 5v9A1.5 1.5 0 0 0 5 15.5h3.5"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-select" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="3.5"/><path d="M8.5 12l2.5 2.5 4.5-5"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 10.5L12 4l8 6.5V19a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 19z"/><path d="M9.5 20.5v-6h5v6"/></symbol>
+  <symbol id="i-camera" viewBox="0 0 24 24"><path d="M4 8.5h3.2l1.8-3h6l1.8 3H20v11H4z"/><circle cx="12" cy="13.5" r="3.5"/></symbol>
+  <symbol id="i-unlink" viewBox="0 0 24 24"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/><path d="M4 4l16 16"/></symbol>
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M6 11l6-6 6 6"/></symbol>
+  <symbol id="i-arrow-down" viewBox="0 0 24 24"><path d="M12 5v14M6 13l6 6 6-6"/></symbol>
+  <symbol id="i-palette" viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0 0 17c1.3 0 1.9-.8 1.9-1.7 0-1.2-1-1.5-1-2.6 0-1 .8-1.7 1.8-1.7h2.3a3.5 3.5 0 0 0 3.5-3.5c0-4.2-3.8-7.5-8.5-7.5z"/><circle cx="7.5" cy="11" r="1" fill="currentColor"/><circle cx="10.5" cy="7.5" r="1" fill="currentColor"/><circle cx="15" cy="8" r="1" fill="currentColor"/></symbol>
+</svg>
+
+<div id="app">
+  <header class="top">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 64 64" aria-hidden="true"><defs><clipPath id="bm"><rect width="64" height="64" rx="15"/></clipPath></defs><g clip-path="url(#bm)"><rect width="64" height="64" fill="#EEF1F5"/><rect width="64" height="15" fill="#2563D9"/><rect x="27" y="0" width="10" height="21" fill="#2563D9"/><rect x="11" y="23" width="42" height="9" rx="2.5" fill="#151A22"/><rect x="27" y="23" width="10" height="28" rx="2.5" fill="#151A22"/><rect x="19" y="53" width="26" height="4" rx="2" fill="#2563D9"/></g></svg>
+      <div><b>Rex Workshop</b><small id="repo-name">Not connected</small></div>
+    </div>
+    <nav class="seg views" aria-label="Sections">
+      <button type="button" data-view="blocks"><svg class="ic"><use href="#i-layers"/></svg>Blocks</button>
+      <button type="button" data-view="board"><svg class="ic"><use href="#i-board"/></svg>Board</button>
+      <button type="button" data-view="files"><svg class="ic"><use href="#i-folder"/></svg>Files</button>
+    </nav>
+    <button type="button" class="sync-pill" id="sync" data-act="sync"></button>
+    <button type="button" class="icon-btn" data-act="settings" aria-label="Settings"><svg class="ic"><use href="#i-sliders"/></svg></button>
+  </header>
+  <main>
+    <section class="view" id="v-blocks" aria-label="Blocks"><div class="scroll" id="blocks-scroll"></div></section>
+    <section class="view" id="v-board" aria-label="Board" hidden><div class="tabs" id="tabs" role="tablist"></div><div class="board" id="board"></div></section>
+    <section class="view" id="v-files" aria-label="Files" hidden><div class="scroll" id="files-scroll"></div></section>
+  </main>
+  <nav class="bnav" aria-label="Sections">
+    <button type="button" data-view="blocks"><svg class="ic"><use href="#i-layers"/></svg>Blocks</button>
+    <button type="button" data-view="board"><svg class="ic"><use href="#i-board"/></svg>Board</button>
+    <button type="button" data-view="files"><svg class="ic"><use href="#i-folder"/></svg>Files</button>
+  </nav>
+</div>
+<div id="layer"></div>
+
+<script>
+'use strict';
+/* ================= constants & helpers ================= */
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+const uid = () => Math.random().toString(36).slice(2, 9) + Date.now().toString(36).slice(-4);
+const ic = n => `<svg class="ic" aria-hidden="true"><use href="#i-${n}"/></svg>`;
+const wide = matchMedia('(min-width:900px) and (hover:hover) and (pointer:fine)');
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
+const LONGPRESS_MS = 380;
+const DEFAULT_REPO = 'EthEcho-UI/captain-rex-cosplay';
+const DATA_PATH = 'workshop/data.json';
+const LS = {data: 'rexws.v1', gh: 'rexws.github', ui: 'rexws.ui'};
+const COLORS = ['ultra', 'sky', 'teal', 'moss', 'lime', 'mustard', 'rust', 'rose', 'orchid', 'slate'];
+const col = k => `var(--l-${COLORS.includes(k) ? k : 'slate'})`;
+const PRIO = ['None', 'Low', 'Medium', 'High', 'Urgent'];
+const PRIO_C = ['', 'slate', 'sky', 'mustard', 'rust'];
+const STATUS = {todo: 'To do', doing: 'Doing', done: 'Done'};
+const NEXT_STATUS = {todo: 'doing', doing: 'done', done: 'todo'};
+const LIBS = {
+  three: 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js',
+  orbit: 'https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js',
+  marked: 'https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js',
+  purify: 'https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.6/purify.min.js'
+};
+const pad = n => String(n).padStart(2, '0');
+const isoDay = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+const todayISO = () => isoDay(new Date());
+function dueInfo(iso) {
+  const [y, m, d] = iso.split('-').map(Number);
+  const due = new Date(y, m - 1, d), now = new Date(); now.setHours(0, 0, 0, 0);
+  const diff = Math.round((due - now) / 864e5);
+  const text = diff === 0 ? 'Today' : diff === 1 ? 'Tomorrow' : diff === -1 ? 'Yesterday'
+    : due.toLocaleDateString(undefined, {month: 'short', day: 'numeric', ...(y !== now.getFullYear() ? {year: 'numeric'} : {})});
+  return {text, cls: diff < 0 ? 'late' : diff <= 2 ? 'soon' : ''};
+}
+const fmtDate = ts => ts ? new Date(ts).toLocaleDateString(undefined, {day: 'numeric', month: 'short', year: 'numeric'}) : '';
+const fmtStamp = ts => new Date(ts).toLocaleString(undefined, {day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit'});
+function fmtAgo(ts) {
+  const s = (Date.now() - ts) / 1000;
+  if (s < 60) return 'just now';
+  if (s < 3600) return Math.round(s / 60) + ' min ago';
+  if (s < 86400) return Math.round(s / 3600) + ' h ago';
+  if (s < 86400 * 7) return Math.round(s / 86400) + ' d ago';
+  return fmtDate(ts);
+}
+function fmtSize(n) {
+  if (n == null) return '';
+  if (n < 1024) return n + ' B';
+  if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + ' KB';
+  return (n / 1048576).toFixed(1) + ' MB';
+}
+const baseName = p => p.split('/').pop();
+const dirName = p => p.includes('/') ? p.slice(0, p.lastIndexOf('/')) : '';
+const joinPath = (d, n) => d ? `${d}/${n}` : n;
+const isKeep = p => baseName(p) === '.gitkeep';
+function extOf(p) {
+  const n = baseName(p).toLowerCase(), i = n.lastIndexOf('.');
+  if (i > 0) return n.slice(i + 1);
+  if (i === 0) return n.slice(1);
+  return '';
+}
+const EXT_KIND = {};
+for (const [k, list] of Object.entries({
+  image: 'png jpg jpeg gif webp svg bmp avif ico',
+  md: 'md markdown',
+  text: 'txt json js mjs cjs ts ino c cpp cc h hpp py csv tsv yml yaml html htm css xml scad ini cfg conf toml sh bat ps1 log gitignore gitattributes gitkeep kicad_sch kicad_pcb kicad_pro license',
+  pdf: 'pdf', stl: 'stl',
+  cad: '3mf obj step stp f3d f3z blend fcstd iges igs dxf skp gcode bgcode',
+  audio: 'mp3 wav ogg m4a flac', video: 'mp4 webm mov', archive: 'zip 7z rar'
+})) list.split(' ').forEach(e => { EXT_KIND[e] = k; });
+const kindOf = p => EXT_KIND[extOf(p)] || (/^(readme|license|changelog)$/i.test(baseName(p)) ? 'text' : 'file');
+const KIND_ICON = {dir: 'folder', image: 'image', md: 'doc', text: 'code', pdf: 'doc', stl: 'cube', cad: 'cube', audio: 'music', video: 'play', archive: 'file', file: 'file'};
+const MIME = {png: 'image/png', jpg: 'image/jpeg', jpeg: 'image/jpeg', gif: 'image/gif', webp: 'image/webp', svg: 'image/svg+xml', bmp: 'image/bmp', avif: 'image/avif', ico: 'image/x-icon', pdf: 'application/pdf', mp3: 'audio/mpeg', wav: 'audio/wav', ogg: 'audio/ogg', m4a: 'audio/mp4', flac: 'audio/flac', mp4: 'video/mp4', webm: 'video/webm', mov: 'video/quicktime'};
+const mimeOf = p => MIME[extOf(p)] || 'application/octet-stream';
+const encPath = p => p.split('/').map(encodeURIComponent).join('/');
+function resolvePath(base, rel) {
+  const parts = rel.startsWith('/') ? [] : (base ? base.split('/') : []);
+  for (const seg of rel.replace(/^\/+/, '').split('/')) {
+    if (!seg || seg === '.') continue;
+    if (seg === '..') parts.pop(); else parts.push(seg);
+  }
+  return parts.join('/');
+}
+function relPath(fromDir, to) {
+  const a = fromDir ? fromDir.split('/') : [], b = to.split('/');
+  let i = 0;
+  while (i < a.length && i < b.length - 1 && a[i] === b[i]) i++;
+  return [...Array(a.length - i).fill('..'), ...b.slice(i)].map(encodeURIComponent).join('/');
+}
+const utf8ToB64 = str => bufToB64(new TextEncoder().encode(str));
+function bufToB64(buf) {
+  const bytes = buf instanceof Uint8Array ? buf : new Uint8Array(buf);
+  let bin = '';
+  for (let i = 0; i < bytes.length; i += 0x8000) bin += String.fromCharCode(...bytes.subarray(i, i + 0x8000));
+  return btoa(bin);
+}
+const b64ToBuf = b64 => Uint8Array.from(atob(b64.replace(/\s/g, '')), c => c.charCodeAt(0)).buffer;
+const decodeUtf8 = buf => new TextDecoder().decode(buf);
+function looksText(buf) {
+  if (buf.byteLength > 2e6) return false;
+  const a = new Uint8Array(buf, 0, Math.min(buf.byteLength, 8000));
+  return !a.includes(0);
+}
+const libCache = {};
+function loadScript(url) {
+  return libCache[url] || (libCache[url] = new Promise((res, rej) => {
+    const s = document.createElement('script');
+    s.src = url; s.async = true; s.crossOrigin = 'anonymous';
+    s.onload = res; s.onerror = () => { delete libCache[url]; rej(new Error('Could not load a library. Check your connection.')); };
+    document.head.appendChild(s);
+  }));
+}
+function autosize(t) { t.style.height = 'auto'; t.style.height = t.scrollHeight + 'px'; }
+
+/* ================= state ================= */
+function newCard(title) { return {id: uid(), title, desc: '', done: false, tags: [], due: '', priority: 0, pinned: false, checklist: [], files: [], step: null, created: Date.now()}; }
+function newStep(title) { return {id: uid(), title, status: 'todo', notes: '', files: [], card: null, doneAt: null, created: Date.now()}; }
+function newList(title, extra = {}) { return {id: uid(), title, collapsed: false, isDone: false, sort: 'manual', cards: [], ...extra}; }
+function newBlock(title, color, steps = []) { return {id: uid(), title, color, desc: '', collapsed: false, steps: steps.map(newStep)}; }
+
+function seed() {
+  const tags = [['3D print', 'ultra'], ['EVA foam', 'moss'], ['Paint', 'orchid'], ['Electronics', 'mustard'], ['Buy', 'teal'], ['Research', 'sky'], ['Blocked', 'rust']]
+    .map(([name, color]) => ({id: uid(), name, color}));
+  const tag = n => tags.find(t => t.name === n).id;
+  const card = (title, t = [], extra = {}) => Object.assign(newCard(title), {tags: t.map(tag)}, extra);
+  const build = {id: uid(), name: 'Build', color: 'ultra', lists: [
+    Object.assign(newList('To do'), {cards: [card('Take body measurements', ['Research']), card('Find a Phase II helmet model and check its license', ['3D print', 'Research'], {priority: 3}), card('Test print a small helmet part', ['3D print'])]}),
+    newList('Doing'),
+    newList('Done', {isDone: true})
+  ]};
+  const shop = {id: uid(), name: 'Shopping', color: 'teal', lists: [
+    Object.assign(newList('To buy'), {cards: [card('White filament, 1 kg', ['Buy']), card('Filler primer spray', ['Buy']), card('Black undersuit', ['Buy']), card('Black gloves', ['Buy'])]}),
+    newList('Ordered'),
+    newList('Got it', {isDone: true})
+  ]};
+  return {
+    v: 1, savedAt: 0, tags, boards: [build, shop],
+    blocks: [
+      newBlock('Research & planning', 'sky', ['Collect reference images', 'Take body measurements', 'Choose 3D models and check licenses', 'Make a budget']),
+      newBlock('Helmet', 'ultra', ['Scale the model to my head', 'Print a test piece', 'Print all parts', 'Glue and fill the seams', 'Sand and prime', 'Fit the visor', 'Install the fan']),
+      newBlock('Torso', 'moss', ['Chest plate', 'Back plate', 'Abdomen plate', 'Strapping']),
+      newBlock('Arms', 'teal', ['Shoulder bells', 'Biceps', 'Forearms', 'Hand plates']),
+      newBlock('Legs', 'lime', ['Thighs', 'Shins', 'Boots']),
+      newBlock('Belt & kama', 'mustard', ['Belt and pouches', 'Sew the kama']),
+      newBlock('DC-17 blasters', 'rust', ['Print the blaster parts', 'Wire LED, speaker and trigger', 'Load the sound files', 'Finish and paint']),
+      newBlock('Paint & weathering', 'orchid', ['Base white', 'Rex blue markings', 'Tally marks and details', 'Weathering']),
+      newBlock('Final', 'slate', ['Full test fit', 'Photo shoot', 'School presentation'])
+    ],
+    settings: {}
+  };
+}
+
+const arr = a => Array.isArray(a) ? a : [];
+const strs = a => arr(a).filter(x => typeof x === 'string');
+function normCard(c) {
+  c = c || {};
+  return {id: c.id || uid(), title: String(c.title ?? ''), desc: String(c.desc ?? ''), done: !!c.done, tags: strs(c.tags), due: /^\d{4}-\d\d-\d\d$/.test(c.due || '') ? c.due : '',
+    priority: Math.max(0, Math.min(4, +c.priority || 0)), pinned: !!c.pinned,
+    checklist: arr(c.checklist).filter(Boolean).map(i => ({id: i.id || uid(), text: String(i.text ?? ''), done: !!i.done})),
+    files: strs(c.files), step: c.step || null, fromList: c.fromList || undefined, created: +c.created || Date.now()};
+}
+function normStep(s) {
+  s = s || {};
+  return {id: s.id || uid(), title: String(s.title ?? ''), status: STATUS[s.status] ? s.status : 'todo', notes: String(s.notes ?? ''), files: strs(s.files), card: s.card || null, doneAt: s.doneAt || null, created: +s.created || Date.now()};
+}
+function normalize(d) {
+  d = d && typeof d === 'object' ? d : {};
+  const out = {v: 1, savedAt: +d.savedAt || 0};
+  out.tags = arr(d.tags).filter(t => t && t.id).map(t => ({id: t.id, name: String(t.name ?? ''), color: COLORS.includes(t.color) ? t.color : 'slate'}));
+  out.boards = arr(d.boards).filter(Boolean).map(b => ({id: b.id || uid(), name: String(b.name || 'Board'), color: COLORS.includes(b.color) ? b.color : 'ultra',
+    lists: arr(b.lists).filter(Boolean).map(l => ({id: l.id || uid(), title: String(l.title || 'List'), collapsed: !!l.collapsed, isDone: !!l.isDone,
+      sort: ['manual', 'priority', 'due'].includes(l.sort) ? l.sort : 'manual', cards: arr(l.cards).map(normCard)}))}));
+  out.blocks = arr(d.blocks).filter(Boolean).map(b => ({id: b.id || uid(), title: String(b.title || 'Block'), color: COLORS.includes(b.color) ? b.color : 'slate', desc: String(b.desc ?? ''), collapsed: !!b.collapsed, steps: arr(b.steps).map(normStep)}));
+  const s = d.settings || {};
+  out.settings = {autoMoveDone: s.autoMoveDone !== false, logPath: s.logPath || 'docs/build-log.md', uploadDir: s.uploadDir ?? 'photos/build-log', shrink: s.shrink !== false};
+  if (!out.boards.length) out.boards.push({id: uid(), name: 'Build', color: 'ultra', lists: [newList('To do'), newList('Doing'), newList('Done', {isDone: true})]});
+  return out;
+}
+function loadState() {
+  try { const d = JSON.parse(localStorage.getItem(LS.data) || 'null'); if (d) return normalize(d); } catch (e) {}
+  return normalize(seed());
+}
+let state = loadState();
+let ui = {theme: 'system', view: 'blocks', board: null, dir: ''};
+try { Object.assign(ui, JSON.parse(localStorage.getItem(LS.ui) || '{}')); } catch (e) {}
+const saveUI = () => { try { localStorage.setItem(LS.ui, JSON.stringify(ui)); } catch (e) {} };
+function persist() { try { localStorage.setItem(LS.data, JSON.stringify(state)); } catch (e) {} }
+function save() { state.savedAt = Date.now(); persist(); ghPushSoon(); drawSync(); }
+function saveSoft() { save(); renderSoon(); }
+function applyTheme() { if (ui.theme === 'system') delete document.documentElement.dataset.theme; else document.documentElement.dataset.theme = ui.theme; }
+
+function findCard(id) {
+  for (const board of state.boards) for (const list of board.lists) {
+    const index = list.cards.findIndex(c => c.id === id);
+    if (index > -1) return {board, list, card: list.cards[index], index};
+  }
+  return null;
+}
+function findList(id) { for (const board of state.boards) { const list = board.lists.find(l => l.id === id); if (list) return {board, list}; } return null; }
+function findStep(id) {
+  if (!id) return null;
+  for (const block of state.blocks) { const index = block.steps.findIndex(s => s.id === id); if (index > -1) return {block, step: block.steps[index], index}; }
+  return null;
+}
+const findBlock = id => state.blocks.find(b => b.id === id);
+const curBoard = () => state.boards.find(b => b.id === ui.board) || state.boards[0];
+const blockStats = b => { const t = b.steps.length, d = b.steps.filter(s => s.status === 'done').length; return {t, d, p: t ? Math.round(d / t * 100) : 0}; };
+
+/* ================= actions ================= */
+function doneListOf(board, create) {
+  let l = board.lists.find(x => x.isDone) || board.lists.find(x => /^(done|hotovo|dokončeno|completed|finished)$/i.test(x.title.trim()));
+  if (!l && create) { l = newList('Done', {isDone: true}); board.lists.push(l); }
+  return l;
+}
+function setCardDone(id, done, fromStep = false) {
+  const f = findCard(id); if (!f) return;
+  f.card.done = done;
+  if (state.settings.autoMoveDone) {
+    if (done) {
+      const dl = doneListOf(f.board, true);
+      if (dl !== f.list) { f.list.cards.splice(f.index, 1); f.card.fromList = f.list.id; dl.cards.unshift(f.card); }
+    } else if (f.card.fromList) {
+      const back = f.board.lists.find(l => l.id === f.card.fromList);
+      if (back && back !== f.list) { f.list.cards.splice(f.index, 1); back.cards.unshift(f.card); }
+      delete f.card.fromList;
+    }
+  }
+  if (!fromStep && f.card.step) {
+    const s = findStep(f.card.step);
+    if (s) { s.step.status = done ? 'done' : s.step.status === 'done' ? 'doing' : s.step.status; s.step.doneAt = done ? Date.now() : null; }
+  }
+}
+function setStepStatus(id, status) {
+  const s = findStep(id); if (!s) return;
+  s.step.status = status; s.step.doneAt = status === 'done' ? Date.now() : null;
+  if (s.step.card) { const f = findCard(s.step.card); if (f && f.card.done !== (status === 'done')) setCardDone(f.card.id, status === 'done', true); }
+}
+function removeCard(id) {
+  const f = findCard(id); if (!f) return;
+  f.list.cards.splice(f.index, 1);
+  const s = findStep(f.card.step); if (s && s.step.card === id) s.step.card = null;
+}
+function removeStep(id) {
+  const s = findStep(id); if (!s) return;
+  s.block.steps.splice(s.index, 1);
+  const f = findCard(s.step.card); if (f && f.card.step === id) f.card.step = null;
+}
+function linkStepCard(stepId, cardId) {
+  const s = findStep(stepId), f = findCard(cardId); if (!s || !f) return;
+  const oldCard = findCard(s.step.card); if (oldCard) oldCard.card.step = null;
+  const oldStep = findStep(f.card.step); if (oldStep) oldStep.step.card = null;
+  s.step.card = cardId; f.card.step = stepId;
+}
+function unlinkStep(stepId) {
+  const s = findStep(stepId); if (!s) return;
+  const f = findCard(s.step.card); if (f) f.card.step = null;
+  s.step.card = null;
+}
+function moveCardTo(id, listId, top = false) {
+  const f = findCard(id), to = findList(listId); if (!f || !to || to.list === f.list) return;
+  f.list.cards.splice(f.index, 1);
+  if (top) to.list.cards.unshift(f.card); else to.list.cards.push(f.card);
+  if (to.list.isDone && !f.card.done) { f.card.done = true; f.card.fromList = f.list.id; const s = findStep(f.card.step); if (s) { s.step.status = 'done'; s.step.doneAt = Date.now(); } }
+  else if (!to.list.isDone && f.card.done && f.list.isDone) { f.card.done = false; delete f.card.fromList; const s = findStep(f.card.step); if (s && s.step.status === 'done') { s.step.status = 'doing'; s.step.doneAt = null; } }
+}
+function rewritePaths(from, to, isDir) {
+  const fix = p => p === from ? to : isDir && p.startsWith(from + '/') ? to + p.slice(from.length) : p;
+  let changed = false;
+  const run = o => { const n = o.files.map(fix); if (n.some((p, i) => p !== o.files[i])) { o.files = n; changed = true; } };
+  state.boards.forEach(b => b.lists.forEach(l => l.cards.forEach(run)));
+  state.blocks.forEach(b => b.steps.forEach(run));
+  if (changed) save();
+}
+function dropPaths(paths) {
+  const gone = p => paths.some(x => p === x || p.startsWith(x + '/'));
+  let changed = false;
+  const run = o => { const n = o.files.filter(p => !gone(p)); if (n.length !== o.files.length) { o.files = n; changed = true; } };
+  state.boards.forEach(b => b.lists.forEach(l => l.cards.forEach(run)));
+  state.blocks.forEach(b => b.steps.forEach(run));
+  if (changed) save();
+}
+function withUndo(msg, fn) {
+  const snap = JSON.stringify(state);
+  fn(); save(); render();
+  toast(msg, {action: 'Undo', onAction: () => { state = normalize(JSON.parse(snap)); save(); render(); refreshSheets(); }});
+}
+function attachFiles(target, paths) {
+  for (const p of paths) if (!target.files.includes(p)) target.files.push(p);
+}
+
+/* ================= sheets, menus, prompts, toast ================= */
+const layer = $('#layer');
+const stack = [];
+/* one history entry while any sheet or menu is open, so the phone's back button closes the top one */
+let skipPop = 0, hasEntry = false, backTimer = 0;
+function pushEntry(entry) {
+  stack.push(entry); entry.z = 40 + stack.length * 3;
+  if (toastEl && !toastSticky) hideToast();
+  clearTimeout(backTimer);
+  if (!hasEntry) { history.pushState({rexws: 1}, ''); hasEntry = true; }
+}
+function teardown(e) {
+  if (e.el.contains(document.activeElement)) document.activeElement.blur();
+  e.el.classList.remove('in'); e.scrim.classList.remove('in');
+  try { e.onClose && e.onClose(); } catch (err) { console.error(err); }
+  setTimeout(() => { e.el.remove(); e.scrim.remove(); }, 320);
+}
+function closeEntry(entry, fromPop) {
+  const i = stack.indexOf(entry); if (i < 0) return;
+  stack.splice(i).reverse().forEach(teardown);
+  if (!fromPop && !stack.length && hasEntry) {
+    clearTimeout(backTimer);
+    backTimer = setTimeout(() => { if (!stack.length && hasEntry) { hasEntry = false; skipPop++; history.back(); } }, 0);
+  }
+}
+const closeTop = fromPop => { if (stack.length) closeEntry(stack[stack.length - 1], fromPop); };
+const closeAll = () => { if (stack.length) closeEntry(stack[0]); };
+window.addEventListener('popstate', () => {
+  if (skipPop > 0) { skipPop--; return; }
+  hasEntry = false;
+  if (!stack.length) return;
+  closeTop(true);
+  if (stack.length) { history.pushState({rexws: 1}, ''); hasEntry = true; }
+});
+function refreshSheets() { for (const e of stack) if (e.refresh) e.refresh(); }
+const typingIn = root => { const a = document.activeElement; return !!a && root.contains(a) && /^(INPUT|TEXTAREA|SELECT)$/.test(a.tagName); };
+
+function openSheet(build, {cls = '', onClose} = {}) {
+  const scrim = document.createElement('div'); scrim.className = 'scrim';
+  const el = document.createElement('div'); el.className = 'sheet ' + cls;
+  el.setAttribute('role', 'dialog'); el.setAttribute('aria-modal', 'true');
+  el.innerHTML = '<div class="sheet-grip" aria-hidden="true"></div><div class="sheet-inner"></div>';
+  const entry = {kind: 'sheet', el, scrim, onClose, inner: el.lastChild};
+  pushEntry(entry);
+  scrim.style.zIndex = entry.z; el.style.zIndex = entry.z + 1;
+  layer.append(scrim, el);
+  scrim.addEventListener('click', () => closeEntry(entry));
+  gripClose(el, entry);
+  build(entry.inner, entry);
+  requestAnimationFrame(() => requestAnimationFrame(() => { scrim.classList.add('in'); el.classList.add('in'); }));
+  return entry;
+}
+function gripClose(el, entry) {
+  const grip = el.firstChild;
+  let y0 = null, dy = 0;
+  grip.addEventListener('pointerdown', e => { if (wide.matches) return; y0 = e.clientY; dy = 0; grip.setPointerCapture(e.pointerId); el.style.transition = 'none'; });
+  grip.addEventListener('pointermove', e => { if (y0 == null) return; dy = Math.max(0, e.clientY - y0); el.style.transform = `translateY(${dy}px)`; });
+  const end = () => { if (y0 == null) return; y0 = null; el.style.transition = ''; el.style.transform = ''; if (dy > 90) closeEntry(entry); };
+  grip.addEventListener('pointerup', end); grip.addEventListener('pointercancel', end);
+}
+function openMenu(anchor, items, {title} = {}) {
+  const asPop = wide.matches && anchor;
+  const scrim = document.createElement('div'); scrim.className = 'scrim' + (asPop ? ' clear' : '');
+  const el = document.createElement('div'); el.className = 'menu ' + (asPop ? 'pop' : 'as-sheet'); el.setAttribute('role', 'menu');
+  el.innerHTML = (title ? `<div class="menu-title">${esc(title)}</div>` : '') + items.filter(Boolean).map((it, i) => {
+    if (it === 'sep') return '<div class="menu-sep"></div>';
+    if (it.heading) return `<div class="menu-title">${esc(it.heading)}</div>`;
+    if (it.swatches) return `<div class="menu-swatches">${COLORS.map(k => `<button type="button" class="swatch${k === it.value ? ' on' : ''}" style="--c:${col(k)}" data-i="${i}" data-k="${k}" aria-label="${k}"></button>`).join('')}</div>`;
+    return `<button type="button" role="menuitem" class="menu-item${it.danger ? ' danger' : ''}" data-i="${i}"${it.disabled ? ' disabled' : ''}>${it.icon ? ic(it.icon) : ''}<span class="mi-label">${esc(it.label)}${it.sub ? `<small>${esc(it.sub)}</small>` : ''}</span>${it.check !== undefined ? `<span class="mi-check${it.check ? ' on' : ''}">${ic('check')}</span>` : ''}</button>`;
+  }).join('');
+  const list = items.filter(Boolean);
+  const entry = {kind: 'menu', el, scrim};
+  pushEntry(entry);
+  scrim.style.zIndex = entry.z; el.style.zIndex = entry.z + 1;
+  layer.append(scrim, el);
+  if (asPop) {
+    const r = anchor.getBoundingClientRect(), mw = el.offsetWidth, mh = el.offsetHeight;
+    let left = Math.min(r.right - mw, innerWidth - mw - 8); left = Math.max(8, left);
+    let top = r.bottom + 6; if (top + mh > innerHeight - 8) top = Math.max(8, r.top - mh - 6);
+    el.style.left = left + 'px'; el.style.top = top + 'px';
+  }
+  scrim.addEventListener('click', () => closeEntry(entry));
+  el.addEventListener('click', e => {
+    const b = e.target.closest('[data-i]'); if (!b || b.disabled) return;
+    const it = list[+b.dataset.i];
+    closeEntry(entry);
+    if (it.swatches) it.run(b.dataset.k); else if (it.run) it.run();
+  });
+  requestAnimationFrame(() => requestAnimationFrame(() => { scrim.classList.add('in'); el.classList.add('in'); const f = el.querySelector('.menu-item:not([disabled])'); if (f && asPop) f.focus({preventScroll: true}); }));
+  return entry;
+}
+function ask({title, text = '', html = '', buttons}) {
+  return new Promise(res => {
+    let done = false;
+    const entry = openSheet(inner => {
+      inner.innerHTML = `<h2 class="sheet-title">${esc(title)}</h2>${text ? `<p class="sheet-text">${esc(text)}</p>` : ''}${html}<div class="sheet-actions">${buttons.map((b, i) => `<button type="button" class="btn ${b.primary ? 'primary' : b.danger ? 'danger-fill' : ''}" data-i="${i}">${esc(b.label)}</button>`).join('')}</div>`;
+      inner.addEventListener('click', e => { const b = e.target.closest('[data-i]'); if (!b) return; done = true; res(buttons[+b.dataset.i].value); closeEntry(entry); });
+    }, {cls: 'compact', onClose: () => { if (!done) res(null); }});
+  });
+}
+const confirmDelete = (title, text, label = 'Delete') => ask({title, text, buttons: [{label: 'Cancel', value: false}, {label, value: true, danger: true}]});
+function promptText({title, label = '', value = '', placeholder = '', confirm = 'Save', hint = '', list = null, validate = null, selectName = false}) {
+  return new Promise(res => {
+    let done = false;
+    const entry = openSheet(inner => {
+      inner.innerHTML = `<h2 class="sheet-title">${esc(title)}</h2><form novalidate><div class="fld"><label for="pt-in">${esc(label)}</label><input id="pt-in" class="field" value="${esc(value)}" placeholder="${esc(placeholder)}" autocomplete="off" autocapitalize="off" spellcheck="false"${list ? ' list="pt-list"' : ''}>${list ? `<datalist id="pt-list">${list.map(o => `<option value="${esc(o)}">`).join('')}</datalist>` : ''}</div><p class="sheet-hint" id="pt-hint">${esc(hint)}</p><div class="sheet-actions"><button type="button" class="btn" data-x="cancel">Cancel</button><button class="btn primary">${esc(confirm)}</button></div></form>`;
+      const inp = $('#pt-in', inner), hintEl = $('#pt-hint', inner);
+      setTimeout(() => {
+        inp.focus();
+        if (selectName) { const v = inp.value, s = v.lastIndexOf('/') + 1, d = v.lastIndexOf('.'); inp.setSelectionRange(s, d > s ? d : v.length); } else inp.select();
+      }, 80);
+      $('form', inner).addEventListener('submit', e => {
+        e.preventDefault();
+        const v = inp.value.trim(), err = validate ? validate(v) : (v ? '' : 'Type something first.');
+        if (err) { hintEl.textContent = err; hintEl.classList.add('err'); return; }
+        done = true; res(v); closeEntry(entry);
+      });
+      $('[data-x="cancel"]', inner).addEventListener('click', () => closeEntry(entry));
+    }, {cls: 'compact', onClose: () => { if (!done) res(null); }});
+  });
+}
+let toastEl = null, toastTimer = 0, toastSticky = false;
+function toast(msg, {action, onAction, sticky = false, spin = false} = {}) {
+  if (!toastEl) { toastEl = document.createElement('div'); toastEl.className = 'toast'; toastEl.setAttribute('role', 'status'); toastEl.setAttribute('aria-live', 'polite'); document.body.appendChild(toastEl); }
+  clearTimeout(toastTimer);
+  toastSticky = sticky;
+  toastEl.innerHTML = `${spin ? '<i class="spinner"></i>' : ''}<span>${esc(msg)}</span>${action ? `<button type="button" class="toast-btn">${esc(action)}</button>` : ''}`;
+  if (action) toastEl.querySelector('button').onclick = () => { hideToast(); onAction(); };
+  requestAnimationFrame(() => toastEl.classList.add('in'));
+  if (!sticky) toastTimer = setTimeout(hideToast, action ? 6500 : 3800);
+}
+function hideToast() { if (toastEl) toastEl.classList.remove('in'); toastSticky = false; }
+function chooseFiles(accept = '') {
+  return new Promise(res => {
+    const inp = document.createElement('input');
+    inp.type = 'file'; inp.multiple = true; if (accept) inp.accept = accept;
+    inp.addEventListener('change', () => res([...inp.files]));
+    inp.addEventListener('cancel', () => res([]));
+    inp.click();
+  });
+}
+
+/* ================= GitHub: connection & data sync ================= */
+const GH = {repo: '', token: '', branch: 'main', status: 'off', sha: null, err: '', last: 0, timer: 0, busy: false, again: false, pulled: false};
+function ghLoadCfg() {
+  try { const c = JSON.parse(localStorage.getItem(LS.gh) || 'null'); if (c && c.repo && c.token) { GH.repo = c.repo; GH.token = c.token; GH.branch = c.branch || 'main'; GH.status = 'on'; } } catch (e) {}
+}
+function ghSaveCfg() {
+  try { if (GH.repo && GH.token) localStorage.setItem(LS.gh, JSON.stringify({repo: GH.repo, token: GH.token, branch: GH.branch})); else localStorage.removeItem(LS.gh); } catch (e) {}
+}
+function ghError(status, msg) {
+  const e = new Error(status === 401 ? 'GitHub rejected the token. It may have expired: create a new one and connect again.'
+    : status === 403 ? 'The token can’t do this. Give it “Contents: Read and write” for this repository.'
+    : status === 404 ? 'Not found on GitHub. Check the repository name and that the token has access to it.'
+    : status === 409 || status === 422 ? `GitHub refused the change${msg ? ': ' + msg : ''}.`
+    : `GitHub answered ${status}${msg ? ': ' + msg : ''}.`);
+  e.status = status; e.fatal = status === 401;
+  return e;
+}
+async function gh(path, {method = 'GET', body, raw = false} = {}) {
+  let res;
+  try {
+    res = await fetch(`https://api.github.com/repos/${GH.repo}${path}`, {method, cache: 'no-store',
+      headers: {Authorization: `Bearer ${GH.token}`, Accept: raw ? 'application/vnd.github.raw+json' : 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', ...(body ? {'Content-Type': 'application/json'} : {})},
+      body: body ? JSON.stringify(body) : undefined});
+  } catch (e) { const er = new Error(navigator.onLine === false ? 'You are offline.' : 'Could not reach GitHub.'); er.net = true; throw er; }
+  if (!res.ok) { let msg = ''; try { msg = (await res.json()).message || ''; } catch (e) {} throw ghError(res.status, msg); }
+  if (raw) return res;
+  return res.status === 204 ? null : res.json();
+}
+const dataUrl = () => `/contents/${encPath(DATA_PATH)}`;
+async function ghRead() {
+  try {
+    const j = await gh(`${dataUrl()}?ref=${encodeURIComponent(GH.branch)}`);
+    const text = j.content ? decodeUtf8(b64ToBuf(j.content)) : decodeUtf8(await readBlob(j.sha));
+    return {sha: j.sha, data: JSON.parse(text)};
+  } catch (e) {
+    if (e.status === 404) { await gh(''); return null; }
+    throw e;
+  }
+}
+function ghFail(e) {
+  GH.err = (e && e.message) || String(e);
+  if (e && e.fatal) { GH.status = 'error'; toast('Saving to GitHub stopped: ' + GH.err); }
+  drawSync(); refreshSheets();
+}
+async function ghWrite(keepalive) {
+  if (GH.status !== 'on') return;
+  if (GH.busy) { GH.again = true; return; }
+  GH.busy = true; drawSync();
+  try {
+    const text = JSON.stringify(state, null, 1);
+    const body = {message: `Workshop: update boards and blocks`, content: utf8ToB64(text), branch: GH.branch};
+    if (GH.sha) body.sha = GH.sha;
+    const put = () => fetch(`https://api.github.com/repos/${GH.repo}${dataUrl()}`, {method: 'PUT', keepalive: !!keepalive && text.length < 45000,
+      headers: {Authorization: `Bearer ${GH.token}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28', 'Content-Type': 'application/json'}, body: JSON.stringify(body)});
+    let res = await put();
+    if (res.status === 409 || res.status === 422) {
+      const remote = await ghRead();
+      if (remote) {
+        GH.sha = remote.sha;
+        const data = normalize(remote.data);
+        if (data.savedAt > state.savedAt) { adopt(data, 'Loaded newer changes from GitHub'); return; }
+        body.sha = remote.sha;
+      } else delete body.sha;
+      res = await put();
+    }
+    if (!res.ok) throw ghError(res.status);
+    GH.sha = (await res.json()).content.sha; GH.last = Date.now(); GH.err = '';
+  } catch (e) { ghFail(e); }
+  finally {
+    GH.busy = false;
+    if (GH.again) { GH.again = false; ghPushSoon(); }
+    drawSync();
+  }
+}
+function ghPushSoon() { if (GH.status !== 'on') return; clearTimeout(GH.timer); GH.timer = setTimeout(() => { GH.timer = 0; ghWrite(); }, 4000); }
+async function ghPull() {
+  if (GH.status !== 'on' || GH.busy || GH.timer || drag) return;
+  try {
+    const r = await ghRead();
+    GH.pulled = true;
+    if (!r) { ghPushSoon(); return; }
+    if (r.sha === GH.sha) { if (GH.err) { GH.err = ''; drawSync(); } return; }
+    const data = normalize(r.data);
+    GH.sha = r.sha; GH.err = '';
+    if (data.savedAt > state.savedAt) adopt(data, 'Loaded newer changes from GitHub');
+    else if (data.savedAt < state.savedAt) ghPushSoon();
+    drawSync();
+  } catch (e) { ghFail(e); }
+}
+function adopt(data, msg) {
+  state = data; persist(); render(); refreshSheets();
+  if (msg) toast(msg);
+}
+setInterval(() => { if (GH.status === 'on' && document.visibilityState === 'visible') ghPull(); }, 30000);
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'hidden' && GH.timer) { clearTimeout(GH.timer); GH.timer = 0; ghWrite(true); }
+  else if (document.visibilityState === 'visible') { ghPull(); if (ui.view === 'files' && T.loaded && Date.now() - T.at > 30000) loadTree().catch(() => {}); }
+});
+window.addEventListener('online', drawSync);
+window.addEventListener('offline', drawSync);
+async function ghConnect(repo, token) {
+  GH.repo = repo; GH.token = token; GH.sha = null; GH.err = '';
+  const meta = await gh('');
+  GH.branch = meta.default_branch || 'main';
+  if (meta.permissions && meta.permissions.push === false) throw Object.assign(new Error('This token can only read the repository. Give it “Contents: Read and write”.'), {fatal: true});
+  GH.status = 'on'; ghSaveCfg();
+  resetTree();
+  const remote = await ghRead();
+  GH.pulled = true;
+  if (!remote) { await ghWrite(); toast(`Connected. Boards and blocks are saved to ${DATA_PATH}.`); return; }
+  GH.sha = remote.sha;
+  const data = normalize(remote.data);
+  if (!state.savedAt || data.savedAt === state.savedAt) { adopt(data, 'Connected'); return; }
+  const keep = await ask({title: 'The repository already has workshop data',
+    text: `GitHub copy last saved ${data.savedAt ? fmtStamp(data.savedAt) : 'at an unknown time'}. This device last saved ${fmtStamp(state.savedAt)}. Which one do you want to keep?`,
+    buttons: [{label: 'Keep this device', value: 'local'}, {label: 'Use GitHub data', value: 'remote', primary: true}]});
+  if (keep === 'local') { ghWrite(); toast('GitHub updated with this device’s data'); }
+  else adopt(data, 'Loaded your data from GitHub');
+}
+function ghDisconnect() {
+  clearTimeout(GH.timer);
+  Object.assign(GH, {repo: '', token: '', sha: null, status: 'off', err: '', timer: 0});
+  ghSaveCfg(); resetTree(); render();
+  toast('Disconnected on this device');
+}
+function requireGH() {
+  if (GH.status === 'on') return true;
+  openConnect();
+  return false;
+}
+function drawSync() {
+  const p = $('#sync'); if (!p) return;
+  let cls, txt;
+  if (GH.status === 'off') { cls = 'off'; txt = 'Connect'; }
+  else if (GH.status === 'error') { cls = 'err'; txt = 'Sync problem'; }
+  else if (navigator.onLine === false) { cls = 'warn'; txt = 'Offline'; }
+  else if (GH.busy || GH.timer) { cls = 'busy'; txt = 'Saving…'; }
+  else if (GH.err) { cls = 'warn'; txt = 'Retrying'; }
+  else { cls = 'ok'; txt = 'Saved'; }
+  p.className = 'sync-pill ' + cls;
+  p.innerHTML = `<i></i><span>${txt}</span>`;
+  p.title = GH.status === 'on' ? (GH.err || (GH.last ? 'Last saved ' + fmtStamp(GH.last) : 'Connected to ' + GH.repo)) : GH.status === 'error' ? GH.err : 'Connect to GitHub';
+  $('#repo-name').textContent = GH.repo ? GH.repo.split('/')[1] : 'Not connected';
+}
+function openConnect() {
+  openSheet((inner, entry) => {
+    inner.innerHTML = `<h2 class="sheet-title">Connect to GitHub</h2>
+      <p class="sheet-text">Rex Workshop keeps your boards and blocks in <span class="mono">${esc(DATA_PATH)}</span> inside your project repository, and lets you manage the repository’s files. Set it up once on each device.</p>
+      <ol class="steps-ol"><li>Open <a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">GitHub → new fine-grained token</a>.</li>
+      <li><b>Repository access</b>: Only select repositories → <span class="mono">${esc(DEFAULT_REPO.split('/')[1])}</span>.</li>
+      <li><b>Permissions</b> → Repository permissions → <b>Contents: Read and write</b>.</li>
+      <li>Generate the token, copy it and paste it below.</li></ol>
+      <form class="form-grid" novalidate><div class="fld full"><label for="gh-repo">Repository</label><input id="gh-repo" class="field" value="${esc(GH.repo || DEFAULT_REPO)}" autocomplete="off" autocapitalize="off" spellcheck="false"></div>
+      <div class="fld full"><label for="gh-token">Token</label><input id="gh-token" class="field" type="password" placeholder="github_pat_…" autocomplete="off" spellcheck="false"></div>
+      <div class="full sheet-actions" style="margin-top:4px"><button type="submit" class="btn primary">Connect</button></div></form>
+      <p class="sheet-hint" id="gh-msg" aria-live="polite">${GH.status === 'error' ? esc(GH.err) : 'The token is stored only on this device.'}</p>`;
+    $('form', inner).addEventListener('submit', async e => {
+      e.preventDefault();
+      const repo = $('#gh-repo', inner).value.trim().replace(/^https:\/\/github\.com\//, '').replace(/\.git$/, '').replace(/\/$/, '');
+      const token = $('#gh-token', inner).value.trim(), msg = $('#gh-msg', inner);
+      msg.classList.remove('err');
+      if (!/^[\w.-]+\/[\w.-]+$/.test(repo)) { msg.textContent = 'Write the repository as owner/name, for example ' + DEFAULT_REPO + '.'; msg.classList.add('err'); return; }
+      if (token.length < 20) { msg.textContent = 'Paste the whole token.'; msg.classList.add('err'); return; }
+      msg.innerHTML = '<i class="spinner"></i>Connecting…';
+      try { closeEntry(entry); await ghConnect(repo, token); render(); if (ui.view === 'files') loadTree().catch(() => {}); }
+      catch (err) { GH.status = 'off'; GH.token = ''; ghSaveCfg(); drawSync(); toast(err.message); openConnect(); }
+    });
+  }, {cls: 'compact'});
+}
+
+/* ================= GitHub: repository tree, files, commits ================= */
+const T = {loaded: false, loading: null, err: '', commit: null, at: 0, items: new Map(), kids: new Map()};
+function resetTree() { Object.assign(T, {loaded: false, loading: null, err: '', commit: null, at: 0, items: new Map(), kids: new Map()}); blobCache.clear(); blobBytes = 0; }
+function setTree(commitSha, tree) {
+  const items = new Map(), kids = new Map([['', []]]);
+  for (const it of tree.tree) {
+    if (it.type !== 'blob' && it.type !== 'tree') continue;
+    items.set(it.path, it);
+    const d = dirName(it.path);
+    if (!kids.has(d)) kids.set(d, []);
+    kids.get(d).push(it.path);
+    if (it.type === 'tree' && !kids.has(it.path)) kids.set(it.path, []);
+  }
+  Object.assign(T, {loaded: true, err: '', commit: commitSha, at: Date.now(), items, kids, truncated: !!tree.truncated});
+}
+function loadTree(force) {
+  if (GH.status !== 'on') return Promise.resolve();
+  if (T.loading) return T.loading;
+  T.loading = (async () => {
+    const ref = await gh(`/git/ref/heads/${encodeURIComponent(GH.branch)}`);
+    if (!force && T.loaded && ref.object.sha === T.commit) { T.at = Date.now(); return; }
+    const commit = await gh(`/git/commits/${ref.object.sha}`);
+    const tree = await gh(`/git/trees/${commit.tree.sha}?recursive=1`);
+    setTree(ref.object.sha, tree);
+  })().catch(e => { T.err = e.message; throw e; }).finally(() => { T.loading = null; if (ui.view === 'files') { if (document.activeElement && document.activeElement.id === 'f-q') renderFileList(); else renderFiles(); } refreshSheets(); });
+  return T.loading;
+}
+async function ensureTree() { if (!T.loaded) await loadTree(); return T.loaded; }
+const blobCache = new Map();
+let blobBytes = 0;
+async function readBlob(sha) {
+  if (blobCache.has(sha)) { const v = blobCache.get(sha); blobCache.delete(sha); blobCache.set(sha, v); return v; }
+  const res = await gh(`/git/blobs/${sha}`, {raw: true});
+  const ct = res.headers.get('content-type') || '';
+  const buf = ct.startsWith('application/json') ? b64ToBuf((await res.json()).content) : await res.arrayBuffer();
+  blobCache.set(sha, buf); blobBytes += buf.byteLength;
+  while (blobBytes > 150e6 && blobCache.size > 1) { const [k, v] = blobCache.entries().next().value; blobCache.delete(k); blobBytes -= v.byteLength; }
+  return buf;
+}
+/* one commit for any number of changes: {path, b64} writes a file, {path, sha, mode} reuses an existing blob, {path, del: true} deletes */
+async function commitChanges(changes, message) {
+  const entries = [];
+  for (const c of changes) {
+    if (c.del) { entries.push({path: c.path, mode: '100644', type: 'blob', sha: null}); continue; }
+    let sha = c.sha;
+    if (c.b64 != null) sha = (await gh('/git/blobs', {method: 'POST', body: {content: c.b64, encoding: 'base64'}})).sha;
+    entries.push({path: c.path, mode: c.mode || '100644', type: 'blob', sha});
+  }
+  for (let attempt = 0; ; attempt++) {
+    const ref = await gh(`/git/ref/heads/${encodeURIComponent(GH.branch)}`);
+    const head = ref.object.sha;
+    const base = await gh(`/git/commits/${head}`);
+    const tree = await gh('/git/trees', {method: 'POST', body: {base_tree: base.tree.sha, tree: entries}});
+    const commit = await gh('/git/commits', {method: 'POST', body: {message, tree: tree.sha, parents: [head]}});
+    try {
+      await gh(`/git/refs/heads/${encodeURIComponent(GH.branch)}`, {method: 'PATCH', body: {sha: commit.sha}});
+      const full = await gh(`/git/trees/${tree.sha}?recursive=1`);
+      setTree(commit.sha, full);
+      return commit;
+    } catch (e) {
+      if (e.status !== 422 || attempt >= 2) throw e;
+    }
+  }
+}
+const filesUnder = p => { const it = T.items.get(p); if (!it) return []; if (it.type === 'blob') return [it]; return [...T.items.values()].filter(x => x.type === 'blob' && x.path.startsWith(p + '/')); };
+const allDirs = () => ['', ...[...T.items.values()].filter(x => x.type === 'tree').map(x => x.path)].sort((a, b) => a.localeCompare(b));
+function validPath(p) {
+  if (!p) return 'Type a name.';
+  if (/^\/|\/$|\/\/|(^|\/)\.\.?(\/|$)/.test(p)) return 'That path isn’t valid.';
+  if (/[\\:*?"<>|]/.test(p)) return 'Leave out \\ : * ? " < > |';
+  return '';
+}
+async function shrinkImage(file) {
+  if (!state.settings.shrink || !/^image\/(jpeg|webp)$/.test(file.type) || file.size < 1.5e6 || typeof createImageBitmap !== 'function') return null;
+  try {
+    const bmp = await createImageBitmap(file, {imageOrientation: 'from-image'});
+    const scale = Math.min(1, 2400 / Math.max(bmp.width, bmp.height));
+    const c = document.createElement('canvas');
+    c.width = Math.round(bmp.width * scale); c.height = Math.round(bmp.height * scale);
+    c.getContext('2d').drawImage(bmp, 0, 0, c.width, c.height);
+    const blob = await new Promise(r => c.toBlob(r, file.type, 0.85));
+    return blob && blob.size < file.size ? await blob.arrayBuffer() : null;
+  } catch (e) { return null; }
+}
+async function uploadFiles(files, dir) {
+  if (!requireGH() || !files.length) return [];
+  try { await ensureTree(); } catch (e) { toast(e.message); return []; }
+  const tooBig = files.filter(f => f.size > 95e6);
+  if (tooBig.length) { toast(`${tooBig.map(f => f.name).join(', ')}: GitHub accepts files up to 100 MB.`); files = files.filter(f => f.size <= 95e6); if (!files.length) return []; }
+  const clean = n => n.replace(/[\\/:*?"<>|]/g, '-').trim() || 'file';
+  const plan = files.map(f => ({f, path: joinPath(dir, clean(f.name))}));
+  const clash = plan.filter(p => T.items.has(p.path));
+  if (clash.length) {
+    const how = await ask({title: clash.length === 1 ? `${baseName(clash[0].path)} already exists` : `${clash.length} files already exist`,
+      text: 'Replace them, or keep both by giving the new ones a number?',
+      buttons: [{label: 'Cancel', value: null}, {label: 'Keep both', value: 'both'}, {label: 'Replace', value: 'replace', primary: true}]});
+    if (!how) return [];
+    if (how === 'both') {
+      const taken = new Set([...T.items.keys(), ...plan.map(p => p.path)]);
+      for (const p of clash) {
+        const n = baseName(p.path), i = n.lastIndexOf('.'), stem = i > 0 ? n.slice(0, i) : n, ext = i > 0 ? n.slice(i) : '';
+        let k = 2, cand; do { cand = joinPath(dir, `${stem}-${k++}${ext}`); } while (taken.has(cand));
+        taken.add(cand); p.path = cand;
+      }
+    }
+  }
+  toast(`Uploading ${plan.length === 1 ? baseName(plan[0].path) : plan.length + ' files'}…`, {sticky: true, spin: true});
+  try {
+    const changes = [];
+    for (const p of plan) changes.push({path: p.path, b64: bufToB64(await shrinkImage(p.f) || await p.f.arrayBuffer())});
+    await commitChanges(changes, plan.length === 1 ? `Upload ${plan[0].path}` : `Upload ${plan.length} files to ${dir || 'the repository root'}`);
+    toast(plan.length === 1 ? `Uploaded ${baseName(plan[0].path)}` : `Uploaded ${plan.length} files`);
+    if (ui.view === 'files') renderFiles();
+    return plan.map(p => p.path);
+  } catch (e) { toast('Upload failed: ' + e.message); return []; }
+}
+async function movePath(from, to) {
+  const it = T.items.get(from); if (!it) return false;
+  if (from === to) return true;
+  if (T.items.has(to)) { toast(`${to} already exists`); return false; }
+  if (to.startsWith(from + '/')) { toast('A folder can’t go inside itself'); return false; }
+  const changes = [];
+  for (const f of filesUnder(from)) { changes.push({path: to + f.path.slice(from.length), sha: f.sha, mode: f.mode}); changes.push({path: f.path, del: true}); }
+  if (!changes.length) return false;
+  toast('Moving…', {sticky: true, spin: true});
+  try {
+    await commitChanges(changes, `Move ${from} → ${to}`);
+    rewritePaths(from, to, it.type === 'tree');
+    if (ui.dir === from || ui.dir.startsWith(from + '/')) { ui.dir = to + ui.dir.slice(from.length); saveUI(); }
+    toast(`Moved to ${to}`); render(); return true;
+  } catch (e) { toast('Move failed: ' + e.message); return false; }
+}
+async function moveMany(paths, destDir) {
+  const changes = [], moves = [];
+  for (const p of paths) {
+    const to = joinPath(destDir, baseName(p));
+    if (to === p) continue;
+    if (T.items.has(to)) { toast(`${to} already exists`); return false; }
+    if (destDir === p || destDir.startsWith(p + '/')) { toast('A folder can’t go inside itself'); return false; }
+    moves.push([p, to, T.items.get(p).type === 'tree']);
+    for (const f of filesUnder(p)) { changes.push({path: to + f.path.slice(p.length), sha: f.sha, mode: f.mode}); changes.push({path: f.path, del: true}); }
+  }
+  if (!changes.length) return true;
+  toast('Moving…', {sticky: true, spin: true});
+  try {
+    await commitChanges(changes, `Move ${moves.length} item${moves.length > 1 ? 's' : ''} to ${destDir || 'the repository root'}`);
+    moves.forEach(([a, b, d]) => rewritePaths(a, b, d));
+    toast(`Moved ${moves.length} item${moves.length > 1 ? 's' : ''}`); render(); return true;
+  } catch (e) { toast('Move failed: ' + e.message); return false; }
+}
+async function deletePaths(paths) {
+  const files = paths.flatMap(filesUnder);
+  if (!files.length) return false;
+  const one = paths.length === 1, it = T.items.get(paths[0]);
+  const ok = await confirmDelete(one ? `Delete ${baseName(paths[0])}?` : `Delete ${paths.length} items?`,
+    (one && it.type === 'tree' ? `The folder and the ${files.length} file${files.length > 1 ? 's' : ''} in it` : one ? 'The file' : `${files.length} file${files.length > 1 ? 's' : ''}`) + ' will be removed from the repository. Older versions stay in the GitHub history.');
+  if (!ok) return false;
+  toast('Deleting…', {sticky: true, spin: true});
+  try {
+    const keepDirs = new Set(paths.map(p => dirName(p)).filter(d => d && filesUnder(d).every(f => files.includes(f))));
+    const changes = files.map(f => ({path: f.path, del: true}));
+    for (const d of keepDirs) if (!paths.some(p => d === p || d.startsWith(p + '/'))) changes.push({path: d + '/.gitkeep', b64: ''});
+    await commitChanges(changes, one ? `Delete ${paths[0]}` : `Delete ${paths.length} items`);
+    dropPaths(paths);
+    toast(one ? `Deleted ${baseName(paths[0])}` : `Deleted ${paths.length} items`); render(); return true;
+  } catch (e) { toast('Delete failed: ' + e.message); return false; }
+}
+async function downloadPath(path, buf) {
+  try {
+    if (!buf) { toast('Downloading…', {sticky: true, spin: true}); buf = await readBlob(T.items.get(path).sha); hideToast(); }
+    const url = URL.createObjectURL(new Blob([buf], {type: mimeOf(path)}));
+    const a = document.createElement('a'); a.href = url; a.download = baseName(path); document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  } catch (e) { toast('Download failed: ' + e.message); }
+}
+const ghWebUrl = (path, dir) => `https://github.com/${GH.repo}/${dir ? 'tree' : 'blob'}/${encodeURIComponent(GH.branch)}/${encPath(path)}`;
+function copyText(t, msg) { (navigator.clipboard ? navigator.clipboard.writeText(t) : Promise.reject()).then(() => toast(msg), () => toast(t)); }
+async function renamePrompt(path) {
+  const it = T.items.get(path); if (!it) return;
+  const to = await promptText({title: it.type === 'tree' ? 'Rename or move folder' : 'Rename or move file', label: 'Path in the repository', value: path, confirm: 'Move',
+    hint: 'Change the name or the folders. New folders are created as needed.', list: allDirs().filter(Boolean).map(d => d + '/'), selectName: true,
+    validate: v => validPath(v) || (v !== path && T.items.has(v) ? 'Something already has that path.' : '')});
+  if (to && to !== path && await movePath(path, to)) return to;
+  return null;
+}
+async function newFolderPrompt(dir) {
+  if (!requireGH()) return;
+  const name = await promptText({title: 'New folder', label: dir ? `Inside ${dir}` : 'In the repository root', placeholder: 'e.g. helmet', confirm: 'Create',
+    validate: v => validPath(v) || (T.items.has(joinPath(dir, v)) ? 'That folder already exists.' : '')});
+  if (!name) return;
+  const path = joinPath(dir, name);
+  try { await commitChanges([{path: path + '/.gitkeep', b64: ''}], `Create folder ${path}`); ui.dir = path; saveUI(); render(); toast('Folder created'); }
+  catch (e) { toast('Couldn’t create the folder: ' + e.message); }
+}
+async function newFilePrompt(dir) {
+  if (!requireGH()) return;
+  const name = await promptText({title: 'New file', label: dir ? `Inside ${dir}` : 'In the repository root', value: 'notes.md', confirm: 'Create', selectName: true,
+    validate: v => validPath(v) || (T.items.has(joinPath(dir, v)) ? 'A file with that name already exists.' : '')});
+  if (name) openViewer(joinPath(dir, name), {isNew: true});
+}
+function openHistory() {
+  openSheet(inner => {
+    inner.innerHTML = `<h2 class="sheet-title">Recent changes</h2><div class="empty"><i class="spinner"></i>Loading…</div>`;
+    gh(`/commits?sha=${encodeURIComponent(GH.branch)}&per_page=40`).then(list => {
+      inner.innerHTML = `<h2 class="sheet-title">Recent changes</h2>` + list.map(c => {
+        const when = Date.parse(c.commit.author?.date || c.commit.committer?.date);
+        return `<a class="hist-row" href="${esc(c.html_url)}" target="_blank" rel="noopener"><div class="t"><b>${esc(c.commit.message.split('\n')[0])}</b><small>${esc(c.commit.author?.name || c.author?.login || '')} · ${fmtAgo(when)}</small></div><span class="mono muted">${c.sha.slice(0, 7)}</span></a>`;
+      }).join('') + `<p class="sheet-hint">Every change made here is a commit, so anything can be brought back from GitHub.</p>`;
+    }).catch(e => { inner.innerHTML = `<h2 class="sheet-title">Recent changes</h2><div class="empty">${esc(e.message)}</div>`; });
+  }, {cls: 'tall'});
+}
+function pickFile({title = 'Attach a file', onPick}) {
+  if (!requireGH()) return;
+  openSheet((inner, entry) => {
+    let q = '';
+    const draw = () => {
+      if (!T.loaded) { inner.innerHTML = `<h2 class="sheet-title">${esc(title)}</h2><div class="empty">${T.err ? esc(T.err) : '<i class="spinner"></i>Loading files…'}</div>`; return; }
+      const files = [...T.items.values()].filter(x => x.type === 'blob' && !isKeep(x.path) && x.path !== DATA_PATH && (!q || x.path.toLowerCase().includes(q)))
+        .sort((a, b) => a.path.localeCompare(b.path, undefined, {numeric: true})).slice(0, 300);
+      const listHtml = files.map(f => `<button type="button" class="pick-row" data-path="${esc(f.path)}"><span class="ficon sm k-${kindOf(f.path)}"${kindOf(f.path) === 'image' ? ` data-thumb="${esc(f.path)}"` : ''}>${ic(KIND_ICON[kindOf(f.path)])}</span><span class="fname"><b>${esc(baseName(f.path))}</b><small>${esc(dirName(f.path) || '/')} · ${fmtSize(f.size)}</small></span></button>`).join('') || '<div class="empty">No files match.</div>';
+      const box = $('.pick-list', inner);
+      if (box) { box.innerHTML = listHtml; observeThumbs(box); return; }
+      inner.innerHTML = `<h2 class="sheet-title">${esc(title)}</h2><div class="fsearch">${ic('search')}<input class="field" type="search" placeholder="Search files" autocomplete="off"></div><div class="pick-list">${listHtml}</div>`;
+      observeThumbs(inner);
+      $('input', inner).addEventListener('input', e => { q = e.target.value.trim().toLowerCase(); draw(); });
+    };
+    entry.refresh = draw; draw();
+    inner.addEventListener('click', e => { const b = e.target.closest('[data-path]'); if (!b) return; closeEntry(entry); onPick(b.dataset.path); });
+    if (!T.loaded) loadTree().catch(() => {});
+  }, {cls: 'tall'});
+}
+function pickStep({title = 'Choose a step', onPick}) {
+  openSheet((inner, entry) => {
+    inner.innerHTML = `<h2 class="sheet-title">${esc(title)}</h2>` + state.blocks.map(b => `<div class="pick-head" style="--c:${col(b.color)}"><i></i>${esc(b.title)}</div>` +
+      b.steps.map(s => `<button type="button" class="pick-row" data-step="${s.id}"><span class="mono muted" style="width:52px">${STATUS[s.status]}</span><span class="fname"><b>${esc(s.title)}</b></span></button>`).join('')).join('');
+    inner.addEventListener('click', e => { const b = e.target.closest('[data-step]'); if (!b) return; closeEntry(entry); onPick(b.dataset.step); });
+  }, {cls: 'tall'});
+}
+
+/* thumbnails for images, loaded when they scroll into view */
+const thumbUrls = new Map();
+const thumbObs = 'IntersectionObserver' in window ? new IntersectionObserver(list => list.forEach(en => { if (en.isIntersecting) { thumbObs.unobserve(en.target); loadThumb(en.target); } }), {rootMargin: '200px'}) : null;
+function observeThumbs(root) { $$('[data-thumb]', root).forEach(el => thumbObs ? thumbObs.observe(el) : loadThumb(el)); }
+async function loadThumb(el) {
+  const it = T.items.get(el.dataset.thumb);
+  if (!it || it.size > 6e6) return;
+  try {
+    let url = thumbUrls.get(it.sha);
+    if (!url) { url = URL.createObjectURL(new Blob([await readBlob(it.sha)], {type: mimeOf(it.path)})); thumbUrls.set(it.sha, url); }
+    el.innerHTML = `<img src="${url}" alt="" loading="lazy">`;
+  } catch (e) {}
+}
+
+/* ================= markdown ================= */
+async function renderMarkdown(text, baseDir, el) {
+  await Promise.all([loadScript(LIBS.marked), loadScript(LIBS.purify)]);
+  el.innerHTML = DOMPurify.sanitize(marked.parse(text, {gfm: true}));
+  for (const img of $$('img', el)) {
+    const src = img.getAttribute('src') || '';
+    if (!src || /^(https?:|data:|blob:)/i.test(src)) continue;
+    let p; try { p = resolvePath(baseDir, decodeURIComponent(src.split(/[?#]/)[0])); } catch (e) { continue; }
+    const it = T.items.get(p);
+    img.removeAttribute('src');
+    if (it) readBlob(it.sha).then(b => { img.src = URL.createObjectURL(new Blob([b], {type: mimeOf(p)})); }).catch(() => {});
+    else img.alt = (img.alt || 'Image') + ' (not found)';
+  }
+  for (const a of $$('a', el)) {
+    const href = a.getAttribute('href') || '';
+    if (!href || href.startsWith('#')) continue;
+    if (/^[a-z][a-z0-9+.-]*:/i.test(href)) { a.target = '_blank'; a.rel = 'noopener'; continue; }
+    let p; try { p = resolvePath(baseDir, decodeURIComponent(href.split(/[?#]/)[0])); } catch (e) { continue; }
+    if (T.items.has(p) || p === '') { a.dataset.open = p; a.href = '#'; }
+  }
+  for (const cb of $$('input[type=checkbox]', el)) cb.disabled = true;
+}
+function openRepoLink(p) {
+  const it = T.items.get(p);
+  if (p === '' || (it && it.type === 'tree')) { closeAll(); ui.dir = p; saveUI(); setView('files'); }
+  else openViewer(p);
+}
+
+/* ================= STL viewer (three.js) ================= */
+function parseSTL(buf) {
+  const dv = new DataView(buf);
+  let binary = buf.byteLength >= 84 && 84 + dv.getUint32(80, true) * 50 === buf.byteLength;
+  if (!binary) {
+    const head = decodeUtf8(buf.slice(0, Math.min(1000, buf.byteLength)));
+    binary = !/^\s*solid[\s\S]*facet/i.test(head) && buf.byteLength >= 84;
+  }
+  let pos;
+  if (binary) {
+    const n = Math.min(dv.getUint32(80, true), Math.floor((buf.byteLength - 84) / 50));
+    pos = new Float32Array(n * 9);
+    for (let i = 0; i < n; i++) { const o = 84 + i * 50 + 12; for (let j = 0; j < 9; j++) pos[i * 9 + j] = dv.getFloat32(o + j * 4, true); }
+  } else {
+    const text = decodeUtf8(buf), out = [];
+    const re = /vertex\s+([-+\d.eE]+)\s+([-+\d.eE]+)\s+([-+\d.eE]+)/g; let m;
+    while ((m = re.exec(text))) out.push(+m[1], +m[2], +m[3]);
+    pos = new Float32Array(out);
+  }
+  return pos;
+}
+async function showSTL(box, buf) {
+  await loadScript(LIBS.three); await loadScript(LIBS.orbit);
+  const pos = parseSTL(buf);
+  if (!pos.length) throw new Error('This STL file has no triangles.');
+  const geom = new THREE.BufferGeometry();
+  geom.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geom.computeVertexNormals(); geom.computeBoundingBox();
+  const bb = geom.boundingBox, size = new THREE.Vector3(), center = new THREE.Vector3();
+  bb.getSize(size); bb.getCenter(center);
+  geom.translate(-center.x, -center.y, -center.z);
+  const dark = getComputedStyle(document.documentElement).colorScheme === 'dark';
+  const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
+  renderer.setPixelRatio(Math.min(2, devicePixelRatio || 1));
+  box.prepend(renderer.domElement);
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(35, 1, 0.1, 1e6);
+  const mesh = new THREE.Mesh(geom, new THREE.MeshStandardMaterial({color: dark ? 0xd9dde5 : 0xf2f4f7, roughness: .5, metalness: .05}));
+  mesh.rotation.x = -Math.PI / 2;
+  scene.add(mesh);
+  const r = size.length() / 2 || 1;
+  const grid = new THREE.GridHelper(r * 4, 20, dark ? 0x3d4350 : 0xbfc4ce, dark ? 0x2a2f39 : 0xdcdfe5);
+  grid.position.y = -size.z / 2; scene.add(grid);
+  scene.add(new THREE.HemisphereLight(0xffffff, dark ? 0x202530 : 0x8090a0, .75));
+  const key = new THREE.DirectionalLight(0xffffff, .75); key.position.set(1, 1.4, 1.2); camera.add(key); scene.add(camera);
+  const accent = new THREE.DirectionalLight(0x9cc0ff, .25); accent.position.set(-1.5, .4, -1); scene.add(accent);
+  const controls = new THREE.OrbitControls(camera, renderer.domElement);
+  controls.enableDamping = true; controls.target.set(0, 0, 0);
+  let raf = 0, alive = true, framed = false;
+  const fit = () => {
+    const w = box.clientWidth, h = box.clientHeight; if (!w || !h) return;
+    renderer.setSize(w, h, false); camera.aspect = w / h; camera.updateProjectionMatrix();
+    if (!framed) {
+      /* distance that fits the whole model in the narrower of the two view angles */
+      framed = true;
+      const v = THREE.MathUtils.degToRad(camera.fov), hz = 2 * Math.atan(Math.tan(v / 2) * camera.aspect);
+      const dist = r / Math.sin(Math.min(v, hz) / 2) * 1.08;
+      camera.position.copy(new THREE.Vector3(1.7, 1.15, 2.1).normalize().multiplyScalar(dist));
+      controls.update();
+    }
+  };
+  const ro = new ResizeObserver(fit); ro.observe(box); fit();
+  const loop = () => { if (!alive) return; controls.update(); renderer.render(scene, camera); raf = requestAnimationFrame(loop); };
+  loop();
+  $('.stl-info', box).innerHTML = `<span>${size.x.toFixed(1)} × ${size.y.toFixed(1)} × ${size.z.toFixed(1)} mm</span><span>${(pos.length / 9).toLocaleString()} triangles</span>`;
+  return () => { alive = false; cancelAnimationFrame(raf); ro.disconnect(); controls.dispose(); geom.dispose(); mesh.material.dispose(); renderer.dispose(); };
+}
+
+/* ================= file viewer & editor ================= */
+function openViewer(path, {isNew = false} = {}) {
+  if (!requireGH()) return;
+  if (!isNew && !T.loaded) { ensureTree().then(() => openViewer(path)).catch(e => toast(e.message)); return; }
+  let it = isNew ? null : T.items.get(path);
+  if (!isNew && !it) { toast('That file isn’t in the repository any more'); return; }
+  if (it && it.type === 'tree') { openRepoLink(path); return; }
+  let kind = isNew ? (kindOf(path) === 'md' ? 'md' : 'text') : kindOf(path);
+  let mode = isNew ? 'edit' : 'view', text = isNew ? '' : null, buf = null, url = null, dispose = null, showSrc = false, loadErr = '', forced = false, saving = false;
+  let baseSha = it ? it.sha : null;
+  openSheet((inner, entry) => {
+    const editable = () => (kind === 'md' || kind === 'text') && text != null && !text.startsWith('version https://git-lfs');
+    const head = () => `<div class="vw-head"><span class="ficon sm k-${kind}">${ic(KIND_ICON[kind])}</span><div class="vw-title"><b>${esc(baseName(path))}</b><small>${esc(dirName(path) || '/')}${it ? ' · ' + fmtSize(it.size) : ' · new file'}</small></div>` +
+      (mode === 'edit'
+        ? `<button type="button" class="btn sm" data-x="cancel">Cancel</button><button type="button" class="btn sm primary" data-x="save"${saving ? ' disabled' : ''}>${saving ? 'Saving…' : 'Save'}</button>`
+        : `${kind === 'md' && text != null ? `<button type="button" class="icon-btn" data-x="src" aria-label="${showSrc ? 'Show preview' : 'Show source'}" title="${showSrc ? 'Show preview' : 'Show source'}">${ic(showSrc ? 'eye' : 'code')}</button>` : ''}${editable() ? `<button type="button" class="icon-btn" data-x="edit" aria-label="Edit" title="Edit">${ic('edit')}</button>` : ''}<button type="button" class="icon-btn" data-x="download" aria-label="Download" title="Download">${ic('download')}</button><button type="button" class="icon-btn" data-x="more" aria-label="More">${ic('more')}</button>`) +
+      `<button type="button" class="icon-btn" data-x="close" aria-label="Close">${ic('x')}</button></div>`;
+    const objUrl = () => url || (url = URL.createObjectURL(new Blob([buf], {type: mimeOf(path)})));
+    function draw() {
+      if (dispose) { dispose(); dispose = null; }
+      if (mode === 'edit') {
+        const prev = $('.editor', inner), cur = prev ? prev.value : text, msgPrev = $('.vw-msg', inner);
+        inner.innerHTML = head() + `<div class="vw-body"><textarea class="editor" spellcheck="${kind === 'md'}" aria-label="File contents">${esc(cur)}</textarea><input class="field sm vw-msg" placeholder="What did you change? (optional)" value="${esc(msgPrev ? msgPrev.value : '')}"></div>`;
+        if (isNew) setTimeout(() => $('.editor', inner).focus(), 80);
+        return;
+      }
+      inner.innerHTML = head() + '<div class="vw-body"></div>';
+      const b = $('.vw-body', inner);
+      if (loadErr) { b.innerHTML = `<div class="empty">${esc(loadErr)}</div>`; return; }
+      if (!buf) {
+        if (it.size > 60e6 && !forced) { b.innerHTML = `<div class="empty">This file is ${fmtSize(it.size)}. Loading it uses a lot of data.<br><br><button type="button" class="btn primary" data-x="force">Load preview</button></div>`; return; }
+        b.innerHTML = '<div class="empty"><i class="spinner"></i>Loading…</div>'; return;
+      }
+      if (text != null && text.startsWith('version https://git-lfs')) { b.innerHTML = `<div class="empty">This file is stored with Git LFS, so only its pointer is in the repository. Open it on GitHub or from a local copy.</div>`; return; }
+      if (kind === 'image') b.innerHTML = `<img class="vw-img" src="${objUrl()}" alt="${esc(baseName(path))}">`;
+      else if (kind === 'md' && !showSrc) { const art = document.createElement('article'); art.className = 'md-body'; art.innerHTML = '<div class="empty"><i class="spinner"></i></div>'; b.appendChild(art); renderMarkdown(text, dirName(path), art).catch(e => { art.innerHTML = `<pre class="code">${esc(text)}</pre>`; }); }
+      else if (kind === 'md' || kind === 'text') b.innerHTML = `<pre class="code">${esc(text.length > 400000 ? text.slice(0, 400000) + '\n\n… (shortened — download to see all of it)' : text)}</pre>`;
+      else if (kind === 'pdf') b.innerHTML = `<iframe class="vw-pdf" src="${objUrl()}" title="${esc(baseName(path))}"></iframe><div class="sheet-actions" style="justify-content:flex-start"><a class="btn sm" href="${objUrl()}" target="_blank" rel="noopener">${ic('external')}Open in a new tab</a></div>`;
+      else if (kind === 'audio') b.innerHTML = `<audio class="vw-media" controls src="${objUrl()}"></audio>`;
+      else if (kind === 'video') b.innerHTML = `<video class="vw-media" controls playsinline src="${objUrl()}"></video>`;
+      else if (kind === 'stl') {
+        b.innerHTML = `<div class="stl-box"><div class="stl-info"><span><i class="spinner" style="margin:0 6px 0 0;width:12px;height:12px"></i>Building 3D view…</span></div><div class="stl-hint">${wide.matches ? 'Drag to turn · scroll to zoom · right-drag to pan' : 'Drag to turn · pinch to zoom'}</div></div>`;
+        const box = $('.stl-box', b);
+        showSTL(box, buf).then(d => { if (box.isConnected) dispose = d; else d(); }).catch(e => { box.innerHTML = `<div class="empty">${esc(e.message)}</div>`; });
+      } else b.innerHTML = `<div class="empty">There’s no preview for .${esc(extOf(path))} files.<br>Download it, or open it on GitHub.</div>`;
+    }
+    async function load() {
+      try {
+        buf = await readBlob(it.sha);
+        if (kind === 'md' || kind === 'text') text = decodeUtf8(buf);
+        else if (kind === 'file' && looksText(buf)) { kind = 'text'; text = decodeUtf8(buf); }
+      } catch (e) { loadErr = e.message; }
+      if (inner.isConnected) draw();
+    }
+    async function doSave(x) {
+      const newText = $('.editor', inner).value, msg = $('.vw-msg', inner).value.trim();
+      saving = true; x.disabled = true; x.textContent = 'Saving…';
+      try {
+        await loadTree();
+        const cur = T.items.get(path);
+        if (cur && (isNew || cur.sha !== baseSha)) {
+          const go = await ask({title: isNew ? 'A file with this name exists' : 'This file changed on GitHub', text: isNew ? 'Saving replaces it.' : 'Someone (or another device) changed it after you opened it. Saving replaces their version; it stays in the history.', buttons: [{label: 'Cancel', value: false}, {label: 'Replace', value: true, primary: true}]});
+          if (!go) { saving = false; x.disabled = false; x.textContent = 'Save'; return; }
+        }
+        await commitChanges([{path, b64: utf8ToB64(newText)}], msg || (isNew || !cur ? `Create ${path}` : `Edit ${path}`));
+        it = T.items.get(path); baseSha = it.sha; text = newText; buf = new TextEncoder().encode(newText).buffer; isNew = false; mode = 'view'; saving = false;
+        draw(); toast('Saved to GitHub');
+        if (ui.view === 'files') renderFiles();
+      } catch (e) { saving = false; x.disabled = false; x.textContent = 'Save'; toast('Saving failed: ' + e.message); }
+    }
+    entry.refresh = () => { if (!isNew && mode === 'view') { const cur = T.items.get(path); if (cur) it = cur; } };
+    draw();
+    if (!isNew) load();
+    inner.addEventListener('click', async e => {
+      const a = e.target.closest('a[data-open]');
+      if (a) { e.preventDefault(); openRepoLink(a.dataset.open); return; }
+      const x = e.target.closest('[data-x]'); if (!x) return;
+      const k = x.dataset.x;
+      if (k === 'close') closeEntry(entry);
+      else if (k === 'edit') { mode = 'edit'; draw(); }
+      else if (k === 'src') { showSrc = !showSrc; draw(); }
+      else if (k === 'force') { forced = true; draw(); load(); }
+      else if (k === 'download') downloadPath(path, buf);
+      else if (k === 'cancel') {
+        const changed = $('.editor', inner).value !== (text || '');
+        if (changed && !(await ask({title: 'Discard your changes?', buttons: [{label: 'Keep editing', value: false}, {label: 'Discard', value: true, danger: true}]}))) return;
+        if (isNew) closeEntry(entry); else { mode = 'view'; draw(); }
+      }
+      else if (k === 'save') doSave(x);
+      else if (k === 'more') openMenu(x, [
+        {icon: 'move', label: 'Rename or move', run: async () => { const to = await renamePrompt(path); if (to) { path = to; it = T.items.get(to); draw(); } }},
+        {icon: 'layers', label: 'Attach to a step', run: () => pickStep({onPick: id => { const s = findStep(id); if (s) { attachFiles(s.step, [path]); save(); render(); toast(`Attached to “${s.step.title}”`); } }})},
+        {icon: 'copy', label: 'Copy path', run: () => copyText(path, 'Path copied')},
+        {icon: 'external', label: 'Open on GitHub', run: () => window.open(ghWebUrl(path), '_blank', 'noopener')},
+        'sep',
+        {icon: 'trash', label: 'Delete', danger: true, run: async () => { if (await deletePaths([path])) closeEntry(entry); }}
+      ]);
+    });
+    inner.addEventListener('keydown', e => { if (mode === 'edit' && (e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 's') { e.preventDefault(); const x = $('[data-x="save"]', inner); if (x && !x.disabled) doSave(x); } });
+  }, {cls: 'tall viewer', onClose: () => { if (dispose) dispose(); if (url) setTimeout(() => URL.revokeObjectURL(url), 1000); }});
+}
+
+/* ================= rendering ================= */
+const tabsEl = $('#tabs'), boardEl = $('#board');
+let composing = null;
+let rq = 0;
+function renderSoon() { if (rq) return; rq = requestAnimationFrame(() => { rq = 0; if (!drag) render(); }); }
+function setView(v) {
+  ui.view = v; saveUI(); composing = null; render();
+  if (v === 'files' && GH.status === 'on' && (!T.loaded || Date.now() - T.at > 30000)) loadTree().catch(() => {});
+}
+function render() {
+  if (drag) return;
+  for (const v of ['blocks', 'board', 'files']) $('#v-' + v).hidden = ui.view !== v;
+  $$('[data-view]').forEach(b => { const on = b.dataset.view === ui.view; b.classList.toggle('on', on); if (on) b.setAttribute('aria-current', 'page'); else b.removeAttribute('aria-current'); });
+  drawSync();
+  if (ui.view === 'blocks') renderBlocks(); else if (ui.view === 'board') renderBoard(); else renderFiles();
+}
+function composerHTML(placeholder) {
+  return `<div class="composer" data-composer><textarea rows="2" placeholder="${esc(placeholder)}" enterkeyhint="done" aria-label="${esc(placeholder)}">${esc(composing.text || '')}</textarea><div class="composer-row"><button type="button" class="btn primary sm" data-act="composer-add">Add</button><button type="button" class="icon-btn sm" data-act="composer-close" aria-label="Cancel">${ic('x')}</button><span class="sheet-hint">One per line</span></div></div>`;
+}
+function focusComposer() {
+  const t = $('[data-composer] textarea, .add-list.is-open input');
+  if (t && document.activeElement !== t) { t.focus({preventScroll: true}); const n = t.value.length; t.setSelectionRange(n, n); t.scrollIntoView({block: 'nearest'}); }
+}
+
+/* ----- blocks ----- */
+function stepHTML(s, b, now = false) {
+  const meta = [];
+  if (s.files.length) meta.push(`<span class="chip">${ic('clip')}${s.files.length}</span>`);
+  if (s.notes.trim()) meta.push(`<span class="chip">${ic('note')}</span>`);
+  if (s.card && findCard(s.card)) meta.push(`<span class="chip">${ic('board')}</span>`);
+  if (!now && s.status === 'doing') meta.push('<span class="doing-tag">Doing</span>');
+  return `<div class="step st-${s.status}" data-step="${s.id}" tabindex="0"><button type="button" class="st" data-act="step-cycle" aria-label="${esc(s.title)}: ${STATUS[s.status]}. Change status">${ic('check')}</button><div class="step-body"><div class="step-title">${esc(s.title)}</div>${now ? `<div class="step-block" style="--c:${col(b.color)}"><i></i>${esc(b.title)}</div>` : ''}</div>${meta.length ? `<div class="step-meta">${meta.join('')}</div>` : ''}</div>`;
+}
+function blockHTML(b) {
+  const s = blockStats(b), complete = s.t > 0 && s.d === s.t;
+  const comp = composing && composing.kind === 'step' && composing.block === b.id;
+  return `<article class="block${b.collapsed ? ' is-collapsed' : ''}" data-block="${b.id}" style="--c:${col(b.color)}">
+    <header class="block-head" data-drag="block"><button type="button" class="block-tog" data-act="block-toggle" aria-expanded="${!b.collapsed}" aria-label="${b.collapsed ? 'Expand' : 'Collapse'} ${esc(b.title)}">${ic('chev-d')}</button>
+    <button type="button" class="block-name" data-act="block-edit"><b><i></i>${esc(b.title)}</b><small>${s.d}/${s.t} steps${s.t ? ' · ' + s.p + '%' : ''}</small></button>
+    ${complete ? `<span class="done-badge" title="All steps done">${ic('check')}</span>` : ''}<button type="button" class="icon-btn sm" data-act="block-menu" aria-label="Block options">${ic('more')}</button></header>
+    <div class="block-bar"><i style="width:${s.p}%"></i></div>
+    ${b.desc ? `<p class="block-desc">${esc(b.desc)}</p>` : ''}
+    <div class="steps" data-steps>${b.steps.map(x => stepHTML(x, b)).join('')}</div>
+    ${comp ? composerHTML('Name the step…') : `<div class="block-foot"><button type="button" class="add-card" data-act="step-add">${ic('plus')}Add a step</button></div>`}
+  </article>`;
+}
+function renderBlocks() {
+  const sc = $('#blocks-scroll');
+  const all = state.blocks.flatMap(b => b.steps), total = all.length, done = all.filter(s => s.status === 'done').length;
+  const pct = total ? Math.round(done / total * 100) : 0;
+  const doing = state.blocks.flatMap(b => b.steps.filter(s => s.status === 'doing').map(s => ({b, s})));
+  let next = null;
+  if (!doing.length) for (const b of state.blocks) { const s = b.steps.find(x => x.status === 'todo'); if (s) { next = {b, s}; break; } }
+  const blocksDone = state.blocks.filter(b => b.steps.length && b.steps.every(s => s.status === 'done')).length;
+  let h = '';
+  if (GH.status !== 'on') h += `<div class="banner"><p>${GH.status === 'error' ? esc(GH.err) : 'Connect your GitHub repository to save this to the project and manage its files from here.'}</p><button type="button" class="btn primary sm" data-act="connect">Connect</button></div>`;
+  h += `<section class="overview" aria-label="Progress"><div class="ov-top"><div><div class="ov-pct">${pct}<span>%</span></div><div class="ov-sub">${done} of ${total} steps done</div></div>
+    <div class="ov-side"><div><b>${doing.length}</b><small>Doing</small></div><div><b>${blocksDone}/${state.blocks.length}</b><small>Blocks done</small></div></div></div>
+    <div class="ov-bar">${state.blocks.map(b => { const s = blockStats(b); return `<span style="--c:${col(b.color)};flex:${Math.max(1, s.t)} 1 0" title="${esc(b.title)}: ${s.d}/${s.t}"><i style="width:${s.p}%"></i></span>`; }).join('')}</div></section>`;
+  if (doing.length) h += `<h3 class="sec-label">${ic('play')}Working on now</h3><div class="now-list">${doing.map(({b, s}) => stepHTML(s, b, true)).join('')}</div>`;
+  else if (next) h += `<h3 class="sec-label">${ic('chev-r')}Up next</h3><div class="now-list">${stepHTML(next.s, next.b, true)}</div>`;
+  h += `<h3 class="sec-label">${ic('layers')}Blocks</h3><div class="blocks" id="blocks">${state.blocks.map(blockHTML).join('')}<button type="button" class="add-block" data-act="block-add">${ic('plus')}New block</button></div>`;
+  sc.innerHTML = `<div class="blocks-wrap">${h}</div>`;
+  if (composing) focusComposer();
+}
+
+/* ----- board ----- */
+function viewCards(l) {
+  const a = l.cards.slice(), pin = c => c.pinned ? 0 : 1;
+  if (l.sort === 'priority') a.sort((x, y) => pin(x) - pin(y) || y.priority - x.priority);
+  else if (l.sort === 'due') a.sort((x, y) => pin(x) - pin(y) || (x.due || '9999').localeCompare(y.due || '9999'));
+  else a.sort((x, y) => pin(x) - pin(y));
+  return a;
+}
+function cardHTML(c) {
+  const tags = c.tags.map(id => state.tags.find(t => t.id === id)).filter(Boolean);
+  const meta = [];
+  if (c.pinned) meta.push(`<span class="chip pin" title="Pinned">${ic('star')}</span>`);
+  if (c.priority) meta.push(`<span class="chip" style="color:${col(PRIO_C[c.priority])}">${ic('flag')}${PRIO[c.priority]}</span>`);
+  if (c.due) { const d = dueInfo(c.due); meta.push(`<span class="chip ${c.done ? '' : d.cls}">${ic('calendar')}${d.text}</span>`); }
+  if (c.checklist.length) { const n = c.checklist.filter(i => i.done).length; meta.push(`<span class="chip${n === c.checklist.length ? ' ok' : ''}">${ic('checklist')}${n}/${c.checklist.length}</span>`); }
+  if (c.files.length) meta.push(`<span class="chip">${ic('clip')}${c.files.length}</span>`);
+  if (c.desc.trim()) meta.push(`<span class="chip" title="Has notes">${ic('note')}</span>`);
+  const s = c.step && findStep(c.step);
+  if (s) meta.push(`<span class="chip blk" style="--c:${col(s.block.color)}">${ic('layers')}${esc(s.block.title)}</span>`);
+  return `<div class="card${c.done ? ' is-done' : ''}" data-card="${c.id}" tabindex="0">${tags.length ? `<div class="card-labels">${tags.map(t => `<span class="lab" style="--c:${col(t.color)}">${esc(t.name)}</span>`).join('')}</div>` : ''}<div class="card-main"><button type="button" class="check${c.done ? ' on' : ''}" data-act="card-check" aria-label="${c.done ? 'Mark not done' : 'Mark done'}: ${esc(c.title)}">${ic('check')}</button><div class="card-title">${esc(c.title)}</div></div>${meta.length ? `<div class="card-meta">${meta.join('')}</div>` : ''}</div>`;
+}
+function listHTML(l) {
+  if (l.collapsed) return `<section class="list is-collapsed" data-list="${l.id}"><button type="button" class="collapsed-body" data-act="list-expand" data-drag="list" aria-label="Expand ${esc(l.title)}">${ic('chev-r')}<span class="v-title">${esc(l.title)}</span><span class="list-count">${l.cards.length}</span></button><div class="cards" data-cards></div></section>`;
+  const comp = composing && composing.kind === 'card' && composing.list === l.id;
+  return `<section class="list" data-list="${l.id}"><div class="list-head" data-drag="list">${l.isDone ? `<span class="list-done-ic" title="Done column">${ic('check')}</span>` : ''}<button type="button" class="list-title" data-act="list-rename">${esc(l.title)}</button><span class="list-count">${l.cards.length}</span><button type="button" class="icon-btn sm" data-act="list-menu" aria-label="List options">${ic('more')}</button></div>
+    <div class="cards" data-cards>${viewCards(l).map(cardHTML).join('')}</div>
+    ${comp ? composerHTML('Name the card…') : `<div class="list-foot"><button type="button" class="add-card" data-act="card-add">${ic('plus')}Add a card</button></div>`}</section>`;
+}
+function renderBoard() {
+  const b = curBoard();
+  ui.board = b.id;
+  tabsEl.innerHTML = state.boards.map(x => `<button type="button" role="tab" class="tab${x === b ? ' is-active' : ''}" data-board="${x.id}" aria-selected="${x === b}"><span class="tab-dot" style="--c:${col(x.color)}"></span>${esc(x.name)}<span class="tab-count">${x.lists.filter(l => !l.isDone).reduce((n, l) => n + l.cards.filter(c => !c.done).length, 0)}</span></button>`).join('') +
+    `<button type="button" class="tab-add" data-act="board-add" aria-label="New board">${ic('plus')}</button>`;
+  const sl = boardEl.scrollLeft, tops = {};
+  $$('.list[data-list]', boardEl).forEach(l => { const c = $('[data-cards]', l); if (c) tops[l.dataset.list] = c.scrollTop; });
+  const addList = composing && composing.kind === 'list'
+    ? `<div class="add-list is-open"><input placeholder="List name" value="${esc(composing.text || '')}" aria-label="List name" enterkeyhint="done"><div class="composer-row"><button type="button" class="btn primary sm" data-act="composer-add">Add list</button><button type="button" class="icon-btn sm" data-act="composer-close" aria-label="Cancel">${ic('x')}</button></div></div>`
+    : `<button type="button" class="add-list" data-act="list-add">${ic('plus')}Add a list</button>`;
+  boardEl.innerHTML = b.lists.map(listHTML).join('') + addList + '<div class="board-end"></div>';
+  boardEl.scrollLeft = sl;
+  $$('.list[data-list]', boardEl).forEach(l => { const c = $('[data-cards]', l); if (c && tops[l.dataset.list]) c.scrollTop = tops[l.dataset.list]; });
+  if (composing) focusComposer();
+}
+
+/* ----- files ----- */
+let fileQuery = '', fileSel = null;
+function connectPanel(title, text) {
+  return `<div class="center-panel"><div class="cp-icon">${ic('folder')}</div><h2>${esc(title)}</h2><p>${esc(text)}</p><button type="button" class="btn primary" data-act="connect">Connect GitHub</button></div>`;
+}
+function fileRowHTML(it, showDir) {
+  const dir = it.type === 'tree', k = dir ? 'dir' : kindOf(it.path);
+  const n = dir ? (T.kids.get(it.path) || []).filter(p => !isKeep(p)).length : 0;
+  const sub = dir ? `${n} item${n === 1 ? '' : 's'}` : `${showDir ? esc(dirName(it.path) || '/') + ' · ' : ''}${fmtSize(it.size)}`;
+  const sel = fileSel && fileSel.has(it.path);
+  return `<li class="frow${sel ? ' sel' : ''}" data-path="${esc(it.path)}">${fileSel ? `<button type="button" class="cl-check fsel${sel ? ' on' : ''}" data-act="f-sel" aria-label="Select ${esc(baseName(it.path))}">${ic('check')}</button>` : ''}<button type="button" class="f-open" data-act="f-open"><span class="ficon ${dir ? 'dir' : 'k-' + k}"${k === 'image' ? ` data-thumb="${esc(it.path)}"` : ''}>${ic(KIND_ICON[k])}</span><span class="fname"><b>${esc(baseName(it.path))}</b><small>${sub}</small></span></button>${fileSel ? '' : `<button type="button" class="icon-btn sm" data-act="f-menu" aria-label="Options for ${esc(baseName(it.path))}">${ic('more')}</button>`}</li>`;
+}
+function currentDir() {
+  let d = ui.dir || '';
+  while (d && !T.kids.has(d)) d = dirName(d);
+  return d;
+}
+function renderFiles() {
+  const sc = $('#files-scroll');
+  if (GH.status !== 'on') { sc.innerHTML = connectPanel('Your project files', 'Connect to GitHub to browse, upload, move and edit the files in your cosplay repository.'); return; }
+  if (!T.loaded) {
+    sc.innerHTML = T.err ? `<div class="center-panel"><div class="cp-icon">${ic('folder')}</div><h2>Couldn’t load the files</h2><p>${esc(T.err)}</p><button type="button" class="btn primary" data-act="f-refresh">Try again</button></div>` : `<div class="empty" style="padding-top:18vh"><i class="spinner"></i>Loading files…</div>`;
+    if (!T.loading && !T.err) loadTree().catch(() => {});
+    return;
+  }
+  const dir = currentDir(); ui.dir = dir;
+  const parts = dir ? dir.split('/') : [];
+  const crumbs = `<button type="button" class="crumb" data-act="f-dir" data-dir="">${ic('home')}${esc(GH.repo.split('/')[1])}</button>` + parts.map((p, i) => `<span class="crumb-sep">${ic('chev-r')}</span><button type="button" class="crumb" data-act="f-dir" data-dir="${esc(parts.slice(0, i + 1).join('/'))}">${esc(p)}</button>`).join('');
+  sc.innerHTML = `<div class="files-wrap"><div class="files-bar"><nav class="crumbs" aria-label="Folder">${crumbs}</nav>
+    <button type="button" class="btn sm primary" data-act="f-upload">${ic('upload')}<span>Upload</span></button><button type="button" class="icon-btn" data-act="f-new" aria-label="New file or folder" title="New">${ic('plus')}</button><button type="button" class="icon-btn" data-act="f-more" aria-label="More">${ic('more')}</button></div>
+    <div class="fsearch">${ic('search')}<input class="field" type="search" id="f-q" placeholder="Search all files" value="${esc(fileQuery)}" autocomplete="off" aria-label="Search all files"></div>
+    <div id="f-list"></div></div>`;
+  $('#f-q').addEventListener('input', e => { fileQuery = e.target.value; renderFileList(); });
+  renderFileList();
+}
+function renderFileList() {
+  const box = $('#f-list'); if (!box) return;
+  const dir = currentDir(), q = fileQuery.trim().toLowerCase();
+  let rows;
+  if (q) rows = [...T.items.values()].filter(it => !isKeep(it.path) && baseName(it.path).toLowerCase().includes(q)).slice(0, 300);
+  else rows = (T.kids.get(dir) || []).map(p => T.items.get(p)).filter(it => it && !isKeep(it.path));
+  rows.sort((a, b) => (a.type === 'tree' ? 0 : 1) - (b.type === 'tree' ? 0 : 1) || baseName(a.path).localeCompare(baseName(b.path), undefined, {numeric: true, sensitivity: 'base'}));
+  const readme = !q && (T.kids.get(dir) || []).find(p => /^readme\.md$/i.test(baseName(p)));
+  box.innerHTML = (rows.length ? `<ul class="flist" id="flist">${rows.map(it => fileRowHTML(it, !!q)).join('')}</ul>` : `<div class="flist" id="flist"><div class="files-empty">${q ? 'No files match.' : 'This folder is empty. Drop files here or use Upload.'}</div></div>`) +
+    (fileSel ? `<div class="sel-bar"><b>${fileSel.size} selected</b><button type="button" class="btn sm" data-act="sel-move"${fileSel.size ? '' : ' disabled'}>${ic('move')}Move</button><button type="button" class="btn sm" data-act="sel-delete"${fileSel.size ? '' : ' disabled'}>${ic('trash')}Delete</button><button type="button" class="icon-btn sm" data-act="sel-cancel" aria-label="Stop selecting">${ic('x')}</button></div>` : '') +
+    (T.truncated ? '<p class="sheet-hint">The repository is very large, so some files aren’t listed.</p>' : '') +
+    (readme ? `<div class="readme"><div class="readme-head">${ic('doc')}<span>${esc(baseName(readme))}</span></div><article class="md-body" id="f-readme"></article></div>` : '');
+  observeThumbs(box);
+  if (readme) {
+    const el = $('#f-readme'), it = T.items.get(readme);
+    readBlob(it.sha).then(b => renderMarkdown(decodeUtf8(b), dir, el)).catch(e => { el.textContent = e.message; });
+  }
+}
+function fileMenu(anchor, path) {
+  const it = T.items.get(path); if (!it) return;
+  const dir = it.type === 'tree';
+  openMenu(anchor, [
+    {icon: dir ? 'folder' : 'eye', label: dir ? 'Open folder' : 'Open', run: () => openRepoLink(path)},
+    {icon: 'move', label: 'Rename or move', run: () => renamePrompt(path)},
+    !dir && {icon: 'download', label: 'Download', run: () => downloadPath(path)},
+    !dir && {icon: 'layers', label: 'Attach to a step', run: () => pickStep({onPick: id => { const s = findStep(id); if (s) { attachFiles(s.step, [path]); save(); toast(`Attached to “${s.step.title}”`); } }})},
+    {icon: 'copy', label: 'Copy path', run: () => copyText(path, 'Path copied')},
+    {icon: 'external', label: 'Open on GitHub', run: () => window.open(ghWebUrl(path, dir), '_blank', 'noopener')},
+    'sep',
+    {icon: 'trash', label: 'Delete', danger: true, run: () => deletePaths([path])}
+  ], {title: baseName(path)});
+}
+
+/* ================= card detail ================= */
+function filesSecHTML(files) {
+  return `<section class="cs-sec"><div class="cs-sec-head"><h3>Files</h3><span class="mono muted">${files.length || ''}</span></div>
+    ${files.length ? `<div class="att-list">${files.map(p => { const k = kindOf(p), missing = T.loaded && !T.items.has(p); return `<div class="att${missing ? ' missing' : ''}"><button type="button" class="att-open" data-x="file-open" data-path="${esc(p)}"><span class="ficon sm k-${k}"${k === 'image' ? ` data-thumb="${esc(p)}"` : ''}>${ic(KIND_ICON[k])}</span><span class="fname"><b>${esc(baseName(p))}</b><small>${esc(dirName(p) || '/')}${missing ? ' · not found' : ''}</small></span></button><button type="button" class="icon-btn sm" data-x="file-detach" data-path="${esc(p)}" aria-label="Remove ${esc(baseName(p))} from here">${ic('x')}</button></div>`; }).join('')}</div>` : '<p class="sheet-hint" style="margin:0 0 10px">Photos, models and notes from the repository.</p>'}
+    <div class="att-actions"><button type="button" class="btn sm" data-x="file-upload">${ic('upload')}Upload</button><button type="button" class="btn sm" data-x="file-attach">${ic('clip')}From repository</button></div></section>`;
+}
+async function handleFileAction(k, x, target, afterChange) {
+  if (k === 'file-open') openViewer(x.dataset.path);
+  else if (k === 'file-detach') { const o = target(); if (o) { o.files = o.files.filter(p => p !== x.dataset.path); save(); afterChange(); } }
+  else if (k === 'file-attach') pickFile({onPick: p => { const o = target(); if (o) { attachFiles(o, [p]); save(); afterChange(); } }});
+  else if (k === 'file-upload') {
+    if (!requireGH()) return;
+    const files = await chooseFiles(); if (!files.length) return;
+    const paths = await uploadFiles(files, state.settings.uploadDir);
+    const o = target(); if (o && paths.length) { attachFiles(o, paths); save(); afterChange(); }
+  }
+}
+function openCard(id) {
+  openSheet((inner, entry) => {
+    let refocus = false;
+    const get = () => findCard(id);
+    const draw = () => {
+      const f = get(); if (!f) { closeEntry(entry); return; }
+      const c = f.card, cl = c.checklist, nDone = cl.filter(i => i.done).length;
+      const s = c.step && findStep(c.step);
+      inner.innerHTML = `<div class="cs-head"><button type="button" class="check big${c.done ? ' on' : ''}" data-x="done" aria-label="${c.done ? 'Mark not done' : 'Mark done'}">${ic('check')}</button><textarea class="cs-title" rows="1" data-f="title" aria-label="Card title">${esc(c.title)}</textarea><button type="button" class="icon-btn" data-x="menu" aria-label="Card options">${ic('more')}</button></div>
+        <div class="cs-where"><span class="muted">in</span><span class="select-wrap"><select class="select" data-f="list" aria-label="Board and list">${state.boards.map(b => `<optgroup label="${esc(b.name)}">${b.lists.map(l => `<option value="${l.id}"${l.id === f.list.id ? ' selected' : ''}>${esc(b.name)} › ${esc(l.title)}</option>`).join('')}</optgroup>`).join('')}</select></span></div>
+        <div class="cs-grid"><div>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Notes</h3></div><textarea class="field area" data-f="desc" placeholder="Details, links, measurements…">${esc(c.desc)}</textarea></section>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Checklist</h3><span class="mono muted">${cl.length ? nDone + '/' + cl.length : ''}</span></div>${cl.length ? `<div class="progress"><i style="width:${Math.round(nDone / cl.length * 100)}%"></i></div>` : ''}<ul class="cl">${cl.map(i => `<li class="${i.done ? 'on' : ''}" data-ci="${i.id}"><button type="button" class="cl-check${i.done ? ' on' : ''}" data-x="ci-check" aria-label="${i.done ? 'Uncheck' : 'Check'}">${ic('check')}</button><input class="cl-text" value="${esc(i.text)}" data-f="ci" aria-label="Checklist item"><button type="button" class="icon-btn sm" data-x="ci-del" aria-label="Remove item">${ic('x')}</button></li>`).join('')}</ul><input class="field sm" data-f="ci-new" placeholder="Add an item, then press Enter" enterkeyhint="done" aria-label="New checklist item"></section>
+          ${filesSecHTML(c.files)}
+        </div><div>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Tags</h3></div><div class="label-pick">${state.tags.map(t => `<button type="button" class="lp${c.tags.includes(t.id) ? ' on' : ''}" style="--c:${col(t.color)}" data-x="tag" data-id="${t.id}" aria-pressed="${c.tags.includes(t.id)}"><i></i><span>${esc(t.name)}</span></button>`).join('')}<button type="button" class="lp add" data-x="tag-new">${ic('plus')}<span>New tag</span></button></div></section>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Details</h3></div><div class="form-grid"><div class="fld"><label for="c-prio">Priority</label><span class="select-wrap block"><select class="select" id="c-prio" data-f="priority">${PRIO.map((p, i) => `<option value="${i}"${i === c.priority ? ' selected' : ''}>${p}</option>`).join('')}</select></span></div><div class="fld"><label for="c-due">Due date</label><input type="date" class="field" id="c-due" data-f="due" value="${c.due}"></div></div>
+            <label class="toggle"><span>Pin to top<small>Keeps the card at the top of its list</small></span><input type="checkbox" data-f="pinned"${c.pinned ? ' checked' : ''}><span class="switch"></span></label></section>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Work block</h3></div>${s
+            ? `<div class="link-box" style="--c:${col(s.block.color)}"><div class="t"><b>${esc(s.step.title)}</b><small>${esc(s.block.title)} · ${STATUS[s.step.status]}</small></div><button type="button" class="btn sm" data-x="step-open">Open</button><button type="button" class="icon-btn sm" data-x="step-unlink" aria-label="Unlink step" title="Unlink">${ic('unlink')}</button></div>`
+            : `<p class="sheet-hint" style="margin:0 0 10px">Link the card to a step so finishing one finishes the other.</p><div class="row-btns"><button type="button" class="btn sm" data-x="step-link">${ic('link')}Link a step</button><button type="button" class="btn sm" data-x="step-make">${ic('layers')}Make it a step</button></div>`}</section>
+        </div></div>
+        <div class="cs-foot"><span class="mono muted">Created ${fmtDate(c.created)}</span><button type="button" class="btn danger" data-x="delete">${ic('trash')}Delete</button></div>`;
+      autosize($('.cs-title', inner));
+      observeThumbs(inner);
+      if (refocus) { refocus = false; $('[data-f="ci-new"]', inner).focus(); }
+    };
+    entry.refresh = () => { if (!typingIn(inner)) draw(); };
+    draw();
+    if (GH.status === 'on' && !T.loaded) loadTree().catch(() => {});
+    inner.addEventListener('input', e => {
+      const f = get(); if (!f) return;
+      const k = e.target.dataset.f;
+      if (k === 'title') { f.card.title = e.target.value.replace(/\n/g, ' '); autosize(e.target); saveSoft(); }
+      else if (k === 'desc') { f.card.desc = e.target.value; saveSoft(); }
+      else if (k === 'ci') { const it = f.card.checklist.find(i => i.id === e.target.closest('[data-ci]').dataset.ci); if (it) { it.text = e.target.value; saveSoft(); } }
+    });
+    inner.addEventListener('change', e => {
+      const f = get(); if (!f) return;
+      const k = e.target.dataset.f;
+      if (k === 'list') moveCardTo(id, e.target.value);
+      else if (k === 'priority') f.card.priority = +e.target.value;
+      else if (k === 'due') f.card.due = e.target.value || '';
+      else if (k === 'pinned') f.card.pinned = e.target.checked;
+      else return;
+      save(); renderSoon(); draw();
+    });
+    inner.addEventListener('keydown', e => {
+      const k = e.target.dataset.f;
+      if (k === 'ci-new' && e.key === 'Enter') { e.preventDefault(); const v = e.target.value.trim(); if (!v) return; get().card.checklist.push({id: uid(), text: v, done: false}); refocus = true; saveSoft(); draw(); }
+      else if (k === 'title' && e.key === 'Enter') { e.preventDefault(); e.target.blur(); }
+    });
+    inner.addEventListener('click', async e => {
+      const x = e.target.closest('[data-x]'); if (!x) return;
+      const f = get(); if (!f) return;
+      const c = f.card, k = x.dataset.x;
+      const after = () => { renderSoon(); draw(); };
+      if (k === 'done') { setCardDone(id, !c.done); save(); after(); }
+      else if (k === 'tag') { const t = x.dataset.id; c.tags = c.tags.includes(t) ? c.tags.filter(z => z !== t) : [...c.tags, t]; save(); after(); }
+      else if (k === 'tag-new') { const name = await promptText({title: 'New tag', label: 'Name', placeholder: 'e.g. Sanding', confirm: 'Create'}); if (name) { const t = {id: uid(), name, color: COLORS[state.tags.length % COLORS.length]}; state.tags.push(t); const g = get(); if (g) g.card.tags.push(t.id); save(); after(); } }
+      else if (k === 'ci-check') { const it = c.checklist.find(i => i.id === x.closest('[data-ci]').dataset.ci); if (it) { it.done = !it.done; save(); after(); } }
+      else if (k === 'ci-del') { c.checklist = c.checklist.filter(i => i.id !== x.closest('[data-ci]').dataset.ci); save(); after(); }
+      else if (k.startsWith('file-')) handleFileAction(k, x, () => get() && get().card, after);
+      else if (k === 'step-open') openStep(c.step);
+      else if (k === 'step-unlink') { const s = findStep(c.step); if (s) unlinkStep(s.step.id); else c.step = null; save(); after(); }
+      else if (k === 'step-link') pickStep({onPick: sid => { linkStepCard(sid, id); const s = findStep(sid), g = get(); if (s && g && g.card.done && s.step.status !== 'done') setStepStatus(sid, 'done'); save(); after(); }});
+      else if (k === 'step-make') openMenu(x, state.blocks.map(b => ({icon: 'layers', label: b.title, run: () => { const s = newStep(c.title); if (c.done) { s.status = 'done'; s.doneAt = Date.now(); } b.steps.push(s); linkStepCard(s.id, id); save(); after(); toast(`Added to ${b.title}`); }})), {title: 'Add as a step in…'});
+      else if (k === 'menu') openMenu(x, [
+        {icon: 'star', label: c.pinned ? 'Unpin' : 'Pin to top', run: () => { const g = get(); if (g) { g.card.pinned = !g.card.pinned; save(); after(); } }},
+        {icon: 'copy', label: 'Duplicate', run: () => { const g = get(); if (!g) return; const d = normCard(JSON.parse(JSON.stringify(g.card))); d.id = uid(); d.step = null; d.created = Date.now(); d.checklist.forEach(i => { i.id = uid(); }); g.list.cards.splice(g.list.cards.indexOf(g.card) + 1, 0, d); save(); render(); toast('Card duplicated'); }},
+        'sep',
+        {icon: 'trash', label: 'Delete card', danger: true, run: () => { closeEntry(entry); withUndo('Card deleted', () => removeCard(id)); }}
+      ]);
+      else if (k === 'delete') { closeEntry(entry); withUndo('Card deleted', () => removeCard(id)); }
+    });
+  }, {cls: 'tall wide', onClose: () => { const f = findCard(id); if (f && !f.card.title.trim()) { f.card.title = 'Untitled'; save(); } render(); }});
+}
+
+/* ================= step detail & build log ================= */
+function openStep(id) {
+  openSheet((inner, entry) => {
+    const get = () => findStep(id);
+    const draw = () => {
+      const f = get(); if (!f) { closeEntry(entry); return; }
+      const s = f.step, card = s.card && findCard(s.card);
+      inner.innerHTML = `<div class="cs-head"><button type="button" class="check big${s.status === 'done' ? ' on' : ''}" data-x="toggle-done" aria-label="${s.status === 'done' ? 'Mark not done' : 'Mark done'}">${ic('check')}</button><textarea class="cs-title" rows="1" data-f="title" aria-label="Step title">${esc(s.title)}</textarea><button type="button" class="icon-btn" data-x="menu" aria-label="Step options">${ic('more')}</button></div>
+        <div class="cs-where"><span class="muted">in</span><span class="select-wrap"><select class="select" data-f="block" aria-label="Block">${state.blocks.map(b => `<option value="${b.id}"${b === f.block ? ' selected' : ''}>${esc(b.title)}</option>`).join('')}</select></span></div>
+        <div class="seg st-seg" role="group" aria-label="Status">${Object.keys(STATUS).map(k => `<button type="button" class="${s.status === k ? 'on' : ''}" data-x="status" data-v="${k}" aria-pressed="${s.status === k}">${STATUS[k]}</button>`).join('')}</div>
+        <div class="cs-grid"><div>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Notes</h3></div><textarea class="field area" data-f="notes" placeholder="How you did it, settings, what to remember…">${esc(s.notes)}</textarea></section>
+          ${filesSecHTML(s.files)}
+        </div><div>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Build log</h3></div><p class="sheet-hint" style="margin:0 0 10px">Add a dated entry with photos to <span class="mono">${esc(state.settings.logPath)}</span> in the repository.</p><button type="button" class="btn sm" data-x="log">${ic('book')}Write a log entry</button></section>
+          <section class="cs-sec"><div class="cs-sec-head"><h3>Board card</h3></div>${card
+            ? `<div class="link-box"><div class="t"><b>${esc(card.card.title)}</b><small>${esc(card.board.name)} › ${esc(card.list.title)}</small></div><button type="button" class="btn sm" data-x="card-open">Open</button><button type="button" class="icon-btn sm" data-x="card-unlink" aria-label="Unlink card" title="Unlink">${ic('unlink')}</button></div>`
+            : `<p class="sheet-hint" style="margin:0 0 10px">Put this step on a board to plan it with due dates, tags and a checklist.</p><button type="button" class="btn sm" data-x="card-make">${ic('board')}Add to a board</button>`}</section>
+        </div></div>
+        <div class="cs-foot"><span class="mono muted">${s.doneAt ? 'Done ' + fmtDate(s.doneAt) : 'Created ' + fmtDate(s.created)}</span><button type="button" class="btn danger" data-x="delete">${ic('trash')}Delete</button></div>`;
+      autosize($('.cs-title', inner));
+      observeThumbs(inner);
+    };
+    entry.refresh = () => { if (!typingIn(inner)) draw(); };
+    draw();
+    if (GH.status === 'on' && !T.loaded) loadTree().catch(() => {});
+    inner.addEventListener('input', e => {
+      const f = get(); if (!f) return;
+      const k = e.target.dataset.f;
+      if (k === 'title') { f.step.title = e.target.value.replace(/\n/g, ' '); autosize(e.target); saveSoft(); }
+      else if (k === 'notes') { f.step.notes = e.target.value; saveSoft(); }
+    });
+    inner.addEventListener('change', e => {
+      if (e.target.dataset.f !== 'block') return;
+      const f = get(), to = findBlock(e.target.value); if (!f || !to || to === f.block) return;
+      f.block.steps.splice(f.index, 1); to.steps.push(f.step); save(); renderSoon(); draw();
+    });
+    inner.addEventListener('keydown', e => { if (e.target.dataset.f === 'title' && e.key === 'Enter') { e.preventDefault(); e.target.blur(); } });
+    inner.addEventListener('click', async e => {
+      const x = e.target.closest('[data-x]'); if (!x) return;
+      const f = get(); if (!f) return;
+      const s = f.step, k = x.dataset.x;
+      const after = () => { renderSoon(); draw(); };
+      if (k === 'status') { setStepStatus(id, x.dataset.v); save(); after(); }
+      else if (k === 'toggle-done') { setStepStatus(id, s.status === 'done' ? 'todo' : 'done'); save(); after(); }
+      else if (k.startsWith('file-')) handleFileAction(k, x, () => get() && get().step, after);
+      else if (k === 'log') openLogSheet(id);
+      else if (k === 'card-open') openCard(s.card);
+      else if (k === 'card-unlink') { unlinkStep(id); save(); after(); }
+      else if (k === 'card-make') openMenu(x, state.boards.flatMap(b => [{heading: b.name}, ...b.lists.map(l => ({icon: 'board', label: l.title, run: () => {
+        const c = newCard(s.title); c.done = s.status === 'done'; l.cards.push(c); linkStepCard(id, c.id); save(); after(); toast(`Added to ${b.name} › ${l.title}`); }}))]), {title: 'Add to…'});
+      else if (k === 'menu') openMenu(x, [
+        {icon: 'arrow-up', label: 'Move to top of block', run: () => { const g = get(); if (g) { g.block.steps.splice(g.index, 1); g.block.steps.unshift(g.step); save(); render(); } }},
+        {icon: 'copy', label: 'Duplicate', run: () => { const g = get(); if (g) { const d = newStep(g.step.title); d.notes = g.step.notes; g.block.steps.splice(g.index + 1, 0, d); save(); render(); toast('Step duplicated'); } }},
+        'sep',
+        {icon: 'trash', label: 'Delete step', danger: true, run: () => { closeEntry(entry); withUndo('Step deleted', () => removeStep(id)); }}
+      ]);
+      else if (k === 'delete') { closeEntry(entry); withUndo('Step deleted', () => removeStep(id)); }
+    });
+  }, {cls: 'tall wide', onClose: () => { const f = findStep(id); if (f && !f.step.title.trim()) { f.step.title = 'Untitled step'; save(); } render(); }});
+}
+function openLogSheet(stepId) {
+  if (!requireGH()) return;
+  const f = findStep(stepId); if (!f) return;
+  const s = f.step, imgs = s.files.filter(p => kindOf(p) === 'image');
+  openSheet((inner, entry) => {
+    inner.innerHTML = `<h2 class="sheet-title">Build log entry</h2><form class="form-grid" novalidate>
+      <div class="fld"><label for="lg-date">Date</label><input id="lg-date" type="date" class="field" value="${todayISO()}"></div>
+      <div class="fld"><label for="lg-time">Time spent</label><input id="lg-time" class="field" placeholder="e.g. 2 h"></div>
+      <div class="fld full"><label for="lg-title">Title</label><input id="lg-title" class="field" value="${esc(f.block.title + ': ' + s.title)}"></div>
+      <div class="fld full"><label for="lg-did">What I worked on</label><textarea id="lg-did" class="field area">${esc(s.notes)}</textarea></div>
+      <div class="fld full"><label for="lg-good">What went well</label><textarea id="lg-good" class="field area" style="min-height:64px"></textarea></div>
+      <div class="fld full"><label for="lg-bad">Problems / what I learned</label><textarea id="lg-bad" class="field area" style="min-height:64px"></textarea></div>
+      <div class="fld full"><label for="lg-next">Next steps</label><textarea id="lg-next" class="field area" style="min-height:64px"></textarea></div>
+      ${imgs.length ? `<div class="fld full"><span class="lbl">Photos to include</span><div class="log-imgs">${imgs.map(p => `<label class="log-img" data-thumb="${esc(p)}" title="${esc(baseName(p))}"></label>`).join('')}</div></div>` : ''}
+      <div class="full sheet-actions" style="margin-top:4px"><button type="button" class="btn" data-x="cancel">Cancel</button><button class="btn primary">Add to build log</button></div></form>
+      <p class="sheet-hint">Saved as a commit to <span class="mono">${esc(state.settings.logPath)}</span>.${imgs.length ? '' : ' Upload photos to the step first to include them.'}</p>`;
+    const labels = $$('.log-img', inner);
+    labels.forEach((l, i) => { l.dataset.i = i; });
+    imgs.forEach((p, i) => {
+      const it = T.items.get(p);
+      const holder = labels[i];
+      const box = document.createElement('span'); box.dataset.thumb = p; box.style.cssText = 'position:absolute;inset:0';
+      holder.removeAttribute('data-thumb');
+      holder.innerHTML = `<input type="checkbox" checked aria-label="Include ${esc(baseName(p))}">`;
+      holder.prepend(box);
+      if (!it) holder.style.opacity = '.4';
+    });
+    observeThumbs(inner);
+    if (!T.loaded) loadTree().then(() => observeThumbs(inner)).catch(() => {});
+    $('[data-x="cancel"]', inner).addEventListener('click', () => closeEntry(entry));
+    $('form', inner).addEventListener('submit', async e => {
+      e.preventDefault();
+      const v = id => $('#' + id, inner).value.trim();
+      const chosen = imgs.filter((p, i) => labels[i].querySelector('input').checked);
+      const logPath = state.settings.logPath, logDir = dirName(logPath);
+      const lines = [`## ${v('lg-date') || todayISO()} — ${v('lg-title') || s.title}`, `**Worked on:** ${v('lg-did').replace(/\n+/g, ' ')}`, `**Time spent:** ${v('lg-time')}`, `**What went well:** ${v('lg-good').replace(/\n+/g, ' ')}`, `**Problems / what I learned:** ${v('lg-bad').replace(/\n+/g, ' ')}`, `**Next steps:** ${v('lg-next').replace(/\n+/g, ' ')}`];
+      const entryText = lines.join('  \n') + (chosen.length ? '\n\n' + chosen.map(p => `![${baseName(p)}](${relPath(logDir, p)})`).join('\n') : '') + '\n';
+      const btn = $('button.primary', inner); btn.disabled = true; btn.textContent = 'Saving…';
+      try {
+        await loadTree();
+        const it = T.items.get(logPath);
+        let text = it ? decodeUtf8(await readBlob(it.sha)) : '# Build Log\n';
+        text = text.replace(/\s*$/, '\n') + '\n---\n\n' + entryText;
+        await commitChanges([{path: logPath, b64: utf8ToB64(text)}], `Build log: ${v('lg-title') || s.title}`);
+        closeEntry(entry);
+        toast('Added to the build log', {action: 'View', onAction: () => openViewer(logPath)});
+      } catch (err) { btn.disabled = false; btn.textContent = 'Add to build log'; toast('Couldn’t save: ' + err.message); }
+    });
+  }, {cls: 'tall'});
+}
+function openBlockEdit(id) {
+  openSheet((inner, entry) => {
+    const b = findBlock(id); if (!b) return;
+    inner.innerHTML = `<h2 class="sheet-title">Edit block</h2><div class="form-grid"><div class="fld full"><label for="b-title">Name</label><input id="b-title" class="field" value="${esc(b.title)}"></div>
+      <div class="fld full"><span class="lbl">Colour</span><div class="menu-swatches" style="padding:4px 2px">${COLORS.map(k => `<button type="button" class="swatch${k === b.color ? ' on' : ''}" style="--c:${col(k)}" data-k="${k}" aria-label="${k}"></button>`).join('')}</div></div>
+      <div class="fld full"><label for="b-desc">Description</label><textarea id="b-desc" class="field area" placeholder="What this block covers, methods, materials…">${esc(b.desc)}</textarea></div></div>
+      <div class="sheet-actions" style="justify-content:space-between"><button type="button" class="btn danger" data-x="delete">${ic('trash')}Delete block</button><button type="button" class="btn primary" data-x="done">Done</button></div>`;
+    inner.addEventListener('input', e => { const g = findBlock(id); if (!g) return; if (e.target.id === 'b-title') g.title = e.target.value; else if (e.target.id === 'b-desc') g.desc = e.target.value; saveSoft(); });
+    inner.addEventListener('click', e => {
+      const sw = e.target.closest('[data-k]');
+      if (sw) { const g = findBlock(id); if (g) { g.color = sw.dataset.k; $$('.swatch', inner).forEach(n => n.classList.toggle('on', n === sw)); saveSoft(); } return; }
+      const x = e.target.closest('[data-x]'); if (!x) return;
+      if (x.dataset.x === 'done') closeEntry(entry);
+      else if (x.dataset.x === 'delete') { closeEntry(entry); deleteBlock(id); }
+    });
+  }, {cls: 'compact', onClose: () => { const g = findBlock(id); if (g && !g.title.trim()) { g.title = 'Block'; save(); } render(); }});
+}
+function deleteBlock(id) {
+  withUndo('Block deleted', () => {
+    const b = findBlock(id); if (!b) return;
+    b.steps.slice().forEach(s => removeStep(s.id));
+    state.blocks = state.blocks.filter(x => x.id !== id);
+  });
+}
+
+/* ================= settings ================= */
+function openSettings() {
+  openSheet((inner, entry) => {
+    const draw = () => {
+      inner.innerHTML = `<h2 class="sheet-title">Settings</h2>
+      <section class="set-sec"><h3>GitHub</h3>${GH.status === 'off'
+        ? `<p class="sheet-text">Not connected. Boards and blocks are only on this device.</p><div class="sheet-actions" style="justify-content:flex-start"><button type="button" class="btn primary" data-x="connect">Connect GitHub</button></div>`
+        : `<p class="sheet-text">Connected to <b>${esc(GH.repo)}</b> (${esc(GH.branch)}). Boards and blocks are saved to <span class="mono">${esc(DATA_PATH)}</span>.</p><p class="sheet-hint" style="color:${GH.status === 'error' || GH.err ? 'var(--danger)' : 'var(--muted)'}">${GH.status === 'error' ? esc(GH.err) : GH.err ? 'Last attempt failed: ' + esc(GH.err) : GH.last ? 'Last saved ' + fmtStamp(GH.last) : 'Up to date'}</p>
+          <div class="sheet-actions" style="justify-content:flex-start">${GH.status === 'error' ? '<button type="button" class="btn primary" data-x="connect">Connect again</button>' : '<button type="button" class="btn" data-x="sync">Sync now</button>'}<a class="btn" href="https://github.com/${esc(GH.repo)}" target="_blank" rel="noopener">${ic('external')}Open repository</a><button type="button" class="btn danger" data-x="off">Disconnect</button></div>`}</section>
+      <section class="set-sec"><h3>Appearance</h3><div class="seg" role="group" aria-label="Theme">${['system', 'light', 'dark'].map(t => `<button type="button" class="${ui.theme === t ? 'on' : ''}" data-x="theme" data-v="${t}">${t[0].toUpperCase() + t.slice(1)}</button>`).join('')}</div></section>
+      <section class="set-sec"><h3>Board</h3><label class="toggle"><span>Move finished cards to Done<small>Ticking a card moves it to its board’s Done list</small></span><input type="checkbox" data-s="autoMoveDone"${state.settings.autoMoveDone ? ' checked' : ''}><span class="switch"></span></label></section>
+      <section class="set-sec"><h3>Files</h3><div class="form-grid"><div class="fld full"><label for="s-up">Upload folder for cards and steps</label><input id="s-up" class="field" data-s="uploadDir" value="${esc(state.settings.uploadDir)}" autocapitalize="off" spellcheck="false"></div>
+        <div class="fld full"><label for="s-log">Build log file</label><input id="s-log" class="field" data-s="logPath" value="${esc(state.settings.logPath)}" autocapitalize="off" spellcheck="false"></div></div>
+        <label class="toggle" style="margin-top:6px"><span>Shrink big photos<small>JPEG and WebP photos over 1.5 MB are resized to 2400 px before upload</small></span><input type="checkbox" data-s="shrink"${state.settings.shrink ? ' checked' : ''}><span class="switch"></span></label></section>
+      <section class="set-sec"><h3>Tags</h3>${state.tags.map(t => `<div class="tag-row" data-tag="${t.id}"><button type="button" class="swatch" style="--c:${col(t.color)}" data-x="tag-color" aria-label="Colour"></button><input value="${esc(t.name)}" data-t="name" aria-label="Tag name"><button type="button" class="icon-btn sm" data-x="tag-del" aria-label="Delete tag">${ic('trash')}</button></div>`).join('')}<button type="button" class="btn sm" data-x="tag-add" style="margin-top:10px">${ic('plus')}New tag</button></section>
+      <section class="set-sec"><h3>Backup</h3><div class="row-btns"><button type="button" class="btn sm" data-x="backup">${ic('download')}Download backup</button><button type="button" class="btn sm" data-x="restore">${ic('upload')}Restore from file</button></div><p class="sheet-hint">Every save is also a commit, so older versions are in the repository history.</p></section>`;
+    };
+    entry.refresh = () => { if (!typingIn(inner)) draw(); };
+    draw();
+    inner.addEventListener('change', e => {
+      const k = e.target.dataset.s; if (!k) return;
+      if (k === 'autoMoveDone' || k === 'shrink') state.settings[k] = e.target.checked;
+      else { const v = e.target.value.trim().replace(/^\/+|\/+$/g, ''); if (k === 'logPath' && !v) { e.target.value = state.settings.logPath; return; } state.settings[k] = v; e.target.value = v; }
+      save();
+    });
+    inner.addEventListener('input', e => {
+      if (e.target.dataset.t !== 'name') return;
+      const t = state.tags.find(x => x.id === e.target.closest('[data-tag]').dataset.tag); if (t) { t.name = e.target.value; saveSoft(); }
+    });
+    inner.addEventListener('click', async e => {
+      const x = e.target.closest('[data-x]'); if (!x) return;
+      const k = x.dataset.x;
+      if (k === 'connect') { closeEntry(entry); openConnect(); }
+      else if (k === 'sync') { await ghPull(); if (GH.status === 'on' && !GH.timer) await ghWrite(); loadTree().catch(() => {}); toast('Synced'); draw(); }
+      else if (k === 'off') { if (await ask({title: 'Disconnect this device?', text: 'The token is removed from this device. Everything stays in the repository.', buttons: [{label: 'Cancel', value: false}, {label: 'Disconnect', value: true, danger: true}]})) { ghDisconnect(); draw(); } }
+      else if (k === 'theme') { ui.theme = x.dataset.v; saveUI(); applyTheme(); draw(); }
+      else if (k === 'tag-color') { const t = state.tags.find(z => z.id === x.closest('[data-tag]').dataset.tag); openMenu(x, [{swatches: true, value: t.color, run: c => { t.color = c; save(); render(); draw(); }}], {title: 'Colour'}); }
+      else if (k === 'tag-del') { const tid = x.closest('[data-tag]').dataset.tag; withUndo('Tag deleted', () => { state.tags = state.tags.filter(t => t.id !== tid); state.boards.forEach(b => b.lists.forEach(l => l.cards.forEach(c => { c.tags = c.tags.filter(z => z !== tid); }))); }); draw(); }
+      else if (k === 'tag-add') { state.tags.push({id: uid(), name: 'New tag', color: COLORS[state.tags.length % COLORS.length]}); save(); draw(); const inp = $$('.tag-row input', inner).pop(); inp.focus(); inp.select(); }
+      else if (k === 'backup') { const url = URL.createObjectURL(new Blob([JSON.stringify(state, null, 1)], {type: 'application/json'})); const a = document.createElement('a'); a.href = url; a.download = `rex-workshop-${todayISO()}.json`; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 30000); }
+      else if (k === 'restore') {
+        const [file] = await chooseFiles('application/json,.json'); if (!file) return;
+        try {
+          const d = normalize(JSON.parse(await file.text()));
+          if (await ask({title: 'Replace everything with this backup?', text: `${d.blocks.length} blocks and ${d.boards.length} boards. What you have now is replaced (it stays in the repository history).`, buttons: [{label: 'Cancel', value: false}, {label: 'Restore', value: true, primary: true}]})) { state = d; save(); render(); toast('Backup restored'); draw(); }
+        } catch (err) { toast('That file isn’t a Rex Workshop backup'); }
+      }
+    });
+  }, {cls: 'tall'});
+}
+
+/* ================= event delegation ================= */
+let suppressUntil = 0;
+document.addEventListener('click', e => { if (performance.now() < suppressUntil) { e.preventDefault(); e.stopPropagation(); } }, true);
+document.addEventListener('click', async e => {
+  if (e.target.closest('#layer')) return;
+  const view = e.target.closest('[data-view]');
+  if (view) { setView(view.dataset.view); return; }
+  const actEl = e.target.closest('[data-act]');
+  const act = actEl && actEl.dataset.act;
+  if (act === 'settings') return openSettings();
+  if (act === 'sync') return GH.status === 'off' ? openConnect() : openSettings();
+  if (act === 'connect') return openConnect();
+  if (act === 'composer-add') return composerSubmit();
+  if (act === 'composer-close') { composing = null; render(); return; }
+
+  /* blocks */
+  const stepEl = e.target.closest('.step');
+  if (act === 'step-cycle' && stepEl) { const s = findStep(stepEl.dataset.step); if (s) { setStepStatus(s.step.id, NEXT_STATUS[s.step.status]); save(); render(); } return; }
+  const blockEl = e.target.closest('.block');
+  if (act === 'block-toggle' && blockEl) { const b = findBlock(blockEl.dataset.block); b.collapsed = !b.collapsed; save(); render(); return; }
+  if (act === 'block-edit' && blockEl) return openBlockEdit(blockEl.dataset.block);
+  if (act === 'block-menu' && blockEl) return blockMenu(actEl, blockEl.dataset.block);
+  if (act === 'step-add' && blockEl) { composing = {kind: 'step', block: blockEl.dataset.block, text: ''}; render(); return; }
+  if (act === 'block-add') {
+    const name = await promptText({title: 'New block', label: 'Name', placeholder: 'e.g. Jetpack', confirm: 'Create'});
+    if (!name) return;
+    const b = newBlock(name, COLORS[state.blocks.length % COLORS.length]);
+    state.blocks.push(b); composing = {kind: 'step', block: b.id, text: ''}; save(); render();
+    return;
+  }
+  if (stepEl && !actEl) return openStep(stepEl.dataset.step);
+
+  /* board */
+  const cardEl = e.target.closest('#board .card');
+  if (act === 'card-check' && cardEl) { const f = findCard(cardEl.dataset.card); if (f) { setCardDone(f.card.id, !f.card.done); save(); render(); } return; }
+  if (cardEl) return openCard(cardEl.dataset.card);
+  const tab = e.target.closest('.tab[data-board]');
+  if (tab) { if (tab.dataset.board === curBoard().id) boardMenu(tab); else { ui.board = tab.dataset.board; saveUI(); composing = null; render(); } return; }
+  if (act === 'board-add') {
+    const name = await promptText({title: 'New board', label: 'Name', placeholder: 'e.g. Electronics', confirm: 'Create'});
+    if (!name) return;
+    const b = {id: uid(), name, color: COLORS[state.boards.length % COLORS.length], lists: [newList('To do'), newList('Doing'), newList('Done', {isDone: true})]};
+    state.boards.push(b); ui.board = b.id; saveUI(); save(); render();
+    return;
+  }
+  const listEl = e.target.closest('#board .list');
+  if (act === 'list-add') { composing = {kind: 'list', text: ''}; render(); return; }
+  if (act === 'card-add' && listEl) { composing = {kind: 'card', list: listEl.dataset.list, text: ''}; render(); return; }
+  if (act === 'list-expand' && listEl) { const f = findList(listEl.dataset.list); f.list.collapsed = false; save(); render(); return; }
+  if (act === 'list-menu' && listEl) return listMenu(actEl, listEl.dataset.list);
+  if (act === 'list-rename' && listEl) return renameListInline(listEl);
+
+  /* files */
+  const row = e.target.closest('.frow');
+  if (act === 'f-dir') { ui.dir = actEl.dataset.dir; fileQuery = ''; saveUI(); renderFiles(); $('#files-scroll').scrollTop = 0; return; }
+  if (act === 'f-open' && row) {
+    const p = row.dataset.path;
+    if (fileSel) { toggleSel(p); return; }
+    const it = T.items.get(p);
+    if (it && it.type === 'tree') { ui.dir = p; fileQuery = ''; saveUI(); renderFiles(); $('#files-scroll').scrollTop = 0; } else openViewer(p);
+    return;
+  }
+  if (act === 'f-sel' && row) { toggleSel(row.dataset.path); return; }
+  if (act === 'f-menu' && row) return fileMenu(actEl, row.dataset.path);
+  if (act === 'f-upload') { const files = await chooseFiles(); if (files.length) uploadFiles(files, currentDir()); return; }
+  if (act === 'f-refresh') { T.err = ''; renderFiles(); loadTree(true).catch(() => {}); return; }
+  if (act === 'f-new') return openMenu(actEl, [
+    {icon: 'file-plus', label: 'New file', sub: 'Write a note or a document', run: () => newFilePrompt(currentDir())},
+    {icon: 'folder-plus', label: 'New folder', run: () => newFolderPrompt(currentDir())},
+    {icon: 'upload', label: 'Upload files', run: async () => { const files = await chooseFiles(); if (files.length) uploadFiles(files, currentDir()); }}
+  ]);
+  if (act === 'f-more') return openMenu(actEl, [
+    {icon: 'select', label: 'Select several', run: () => { fileSel = new Set(); renderFileList(); }},
+    {icon: 'refresh', label: 'Refresh', run: () => { renderFiles(); loadTree(true).then(() => toast('Up to date')).catch(err => toast(err.message)); }},
+    {icon: 'clock', label: 'Recent changes', run: openHistory},
+    {icon: 'external', label: 'Open on GitHub', run: () => window.open(currentDir() ? ghWebUrl(currentDir(), true) : `https://github.com/${GH.repo}`, '_blank', 'noopener')}
+  ]);
+  if (act === 'sel-cancel') { fileSel = null; renderFileList(); return; }
+  if (act === 'sel-delete' && fileSel && fileSel.size) { if (await deletePaths([...fileSel])) fileSel = null; renderFileList(); return; }
+  if (act === 'sel-move' && fileSel && fileSel.size) {
+    const dest = await promptText({title: `Move ${fileSel.size} item${fileSel.size > 1 ? 's' : ''}`, label: 'To folder', value: currentDir(), placeholder: 'Leave empty for the repository root', confirm: 'Move',
+      list: allDirs().filter(Boolean), validate: v => v && validPath(v)});
+    if (dest == null) return;
+    if (await moveMany([...fileSel], dest)) fileSel = null;
+    renderFileList();
+  }
+});
+function toggleSel(p) { if (fileSel.has(p)) fileSel.delete(p); else fileSel.add(p); renderFileList(); }
+document.addEventListener('keydown', e => {
+  const t = e.target;
+  if (t.closest && t.closest('[data-composer], .add-list.is-open')) {
+    if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); composerSubmit(); }
+    else if (e.key === 'Escape') { e.preventDefault(); composing = null; render(); }
+    return;
+  }
+  if (e.key === 'Escape' && stack.length) { e.preventDefault(); closeTop(); return; }
+  if ((e.key === 'Enter' || e.key === ' ') && t.matches && t.matches('.card, .step') && !stack.length) { e.preventDefault(); if (t.matches('.card')) openCard(t.dataset.card); else openStep(t.dataset.step); return; }
+  if (stack.length || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName) || e.ctrlKey || e.metaKey || e.altKey) return;
+  if (e.key === '1') setView('blocks'); else if (e.key === '2') setView('board'); else if (e.key === '3') setView('files');
+});
+document.addEventListener('input', e => {
+  if (composing && e.target.closest && e.target.closest('[data-composer], .add-list.is-open')) composing.text = e.target.value;
+});
+document.addEventListener('focusout', e => {
+  if (!composing || !e.target.closest || !e.target.closest('[data-composer], .add-list.is-open')) return;
+  setTimeout(() => {
+    const a = document.activeElement;
+    if (composing && !(composing.text || '').trim() && !(a && a.closest && a.closest('[data-composer], .add-list.is-open'))) { composing = null; render(); }
+  }, 180);
+});
+function composerSubmit() {
+  if (!composing) return;
+  const lines = (composing.text || '').split('\n').map(s => s.trim()).filter(Boolean);
+  if (!lines.length) { focusComposer(); return; }
+  if (composing.kind === 'card') { const f = findList(composing.list); if (f) lines.forEach(t => f.list.cards.push(newCard(t))); }
+  else if (composing.kind === 'step') { const b = findBlock(composing.block); if (b) lines.forEach(t => b.steps.push(newStep(t))); }
+  else if (composing.kind === 'list') { const b = curBoard(); const at = b.lists.findIndex(l => l.isDone); lines.forEach(t => { const l = newList(t); if (at > -1) b.lists.splice(b.lists.findIndex(x => x.isDone), 0, l); else b.lists.push(l); }); }
+  composing.text = '';
+  save(); render();
+  if (composing && composing.kind === 'card') { const c = $(`.list[data-list="${composing.list}"] [data-cards]`); if (c) c.scrollTop = c.scrollHeight; }
+}
+function renameListInline(listEl) {
+  const f = findList(listEl.dataset.list); if (!f) return;
+  const btn = $('.list-title', listEl);
+  const inp = document.createElement('input'); inp.className = 'list-title-input'; inp.value = f.list.title; inp.setAttribute('aria-label', 'List name');
+  btn.replaceWith(inp); inp.focus(); inp.select();
+  let done = false;
+  const finish = ok => { if (done) return; done = true; const v = inp.value.trim(); if (ok && v && v !== f.list.title) { f.list.title = v; save(); } render(); };
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') { e.preventDefault(); finish(true); } else if (e.key === 'Escape') { e.preventDefault(); finish(false); } e.stopPropagation(); });
+  inp.addEventListener('blur', () => finish(true));
+}
+function listMenu(anchor, id) {
+  const f = findList(id); if (!f) return;
+  const l = f.list, doneCount = l.cards.filter(c => c.done).length;
+  openMenu(anchor, [
+    {icon: 'edit', label: 'Rename', run: () => { const el = $(`.list[data-list="${id}"]`); if (el) renameListInline(el); }},
+    {heading: 'Sort cards'},
+    ...[['manual', 'Manually'], ['priority', 'By priority'], ['due', 'By due date']].map(([k, label]) => ({label, check: l.sort === k, run: () => { l.sort = k; save(); render(); }})),
+    'sep',
+    {icon: 'check', label: 'Done column', sub: 'Finished cards land here', check: l.isDone, run: () => { const was = l.isDone; f.board.lists.forEach(x => { x.isDone = false; }); l.isDone = !was; save(); render(); }},
+    {icon: 'chev-r', label: 'Collapse', run: () => { l.collapsed = true; save(); render(); }},
+    {icon: 'move', label: 'Move list to another board', disabled: state.boards.length < 2, run: () => openMenu(null, state.boards.filter(b => b !== f.board).map(b => ({icon: 'board', label: b.name, run: () => { f.board.lists.splice(f.board.lists.indexOf(l), 1); if (l.isDone && b.lists.some(x => x.isDone)) l.isDone = false; b.lists.push(l); save(); render(); toast(`Moved to ${b.name}`); }})), {title: 'Move to…'})},
+    {icon: 'trash', label: `Clear finished cards${doneCount ? ` (${doneCount})` : ''}`, disabled: !doneCount, run: () => withUndo(`${doneCount} cards cleared`, () => { l.cards.filter(c => c.done).forEach(c => removeCard(c.id)); })},
+    {icon: 'trash', label: 'Delete list', danger: true, run: () => withUndo('List deleted', () => { l.cards.slice().forEach(c => removeCard(c.id)); f.board.lists.splice(f.board.lists.indexOf(l), 1); })}
+  ], {title: l.title});
+}
+function boardMenu(anchor) {
+  const b = curBoard();
+  openMenu(anchor, [
+    {icon: 'edit', label: 'Rename board', run: async () => { const n = await promptText({title: 'Rename board', label: 'Name', value: b.name}); if (n) { b.name = n; save(); render(); } }},
+    {icon: 'palette', heading: 'Colour'},
+    {swatches: true, value: b.color, run: k => { b.color = k; save(); render(); }},
+    'sep',
+    {icon: 'trash', label: 'Delete board', danger: true, disabled: state.boards.length < 2, run: () => withUndo('Board deleted', () => { b.lists.forEach(l => l.cards.slice().forEach(c => removeCard(c.id))); state.boards = state.boards.filter(x => x !== b); ui.board = state.boards[0].id; saveUI(); })}
+  ], {title: b.name});
+}
+function blockMenu(anchor, id) {
+  const b = findBlock(id); if (!b) return;
+  const i = state.blocks.indexOf(b), s = blockStats(b);
+  openMenu(anchor, [
+    {icon: 'edit', label: 'Edit name, colour and description', run: () => openBlockEdit(id)},
+    {icon: 'plus', label: 'Add a step', run: () => { b.collapsed = false; composing = {kind: 'step', block: id, text: ''}; render(); }},
+    {icon: 'check', label: 'Mark all steps done', disabled: !s.t || s.d === s.t, run: () => withUndo('All steps marked done', () => b.steps.forEach(x => setStepStatus(x.id, 'done')))},
+    {icon: 'refresh', label: 'Reset all steps to To do', disabled: !s.t || b.steps.every(x => x.status === 'todo'), run: () => withUndo('Steps reset', () => b.steps.forEach(x => setStepStatus(x.id, 'todo')))},
+    'sep',
+    {icon: 'arrow-up', label: 'Move up', disabled: i === 0, run: () => { state.blocks.splice(i, 1); state.blocks.splice(i - 1, 0, b); save(); render(); }},
+    {icon: 'arrow-down', label: 'Move down', disabled: i === state.blocks.length - 1, run: () => { state.blocks.splice(i, 1); state.blocks.splice(i + 1, 0, b); save(); render(); }},
+    'sep',
+    {icon: 'trash', label: 'Delete block', danger: true, run: () => deleteBlock(id)}
+  ], {title: b.title});
+}
+
+/* drag files from the computer onto the Files view to upload them */
+const filesView = $('#v-files');
+let dragDepth = 0;
+const hasFiles = e => e.dataTransfer && [...(e.dataTransfer.types || [])].includes('Files');
+filesView.addEventListener('dragenter', e => { if (!hasFiles(e) || GH.status !== 'on') return; e.preventDefault(); dragDepth++; const l = $('#flist'); if (l) l.classList.add('drop-over'); });
+filesView.addEventListener('dragover', e => { if (hasFiles(e) && GH.status === 'on') e.preventDefault(); });
+filesView.addEventListener('dragleave', () => { if (--dragDepth <= 0) { dragDepth = 0; const l = $('#flist'); if (l) l.classList.remove('drop-over'); } });
+filesView.addEventListener('drop', e => {
+  if (!hasFiles(e) || GH.status !== 'on') return;
+  e.preventDefault(); dragDepth = 0;
+  const l = $('#flist'); if (l) l.classList.remove('drop-over');
+  const row = e.target.closest('.frow'), it = row && T.items.get(row.dataset.path);
+  uploadFiles([...e.dataTransfer.files], it && it.type === 'tree' ? it.path : currentDir());
+});
+
+/* ================= drag & drop (pointer events, touch long-press) ================= */
+let pend = null, drag = null, settling = false;
+const blocksScroll = $('#blocks-scroll');
+function dragSource(t) {
+  let el;
+  if ((el = t.closest('#board .card'))) return {el, type: 'card'};
+  if (t.closest('#board [data-drag="list"]') || (t.closest('#board > .list') && !t.closest('button, .cards'))) return {el: t.closest('.list'), type: 'list'};
+  if ((el = t.closest('#tabs .tab[data-board]'))) return {el, type: 'tab'};
+  if ((el = t.closest('#blocks .step'))) return {el, type: 'step'};
+  if ((el = t.closest('#blocks [data-drag="block"]'))) return {el: el.closest('.block'), type: 'block', press: el};
+  return null;
+}
+document.addEventListener('pointerdown', e => {
+  if (drag || pend || settling || stack.length) return;
+  if (e.pointerType === 'mouse' && e.button !== 0) return;
+  const t = e.target;
+  if (t.closest('input, textarea, select, .composer, .add-list, .menu, .sheet')) return;
+  const src = dragSource(t); if (!src) return;
+  pend = {...src, x: e.clientX, y: e.clientY, lx: e.clientX, ly: e.clientY, id: e.pointerId, touch: e.pointerType !== 'mouse'};
+  if (pend.touch) {
+    const pressEl = src.press || (src.type === 'list' && !src.el.classList.contains('is-collapsed') ? $('.list-head', src.el) : src.el);
+    pend.pressEl = pressEl; pressEl.classList.add('is-pressing');
+    pend.timer = setTimeout(() => { if (pend) beginDrag(); }, LONGPRESS_MS);
+  }
+});
+window.addEventListener('pointermove', e => {
+  if (pend && e.pointerId === pend.id && !drag) {
+    pend.lx = e.clientX; pend.ly = e.clientY;
+    if (Math.hypot(e.clientX - pend.x, e.clientY - pend.y) > (pend.touch ? 10 : 6)) { if (pend.touch) cancelPend(); else beginDrag(); }
+    return;
+  }
+  if (drag && e.pointerId === drag.id) { drag.x = e.clientX; drag.y = e.clientY; placeGhost(); updateTarget(); }
+}, {passive: true});
+window.addEventListener('pointerup', e => { if (drag && e.pointerId === drag.id) endDrag(); else if (pend && e.pointerId === pend.id) cancelPend(); });
+window.addEventListener('pointercancel', e => { if (drag && e.pointerId === drag.id) endDrag(); else if (pend && e.pointerId === pend.id) cancelPend(); });
+document.addEventListener('touchmove', e => { if (drag) e.preventDefault(); }, {passive: false});
+document.addEventListener('contextmenu', e => { if (drag || pend || (e.target.closest && e.target.closest('.card, .list-head, .tab, .step, .block-head'))) e.preventDefault(); });
+function cancelPend() {
+  if (!pend) return;
+  clearTimeout(pend.timer);
+  if (pend.pressEl) pend.pressEl.classList.remove('is-pressing');
+  pend = null;
+}
+function beginDrag() {
+  const p = pend; pend = null;
+  clearTimeout(p.timer);
+  if (p.pressEl) p.pressEl.classList.remove('is-pressing');
+  const el = p.el, r = el.getBoundingClientRect();
+  if (document.activeElement && document.activeElement !== document.body) document.activeElement.blur();
+  const ghost = el.cloneNode(true);
+  ghost.classList.add('ghost'); ghost.removeAttribute('id');
+  $$('[id]', ghost).forEach(n => n.removeAttribute('id'));
+  ghost.style.width = r.width + 'px'; ghost.style.height = r.height + 'px';
+  document.body.appendChild(ghost);
+  const flipSel = {card: '#board .card', list: '#board > .list, #board > .add-list', tab: '#tabs > .tab[data-board], #tabs > .tab-add', step: '#blocks .step', block: '#blocks > .block, #blocks > .add-block'}[p.type];
+  drag = {el, type: p.type, id: p.id, x: p.lx, y: p.ly, offX: p.x - r.left, offY: p.y - r.top, ghost, hover: null, raf: 0, flipSel};
+  el.classList.add('is-placeholder');
+  document.documentElement.classList.add('dragging');
+  if (navigator.vibrate && p.touch) try { navigator.vibrate(12); } catch (e) {}
+  placeGhost(); updateTarget();
+  drag.raf = requestAnimationFrame(autoScroll);
+}
+function placeGhost() {
+  const {ghost, x, y, offX, offY, type} = drag;
+  ghost.style.transform = `translate3d(${x - offX}px, ${y - offY}px, 0) rotate(${type === 'tab' ? 0 : type === 'list' || type === 'block' ? 1.2 : 2.2}deg)`;
+}
+function setHover(n) {
+  if (drag.hover === n) return;
+  if (drag.hover) drag.hover.classList.remove('is-drop');
+  drag.hover = n;
+  if (n) n.classList.add('is-drop');
+}
+function nearest(nodes, x, y) {
+  let best = null, bd = Infinity;
+  for (const n of nodes) {
+    const r = n.getBoundingClientRect();
+    const dx = x < r.left ? r.left - x : x > r.right ? x - r.right : 0, dy = y < r.top ? r.top - y : y > r.bottom ? y - r.bottom : 0;
+    const d = dx * dx + dy * dy;
+    if (d < bd) { bd = d; best = n; }
+  }
+  return best;
+}
+function listAt(x, y) {
+  const under = document.elementFromPoint(x, y), l = under && under.closest('#board > .list');
+  return l || nearest($$(':scope > .list', boardEl), x, y);
+}
+function blockAt(x, y) {
+  const under = document.elementFromPoint(x, y), b = under && under.closest('#blocks > .block');
+  return b || nearest($$('#blocks > .block'), x, y);
+}
+function pickBefore(items, cont, pos, axis) {
+  const cr = cont.getBoundingClientRect();
+  for (const n of items) {
+    const start = axis === 'y' ? cr.top + n.offsetTop - cont.scrollTop : cr.left + n.offsetLeft - cont.scrollLeft;
+    const size = axis === 'y' ? n.offsetHeight : n.offsetWidth;
+    if (pos < start + size / 2) return n;
+  }
+  return null;
+}
+function pickBefore2D(items, cont, x, y) {
+  const cr = cont.getBoundingClientRect(), px = x - cr.left, py = y - cr.top;
+  for (const n of items) {
+    const top = n.offsetTop, left = n.offsetLeft;
+    if (py < top || (py <= top + n.offsetHeight && px < left + n.offsetWidth / 2)) return n;
+  }
+  return null;
+}
+function placeInto(cont, before) {
+  const el = drag.el;
+  if (el.parentNode === cont && (before ? el.nextElementSibling === before : el === cont.lastElementChild)) return;
+  flip(() => cont.insertBefore(el, before));
+}
+function updateTarget() {
+  const {type, x, y, el} = drag;
+  if (type === 'card') {
+    const list = listAt(x, y); setHover(list); if (!list) return;
+    const cont = $('[data-cards]', list);
+    if (list.classList.contains('is-collapsed')) { if (el.parentNode !== cont) flip(() => cont.appendChild(el)); return; }
+    placeInto(cont, pickBefore([...cont.children].filter(n => n !== el && n.classList.contains('card')), cont, y, 'y'));
+  } else if (type === 'list') {
+    placeInto(boardEl, pickBefore($$(':scope > .list', boardEl).filter(n => n !== el), boardEl, x, 'x') || $(':scope > .add-list', boardEl));
+  } else if (type === 'tab') {
+    placeInto(tabsEl, pickBefore($$(':scope > .tab[data-board]', tabsEl).filter(n => n !== el), tabsEl, x, 'x') || $('.tab-add', tabsEl));
+  } else if (type === 'step') {
+    const block = blockAt(x, y); setHover(block); if (!block) return;
+    const cont = $('[data-steps]', block);
+    if (block.classList.contains('is-collapsed')) { if (el.parentNode !== cont) flip(() => cont.appendChild(el)); return; }
+    placeInto(cont, pickBefore([...cont.children].filter(n => n !== el), cont, y, 'y'));
+  } else {
+    const cont = $('#blocks');
+    placeInto(cont, pickBefore2D($$(':scope > .block', cont).filter(n => n !== el), cont, x, y) || $('.add-block', cont));
+  }
+}
+function flip(mutate) {
+  const els = $$(drag.flipSel).filter(n => n !== drag.el);
+  const first = els.map(n => n.getBoundingClientRect());
+  mutate();
+  els.forEach(n => { n.style.transition = 'none'; n.style.transform = ''; });
+  if (reduceMotion.matches) return;
+  const last = els.map(n => n.getBoundingClientRect());
+  els.forEach((n, i) => {
+    const a = first[i], b = last[i];
+    if (!a.width || !b.width) return;
+    const dx = a.left - b.left, dy = a.top - b.top;
+    if (Math.abs(dx) > 0.5 || Math.abs(dy) > 0.5) n.style.transform = `translate(${dx}px, ${dy}px)`;
+  });
+  void document.body.offsetWidth;
+  els.forEach(n => { if (n.style.transform) { n.style.transition = 'transform 180ms cubic-bezier(.2,.8,.2,1)'; n.style.transform = ''; } else n.style.transition = ''; });
+}
+function autoScroll() {
+  if (!drag) return;
+  const {x, y, type} = drag;
+  let moved = false;
+  const nudge = (el, axis, lo, hi, pos) => {
+    const edge = Math.min(64, (hi - lo) * 0.18);
+    let v = 0;
+    if (pos < lo + edge) v = -Math.pow(Math.min(1, (lo + edge - pos) / edge), 2) * 18;
+    else if (pos > hi - edge) v = Math.pow(Math.min(1, (pos - (hi - edge)) / edge), 2) * 18;
+    if (!v) return;
+    const prop = axis === 'x' ? 'scrollLeft' : 'scrollTop', before = el[prop];
+    el[prop] += v; if (el[prop] !== before) moved = true;
+  };
+  if (type === 'tab') { const r = tabsEl.getBoundingClientRect(); nudge(tabsEl, 'x', r.left, r.right, x); }
+  else if (type === 'step' || type === 'block') { const r = blocksScroll.getBoundingClientRect(); nudge(blocksScroll, 'y', r.top, r.bottom, y); }
+  else {
+    const r = boardEl.getBoundingClientRect();
+    nudge(boardEl, 'x', r.left, r.right, x);
+    if (type === 'card' && drag.hover && !drag.hover.classList.contains('is-collapsed')) {
+      const c = $('[data-cards]', drag.hover), cr = c.getBoundingClientRect();
+      if (x >= cr.left && x <= cr.right && c.scrollHeight > c.clientHeight) nudge(c, 'y', cr.top, cr.bottom, y);
+    }
+  }
+  if (moved) updateTarget();
+  drag.raf = requestAnimationFrame(autoScroll);
+}
+function commitDrop(d) {
+  if (d.type === 'card') {
+    const f = findCard(d.el.dataset.card), listEl = d.el.closest('.list'); if (!f || !listEl) return;
+    const to = findList(listEl.dataset.list); if (!to) return;
+    const moving = to.list !== f.list;
+    f.list.cards.splice(f.index, 1);
+    let idx = to.list.cards.length;
+    if (!listEl.classList.contains('is-collapsed')) {
+      const prev = d.el.previousElementSibling, next = d.el.nextElementSibling;
+      if (prev) { const i = to.list.cards.findIndex(k => k.id === prev.dataset.card); if (i > -1) idx = i + 1; }
+      else if (next) { const i = to.list.cards.findIndex(k => k.id === next.dataset.card); if (i > -1) idx = i; }
+      else idx = 0;
+    } else if (moving) toast(`Moved to ${to.list.title}`);
+    to.list.cards.splice(idx, 0, f.card);
+    if (moving) {
+      if (to.list.isDone && !f.card.done) { f.card.done = true; f.card.fromList = f.list.id; const s = findStep(f.card.step); if (s) { s.step.status = 'done'; s.step.doneAt = Date.now(); } }
+      else if (!to.list.isDone && f.card.done && f.list.isDone) { f.card.done = false; delete f.card.fromList; const s = findStep(f.card.step); if (s && s.step.status === 'done') { s.step.status = 'doing'; s.step.doneAt = null; } }
+    }
+  } else if (d.type === 'list') {
+    const order = $$(':scope > .list', boardEl).map(n => n.dataset.list);
+    curBoard().lists.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  } else if (d.type === 'tab') {
+    const order = $$(':scope > .tab[data-board]', tabsEl).map(n => n.dataset.board);
+    state.boards.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  } else if (d.type === 'step') {
+    const f = findStep(d.el.dataset.step), blockEl = d.el.closest('.block'); if (!f || !blockEl) return;
+    const to = findBlock(blockEl.dataset.block); if (!to) return;
+    f.block.steps.splice(f.index, 1);
+    const prev = d.el.previousElementSibling;
+    let idx = 0;
+    if (prev) { const i = to.steps.findIndex(s => s.id === prev.dataset.step); idx = i > -1 ? i + 1 : to.steps.length; }
+    to.steps.splice(idx, 0, f.step);
+    if (to !== f.block && blockEl.classList.contains('is-collapsed')) toast(`Moved to ${to.title}`);
+  } else {
+    const order = $$('#blocks > .block').map(n => n.dataset.block);
+    state.blocks.sort((a, b) => order.indexOf(a.id) - order.indexOf(b.id));
+  }
+}
+function endDrag() {
+  const d = drag; drag = null;
+  cancelAnimationFrame(d.raf);
+  suppressUntil = performance.now() + 400;
+  if (d.hover) d.hover.classList.remove('is-drop');
+  document.documentElement.classList.remove('dragging');
+  try { commitDrop(d); } catch (err) { console.error('Drop failed', err); }
+  save();
+  const r = d.el.getBoundingClientRect();
+  const finish = () => { d.ghost.remove(); settling = false; render(); };
+  if (reduceMotion.matches || !r.width) { finish(); return; }
+  settling = true;
+  d.ghost.classList.add('settling');
+  d.ghost.style.transform = `translate3d(${r.left}px, ${r.top}px, 0)`;
+  setTimeout(finish, 170);
+}
+
+/* ================= boot ================= */
+applyTheme();
+ghLoadCfg();
+render();
+if (GH.status === 'on') { ghPull(); if (ui.view === 'files') loadTree().catch(() => {}); }
+if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
+window.rexDebug = {get state() { return state; }, T, GH, render, commitChanges, loadTree};
+</script>
+</body>
+</html>
