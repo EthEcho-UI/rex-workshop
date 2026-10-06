@@ -15,7 +15,7 @@ Plain HTML/CSS/JS in `index.html`, no build step. The app talks to the GitHub AP
 - Boards and blocks live in `workshop/data.json` in the project repository: saved 4 s after a change and when the app is hidden, pulled on start, on return and every 30 s. The newest save wins. A copy stays in the browser, so the app also works offline.
 - File changes go through the Git Data API (blobs → tree → commit → move the branch), so a move, a multi-file upload or a folder delete is a single commit. Files up to 100 MB.
 - Libraries load only when needed: three.js for STL, marked + DOMPurify for Markdown.
-- `sw.js` caches the app shell for offline start; the page is network-first, so a reload always gets the newest version. Bump `VERSION` in `sw.js` when icons, the manifest or `sw.js` change.
+- `sw.js` caches the app shell for offline start; the page is network-first, so a reload always gets the newest version. Bump `VERSION` in `sw.js` when icons, the manifest or `sw.js` change. On activate it deletes only caches starting with `rexws-`: every `*.github.io` site shares this origin's Cache Storage.
 
 ## Data model (`workshop/data.json`)
 
